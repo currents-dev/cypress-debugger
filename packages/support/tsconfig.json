@@ -1,0 +1,8 @@
+{
+  "extends": "tsconfig/nextjs.json",
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"],
+  "compilerOptions": {
+    "typeRoots": ["./node_modules/@types", "./src/@types"]
+  }
+}
