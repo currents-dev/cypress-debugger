@@ -5,6 +5,9 @@ import { handleRREvent } from "./handleRREvents";
 // @ts-ignore
 import rrSrc from "./releases/2.0.0-alpha.4.js.src";
 
+let _rrWebReb: typeof record | null = null;
+export const getRRWeb = () => _rrWebReb;
+
 export function injectRROnce(window: Window) {
   // @ts-ignore
   if (window.rrwebRecord) {
@@ -26,4 +29,7 @@ export function injectRROnce(window: Window) {
   (window.rrwebRecord as typeof record)({
     emit: handleRREvent,
   });
+
+  // @ts-ignore
+  _rrWebReb = window.rrwebRecord as typeof record;
 }

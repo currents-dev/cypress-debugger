@@ -1,9 +1,9 @@
 import { eventsContainer } from "../events";
-import { debug } from "../logger";
 import { injectRROnce } from "../rr";
 
 export function handleBefore() {
   console.log("before");
+  cy.window().then((window) => {});
 }
 
 export function handleAfter() {
@@ -11,6 +11,7 @@ export function handleAfter() {
 }
 
 export function handleBeforeEach() {
+  console.log("before each");
   cy.window().then((window) => {
     injectRROnce(window);
   });
@@ -18,6 +19,7 @@ export function handleBeforeEach() {
 
 export function handleAfterEach() {
   console.log("after each");
-  debug(eventsContainer.getEvents());
-  eventsContainer.reset();
+  cy.task("_curr_dump_events", eventsContainer.getEvents()).then(() =>
+    eventsContainer.reset()
+  );
 }

@@ -1,11 +1,64 @@
+import { pick } from "lodash";
 import { getEnvironmentLifetime } from "../env/perf";
 import { uuid } from "../uuid";
-import { Event, EventType } from "./event";
+import {
+  CypressEvent,
+  CypressEventMeta,
+  CypressEventPayload,
+  Event,
+  RawEvent,
+  RRWebEvent,
+} from "./event";
 
-export const enhanceEvent = (event: Event, type: EventType) => ({
+export const enhanceEvent = (event: RawEvent): Event => ({
   payload: event,
-  type,
   id: uuid(),
-  t: Date.now(),
-  d: getEnvironmentLifetime(),
+  timestamp: Date.now(),
+  offset: getEnvironmentLifetime(),
+  duration: 0,
 });
+
+export const enhanceCypressEvent = (
+  event: RawEvent,
+  meta: CypressEventMeta
+): CypressEvent => ({
+  ...enhanceEvent(event),
+  meta,
+});
+
+export const enhanceRREvent = (event: RawEvent): RRWebEvent =>
+  enhanceEvent(event);
+
+export const formatCypressEvent = (event: Event): CypressEventPayload => {
+  // TODO: figure out consoleProps, renderProps and $el
+  // const consoleProps = pick(event.consoleProps, ["Command", "Elements", "Selector"]);
+
+  return {
+    ...pick(event, [
+      "alias",
+      "aliasType",
+      "chainerId",
+      "displayName",
+      "ended",
+      "err",
+      "event",
+      "highlightAttr",
+      "hookId",
+      "id",
+      "numElements",
+      "instrument",
+      "message",
+      "method",
+      "name",
+      "state",
+      "testCurrentRetry",
+      "testId",
+      "totalTime",
+      "type",
+      "url",
+      "viewportHeight",
+      "viewportWidth",
+      "wallClockStartedAt",
+    ]),
+  };
+};

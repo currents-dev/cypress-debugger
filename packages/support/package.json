@@ -9,6 +9,8 @@
     "lint": "TIMING=1 eslint \"**/*.ts*\""
   },
   "devDependencies": {
+    "@types/json-stringify-safe": "^5.0.0",
+    "@types/lodash": "^4.14.191",
     "cypress": "^12.5.1",
     "esbuild": "^0.17.7",
     "tsconfig": "*",
@@ -17,6 +19,8 @@
   },
   "dependencies": {
     "@lukeed/uuid": "^2.0.0",
+    "json-stringify-safe": "^5.0.1",
+    "lodash": "^4.17.21",
     "rrweb": "^2.0.0-alpha.4"
   }
 }
