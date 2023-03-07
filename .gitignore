@@ -4,10 +4,13 @@
 node_modules
 .pnp
 .pnp.js
+videos
 
 # testing
 coverage
 dist
+dump
+screenshots
 
 # next.js
 .next/
