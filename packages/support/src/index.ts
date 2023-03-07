@@ -1,3 +1,3 @@
 import { attachHandlers } from "./cy";
-
-attachHandlers();
+export { attachHandlers };
+// attachHandlers();

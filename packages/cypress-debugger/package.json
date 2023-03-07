@@ -1,5 +1,5 @@
 {
-  "name": "cypress-debugger",
+  "name": "@currents/cypress-debugger",
   "version": "0.0.0",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
@@ -15,7 +15,7 @@
     "typescript": "^4.5.2"
   },
   "dependencies": {
-    "rrweb": "^2.0.0-alpha.4"
+    "@currents/cypress-debugger-support": "*"
   },
   "exports": {
     "support": {

@@ -1,5 +1,5 @@
 {
-  "name": "cypress-debugger",
+  "name": "@currents/cypress-debugger",
   "version": "0.0.0",
   "private": true,
   "workspaces": [
