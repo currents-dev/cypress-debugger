@@ -10,19 +10,24 @@
   },
   "dependencies": {
     "cypress": "^12.7.0",
+    "lodash": "^4.17.21",
     "next": "^13.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "ui": "*"
+    "rrweb-player": "^1.0.0-alpha.4",
+    "ui": "*",
+    "url-parse": "^1.5.10"
   },
   "devDependencies": {
-    "@currents/cypress-debugger": "*",
     "@babel/core": "^7.0.0",
+    "@currents/cypress-debugger": "*",
     "@types/node": "^17.0.12",
     "@types/react": "^18.0.22",
     "@types/react-dom": "^18.0.7",
+    "@types/url-parse": "^1.4.8",
     "eslint": "7.32.0",
     "eslint-config-custom": "*",
+    "sass": "^1.59.3",
     "tsconfig": "*",
     "typescript": "^4.5.3"
   }

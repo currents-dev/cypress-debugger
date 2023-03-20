@@ -1,0 +1,51 @@
+.collapsible {
+
+    &_button {
+        background-color: darkgray;
+        color: white;
+        cursor: pointer;
+        padding: 7px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 12px;
+
+        &__active,
+        &:hover {
+            background-color: lightgray;
+        }
+    }
+
+    &_button-content {
+        display: flex;
+    }
+
+    &_chevron {
+        min-width: 12px;
+        padding-right: 2px;
+        position: relative;
+
+        &__active {
+            img {
+                rotate: 90deg;
+            }
+        }
+    }
+
+    &_title {
+        width: 100%;
+    }
+
+    &_content {
+        width: 100%;
+        padding: 0;
+        display: none;
+        overflow: auto;
+        background-color: #f1f1f1;
+
+        &__active {
+            display: block;
+        }
+    }
+}
