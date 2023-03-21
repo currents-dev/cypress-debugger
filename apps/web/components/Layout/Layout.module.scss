@@ -1,0 +1,32 @@
+.layout {
+    min-width: 1000px;
+    overflow: auto;
+
+    &_top-block {
+        height: 50px;
+    }
+
+    &_main-block {
+        display: flex;
+    }
+
+    &_content,
+    &_left-sidebar,
+    &_right-sidebar {
+        border: 1px solid #ccc;
+        display: flex;
+    }
+
+    &_left-sidebar {
+        max-width: 250px;
+    }
+
+    &_right-sidebar {
+        max-width: 250px;
+    }
+
+    &_content {
+        display: flex;
+        flex-grow: 1;
+    }
+}

@@ -1,0 +1,1044 @@
+[
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-1",
+      "event": false,
+      "hookId": "h1",
+      "id": "log-https://todomvc.com-1",
+      "instrument": "command",
+      "message": "",
+      "name": "window",
+      "state": "pending",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "url": "",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:01.457Z"
+    },
+    "id": "8c688385-79a3-4330-a086-42205414358f",
+    "timestamp": 1679318941460,
+    "offset": 1648.9000000059605,
+    "duration": 0,
+    "meta": {
+      "before": { "rrId": null, "rrNodes": [] },
+      "after": { "rrId": null, "rrNodes": [] }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-2",
+      "ended": true,
+      "event": false,
+      "hookId": "h2",
+      "id": "log-https://todomvc.com-2",
+      "instrument": "command",
+      "message": "",
+      "name": "window",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "url": "",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:01.467Z"
+    },
+    "id": "68838579-a353-40e0-8642-205414358f06",
+    "timestamp": 1679318941468,
+    "offset": 1656.699999988079,
+    "duration": 17.700000017881393,
+    "meta": {
+      "before": { "rrId": null, "rrNodes": [] },
+      "after": {
+        "rrId": "8579a353-30e0-4642-a054-14358f06ca45",
+        "rrNodes": []
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-4",
+      "ended": true,
+      "event": false,
+      "hookId": "h2",
+      "id": "log-https://todomvc.com-3",
+      "instrument": "command",
+      "message": "recordHar, Object{5}",
+      "name": "task",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "type": "parent",
+      "url": "",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:01.483Z"
+    },
+    "id": "79a35330-e086-4220-9414-358f06ca45fa",
+    "timestamp": 1679318941484,
+    "offset": 1672.7999999821186,
+    "duration": 40.80000001192093,
+    "meta": {
+      "before": {
+        "rrId": "8579a353-30e0-4642-a054-14358f06ca45",
+        "rrNodes": []
+      },
+      "after": {
+        "rrId": "8579a353-30e0-4642-a054-14358f06ca45",
+        "rrNodes": []
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-5",
+      "ended": true,
+      "event": false,
+      "hookId": "h3",
+      "id": "log-https://todomvc.com-4",
+      "instrument": "command",
+      "message": "/",
+      "name": "visit",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "totalTime": 63,
+      "type": "parent",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:01.521Z"
+    },
+    "id": "a35330e0-8642-4054-9435-8f06ca45fad7",
+    "timestamp": 1679318941522,
+    "offset": 1710.199999988079,
+    "duration": 427.7000000178814,
+    "meta": {
+      "before": {
+        "rrId": "8579a353-30e0-4642-a054-14358f06ca45",
+        "rrNodes": []
+      },
+      "after": {
+        "rrId": "14358f06-ca45-4ad7-bf21-6f53811c6f77",
+        "rrNodes": []
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-5",
+      "displayName": "xhr",
+      "ended": true,
+      "event": true,
+      "hookId": "h3",
+      "id": "log-https://todomvc.com-5",
+      "instrument": "command",
+      "message": "/",
+      "method": "GET",
+      "name": "request",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "type": "parent",
+      "url": "https://todomvc.com/learn.json",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:01.793Z"
+    },
+    "id": "5330e086-4220-4414-b58f-06ca45fad73f",
+    "timestamp": 1679318941794,
+    "offset": 1983,
+    "duration": 157,
+    "meta": {
+      "before": {
+        "rrId": "8579a353-30e0-4642-a054-14358f06ca45",
+        "rrNodes": []
+      },
+      "after": {
+        "rrId": "358f06ca-45fa-473f-a16f-53811c6f7738",
+        "rrNodes": []
+      }
+    }
+  },
+  {
+    "payload": {
+      "displayName": "xhr",
+      "ended": true,
+      "event": true,
+      "hookId": "h3",
+      "id": "log-https://todomvc.com-6",
+      "instrument": "command",
+      "message": "",
+      "method": "POST",
+      "name": "request",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "type": "parent",
+      "url": "https://www.google-analytics.com/j/collect?v=1&_v=j99&a=1081460887&t=pageview&_s=1&dl=https%3A%2F%2Ftodomvc.com%2Fexamples%2Fbackbone%2F&ul=en-us&de=UTF-8&dt=Backbone.js%20%E2%80%A2%20TodoMVC&sd=24-bit&sr=1280x720&vp=985x660&je=0&_u=IEBAAEABAAAAACAAI~&jid=1756601732&gjid=2096646568&cid=1633417941.1679318942&tid=UA-31081062-1&_gid=1791624547.1679318942&_r=1&_slc=1&z=1371947187",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:01.926Z"
+    },
+    "id": "20541435-8f06-4a45-bad7-3f216f53811c",
+    "timestamp": 1679318941927,
+    "offset": 2115.2999999821186,
+    "duration": 105.5,
+    "meta": {
+      "before": {
+        "rrId": "42205414-358f-46ca-85fa-d73f216f5381",
+        "rrNodes": []
+      },
+      "after": {
+        "rrId": "d73f216f-5381-4c6f-b738-3566bb86eeb2",
+        "rrNodes": []
+      }
+    }
+  },
+  {
+    "payload": {
+      "alias": "@firstTodo",
+      "aliasType": "dom",
+      "chainerId": "ch-https://todomvc.com-6",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-7",
+      "numElements": 1,
+      "instrument": "command",
+      "message": "buy some cheese",
+      "name": "create todo",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "type": "parent",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:01.931Z"
+    },
+    "id": "5414358f-06ca-45fa-973f-216f53811c6f",
+    "timestamp": 1679318941932,
+    "offset": 2120.5999999940395,
+    "duration": 282.30000001192093,
+    "meta": {
+      "before": {
+        "rrId": "42205414-358f-46ca-85fa-d73f216f5381",
+        "rrNodes": []
+      },
+      "after": {
+        "rrId": "b2702cd8-949e-4d85-b149-6db9dde30724",
+        "rrNodes": [226]
+      }
+    }
+  },
+  {
+    "payload": {
+      "alias": "@secondTodo",
+      "aliasType": "dom",
+      "chainerId": "ch-https://todomvc.com-7",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-8",
+      "numElements": 1,
+      "instrument": "command",
+      "message": "feed the cat",
+      "name": "create todo",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "type": "parent",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.207Z"
+    },
+    "id": "86eeb270-2cd8-449e-bd85-71496db9dde3",
+    "timestamp": 1679318942208,
+    "offset": 2396.199999988079,
+    "duration": 255.5,
+    "meta": {
+      "before": {
+        "rrId": "bb86eeb2-702c-4894-9efd-8571496db9dd",
+        "rrNodes": []
+      },
+      "after": {
+        "rrId": "e544a6ed-5060-4c9d-8d27-46ac27163874",
+        "rrNodes": [267]
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-8",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-9",
+      "numElements": 2,
+      "instrument": "command",
+      "message": ".todo-list li",
+      "name": "get",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "type": "parent",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.420Z"
+    },
+    "id": "24db6688-c875-42e5-84a6-ed5060bc9d0d",
+    "timestamp": 1679318942421,
+    "offset": 2609.699999988079,
+    "duration": 42.5,
+    "meta": {
+      "before": {
+        "rrId": "0724db66-88c8-4582-a544-a6ed5060bc9d",
+        "rrNodes": []
+      },
+      "after": {
+        "rrId": "e544a6ed-5060-4c9d-8d27-46ac27163874",
+        "rrNodes": [226, 267]
+      }
+    }
+  },
+  {
+    "payload": {
+      "alias": "@firstTodo",
+      "aliasType": "dom",
+      "chainerId": "ch-https://todomvc.com-8",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-10",
+      "numElements": 1,
+      "instrument": "command",
+      "message": "0",
+      "name": "eq",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.425Z"
+    },
+    "id": "db6688c8-7582-4544-a6ed-5060bc9d0d27",
+    "timestamp": 1679318942426,
+    "offset": 2614.5999999940395,
+    "duration": 38,
+    "meta": {
+      "before": {
+        "rrId": "0724db66-88c8-4582-a544-a6ed5060bc9d",
+        "rrNodes": []
+      },
+      "after": {
+        "rrId": "e544a6ed-5060-4c9d-8d27-46ac27163874",
+        "rrNodes": [226]
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-9",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-11",
+      "numElements": 2,
+      "instrument": "command",
+      "message": ".todo-list li",
+      "name": "get",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "type": "parent",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.441Z"
+    },
+    "id": "6688c875-82e5-44a6-ad50-60bc9d0d2746",
+    "timestamp": 1679318942442,
+    "offset": 2630.5,
+    "duration": 22.5,
+    "meta": {
+      "before": {
+        "rrId": "0724db66-88c8-4582-a544-a6ed5060bc9d",
+        "rrNodes": []
+      },
+      "after": {
+        "rrId": "e544a6ed-5060-4c9d-8d27-46ac27163874",
+        "rrNodes": [226, 267]
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-9",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-12",
+      "numElements": 1,
+      "instrument": "command",
+      "message": "0",
+      "name": "eq",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.444Z"
+    },
+    "id": "88c87582-e544-46ed-9060-bc9d0d2746ac",
+    "timestamp": 1679318942445,
+    "offset": 2633.5999999940395,
+    "duration": 19.599999994039536,
+    "meta": {
+      "before": {
+        "rrId": "0724db66-88c8-4582-a544-a6ed5060bc9d",
+        "rrNodes": []
+      },
+      "after": {
+        "rrId": "e544a6ed-5060-4c9d-8d27-46ac27163874",
+        "rrNodes": [226]
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-9",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-13",
+      "numElements": 1,
+      "instrument": "command",
+      "message": ".toggle",
+      "name": "find",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.446Z"
+    },
+    "id": "c87582e5-44a6-4d50-a0bc-9d0d2746ac27",
+    "timestamp": 1679318942447,
+    "offset": 2635.5999999940395,
+    "duration": 17.900000005960464,
+    "meta": {
+      "before": {
+        "rrId": "0724db66-88c8-4582-a544-a6ed5060bc9d",
+        "rrNodes": []
+      },
+      "after": {
+        "rrId": "e544a6ed-5060-4c9d-8d27-46ac27163874",
+        "rrNodes": [237]
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-9",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-14",
+      "numElements": 1,
+      "instrument": "command",
+      "message": "",
+      "name": "check",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "type": "child",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.450Z"
+    },
+    "id": "7582e544-a6ed-4060-bc9d-0d2746ac2716",
+    "timestamp": 1679318942451,
+    "offset": 2639.9000000059605,
+    "duration": 118.7999999821186,
+    "meta": {
+      "before": {
+        "rrId": "0724db66-88c8-4582-a544-a6ed5060bc9d",
+        "rrNodes": [237]
+      },
+      "after": {
+        "rrId": "02324e9f-7d51-4543-9db6-cb1d431ff664",
+        "rrNodes": [237]
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-10",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-15",
+      "numElements": 2,
+      "instrument": "command",
+      "message": ".todo-list li",
+      "name": "get",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "type": "parent",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.542Z"
+    },
+    "id": "46ac2716-3874-4e8c-84a3-02324e9f7d51",
+    "timestamp": 1679318942542,
+    "offset": 2731.199999988079,
+    "duration": 27.700000017881393,
+    "meta": {
+      "before": {
+        "rrId": "2746ac27-1638-441e-8c84-a302324e9f7d",
+        "rrNodes": []
+      },
+      "after": {
+        "rrId": "02324e9f-7d51-4543-9db6-cb1d431ff664",
+        "rrNodes": [226, 267]
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-10",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-16",
+      "numElements": 1,
+      "instrument": "command",
+      "message": "0",
+      "name": "eq",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.545Z"
+    },
+    "id": "ac271638-741e-4c84-a302-324e9f7d51f5",
+    "timestamp": 1679318942546,
+    "offset": 2734.2999999821186,
+    "duration": 24.900000005960464,
+    "meta": {
+      "before": {
+        "rrId": "2746ac27-1638-441e-8c84-a302324e9f7d",
+        "rrNodes": []
+      },
+      "after": {
+        "rrId": "02324e9f-7d51-4543-9db6-cb1d431ff664",
+        "rrNodes": [226]
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-10",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-17",
+      "numElements": 1,
+      "instrument": "command",
+      "message": "expected **<li.completed>** to have class **completed**",
+      "name": "assert",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "type": "child",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.550Z"
+    },
+    "id": "27163874-1e8c-44a3-8232-4e9f7d51f543",
+    "timestamp": 1679318942551,
+    "offset": 2740.0999999940395,
+    "duration": 19.599999994039536,
+    "meta": {
+      "before": {
+        "rrId": "2746ac27-1638-441e-8c84-a302324e9f7d",
+        "rrNodes": [226]
+      },
+      "after": {
+        "rrId": "02324e9f-7d51-4543-9db6-cb1d431ff664",
+        "rrNodes": [226]
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-11",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-18",
+      "numElements": 2,
+      "instrument": "command",
+      "message": ".todo-list li",
+      "name": "get",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "type": "parent",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.552Z"
+    },
+    "id": "1638741e-8c84-4302-b24e-9f7d51f543dd",
+    "timestamp": 1679318942553,
+    "offset": 2741.2999999821186,
+    "duration": 18.700000017881393,
+    "meta": {
+      "before": {
+        "rrId": "2746ac27-1638-441e-8c84-a302324e9f7d",
+        "rrNodes": []
+      },
+      "after": {
+        "rrId": "02324e9f-7d51-4543-9db6-cb1d431ff664",
+        "rrNodes": [226, 267]
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-11",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-19",
+      "numElements": 1,
+      "instrument": "command",
+      "message": "1",
+      "name": "eq",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.554Z"
+    },
+    "id": "38741e8c-84a3-4232-8e9f-7d51f543ddb6",
+    "timestamp": 1679318942555,
+    "offset": 2743.0999999940395,
+    "duration": 17.30000001192093,
+    "meta": {
+      "before": {
+        "rrId": "2746ac27-1638-441e-8c84-a302324e9f7d",
+        "rrNodes": []
+      },
+      "after": {
+        "rrId": "02324e9f-7d51-4543-9db6-cb1d431ff664",
+        "rrNodes": [267]
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-11",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-20",
+      "numElements": 1,
+      "instrument": "command",
+      "message": "expected **<li>** not to have class **completed**",
+      "name": "assert",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "type": "child",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.557Z"
+    },
+    "id": "741e8c84-a302-424e-9f7d-51f543ddb6cb",
+    "timestamp": 1679318942558,
+    "offset": 2746.699999988079,
+    "duration": 14.200000017881393,
+    "meta": {
+      "before": {
+        "rrId": "2746ac27-1638-441e-8c84-a302324e9f7d",
+        "rrNodes": [267]
+      },
+      "after": {
+        "rrId": "02324e9f-7d51-4543-9db6-cb1d431ff664",
+        "rrNodes": [267]
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-12",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-21",
+      "numElements": 2,
+      "instrument": "command",
+      "message": ".todo-list li",
+      "name": "get",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "type": "parent",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.558Z"
+    },
+    "id": "1e8c84a3-0232-4e9f-bd51-f543ddb6cb1d",
+    "timestamp": 1679318942559,
+    "offset": 2747.5,
+    "duration": 13.699999988079071,
+    "meta": {
+      "before": {
+        "rrId": "2746ac27-1638-441e-8c84-a302324e9f7d",
+        "rrNodes": []
+      },
+      "after": {
+        "rrId": "02324e9f-7d51-4543-9db6-cb1d431ff664",
+        "rrNodes": [226, 267]
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-12",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-22",
+      "numElements": 1,
+      "instrument": "command",
+      "message": "1",
+      "name": "eq",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.561Z"
+    },
+    "id": "8c84a302-324e-4f7d-91f5-43ddb6cb1d43",
+    "timestamp": 1679318942561,
+    "offset": 2749.9000000059605,
+    "duration": 11.599999994039536,
+    "meta": {
+      "before": {
+        "rrId": "2746ac27-1638-441e-8c84-a302324e9f7d",
+        "rrNodes": []
+      },
+      "after": {
+        "rrId": "02324e9f-7d51-4543-9db6-cb1d431ff664",
+        "rrNodes": [267]
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-12",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-23",
+      "numElements": 1,
+      "instrument": "command",
+      "message": ".toggle",
+      "name": "find",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.562Z"
+    },
+    "id": "84a30232-4e9f-4d51-b543-ddb6cb1d431f",
+    "timestamp": 1679318942563,
+    "offset": 2751.5,
+    "duration": 12,
+    "meta": {
+      "before": {
+        "rrId": "2746ac27-1638-441e-8c84-a302324e9f7d",
+        "rrNodes": []
+      },
+      "after": {
+        "rrId": "02324e9f-7d51-4543-9db6-cb1d431ff664",
+        "rrNodes": [278]
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-12",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-24",
+      "numElements": 1,
+      "instrument": "command",
+      "message": "",
+      "name": "check",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "type": "child",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.565Z"
+    },
+    "id": "a302324e-9f7d-41f5-83dd-b6cb1d431ff6",
+    "timestamp": 1679318942565,
+    "offset": 2754,
+    "duration": 98.5,
+    "meta": {
+      "before": {
+        "rrId": "2746ac27-1638-441e-8c84-a302324e9f7d",
+        "rrNodes": [278]
+      },
+      "after": {
+        "rrId": "ddb6cb1d-431f-4664-9460-c902f7d48fb8",
+        "rrNodes": [278]
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-13",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-25",
+      "numElements": 2,
+      "instrument": "command",
+      "message": ".todo-list li",
+      "name": "get",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "type": "parent",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.649Z"
+    },
+    "id": "b6cb1d43-1ff6-4494-a0c9-02f7d48fb854",
+    "timestamp": 1679318942650,
+    "offset": 2838.199999988079,
+    "duration": 14.700000017881393,
+    "meta": {
+      "before": {
+        "rrId": "ddb6cb1d-431f-4664-9460-c902f7d48fb8",
+        "rrNodes": []
+      },
+      "after": {
+        "rrId": "ddb6cb1d-431f-4664-9460-c902f7d48fb8",
+        "rrNodes": [226, 267]
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-13",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-26",
+      "numElements": 1,
+      "instrument": "command",
+      "message": "0",
+      "name": "eq",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.652Z"
+    },
+    "id": "cb1d431f-f664-4460-8902-f7d48fb85498",
+    "timestamp": 1679318942653,
+    "offset": 2841.5999999940395,
+    "duration": 11.599999994039536,
+    "meta": {
+      "before": {
+        "rrId": "ddb6cb1d-431f-4664-9460-c902f7d48fb8",
+        "rrNodes": []
+      },
+      "after": {
+        "rrId": "ddb6cb1d-431f-4664-9460-c902f7d48fb8",
+        "rrNodes": [226]
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-13",
+      "ended": true,
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-27",
+      "numElements": 1,
+      "instrument": "command",
+      "message": "expected **<li.completed>** to have class **completed**",
+      "name": "assert",
+      "state": "passed",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "type": "child",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.655Z"
+    },
+    "id": "1d431ff6-6494-40c9-82f7-d48fb85498df",
+    "timestamp": 1679318942657,
+    "offset": 2845.9000000059605,
+    "duration": 7.699999988079071,
+    "meta": {
+      "before": {
+        "rrId": "ddb6cb1d-431f-4664-9460-c902f7d48fb8",
+        "rrNodes": [226]
+      },
+      "after": {
+        "rrId": "ddb6cb1d-431f-4664-9460-c902f7d48fb8",
+        "rrNodes": [226]
+      }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-14",
+      "event": false,
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-28",
+      "instrument": "command",
+      "message": "@secondTodo",
+      "name": "get",
+      "state": "pending",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "type": "parent",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.658Z"
+    },
+    "id": "431ff664-9460-4902-b7d4-8fb85498df34",
+    "timestamp": 1679318942658,
+    "offset": 2847.199999988079,
+    "duration": 0,
+    "meta": {
+      "before": {
+        "rrId": "ddb6cb1d-431f-4664-9460-c902f7d48fb8",
+        "rrNodes": []
+      },
+      "after": { "rrId": null, "rrNodes": [] }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-14",
+      "event": false,
+      "highlightAttr": "data-cypress-el",
+      "hookId": "r3",
+      "id": "log-https://todomvc.com-29",
+      "numElements": 1,
+      "instrument": "command",
+      "message": "expected **<li.completed>** to have class **completed**",
+      "name": "assert",
+      "state": "pending",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "type": "child",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.660Z"
+    },
+    "id": "1ff66494-60c9-42f7-948f-b85498df34d8",
+    "timestamp": 1679318942662,
+    "offset": 2850.2999999821186,
+    "duration": 0,
+    "meta": {
+      "before": {
+        "rrId": "ddb6cb1d-431f-4664-9460-c902f7d48fb8",
+        "rrNodes": [267]
+      },
+      "after": { "rrId": null, "rrNodes": [] }
+    }
+  },
+  {
+    "payload": {
+      "chainerId": "ch-https://todomvc.com-19",
+      "event": false,
+      "hookId": "h5",
+      "id": "log-https://todomvc.com-30",
+      "instrument": "command",
+      "message": "_curr_dump_events, {testid: f6649460-c902-47d4-8fb8-5498df34d858, events: {cy: Array[29], rr: Array[62]}}",
+      "name": "task",
+      "state": "pending",
+      "testCurrentRetry": 0,
+      "testId": "r3",
+      "type": "parent",
+      "url": "https://todomvc.com/examples/backbone/",
+      "viewportHeight": 660,
+      "viewportWidth": 1000,
+      "wallClockStartedAt": "2023-03-20T13:29:02.669Z"
+    },
+    "id": "649460c9-02f7-448f-b854-98df34d8588e",
+    "timestamp": 1679318942670,
+    "offset": 2858.4000000059605,
+    "duration": 0,
+    "meta": {
+      "before": {
+        "rrId": "ddb6cb1d-431f-4664-9460-c902f7d48fb8",
+        "rrNodes": []
+      },
+      "after": { "rrId": null, "rrNodes": [] }
+    }
+  }
+]

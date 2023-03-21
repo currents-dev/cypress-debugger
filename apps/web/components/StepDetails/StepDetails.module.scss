@@ -1,0 +1,28 @@
+.details {
+    display: flex;
+    flex-direction: column;
+    max-height: 700px;
+    overflow: auto;
+
+    &_block {
+        padding: 5px;
+    }
+
+    &_value {
+        color: brown;
+        word-break: break-word;
+    }
+
+    &_title {
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+
+    ul {
+        border-bottom: 1px solid black;
+    }
+
+    li {
+        font-size: 14px;
+    }
+}
