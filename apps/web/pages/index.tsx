@@ -6,6 +6,7 @@ import {
   StepDetails,
   CySteps,
   Tabs,
+  JSONFileUpload,
 } from "../components";
 import ReplayerContextProvider, {
   useReplayerContext,
@@ -16,16 +17,34 @@ import CypressStepsContextProvider, {
 import HttpArchiveContextProvider, {
   useHttpArchiveContext,
 } from "../context/httpArchiveEntries";
+import { CypressStep, HttpArchiveLog, ReplayerStepData } from "../types";
+
+type Payload = {
+  cy: CypressStep[];
+  rr: ReplayerStepData[];
+  har: HttpArchiveLog;
+};
 
 function App() {
-  const { steps, activeStep, activeStepObj, setActiveStep } =
+  const { steps, setSteps, activeStep, activeStepObj, setActiveStep } =
     useCypressStepsContext();
 
   const { onBefore, onAfter } = useReplayerContext();
   const { entries } = useHttpArchiveContext();
 
+  const handleDataChange = (payload: Payload | null) => {
+    setSteps(payload?.cy || []);
+    console.log(payload);
+  };
+
+  const validate = (payload: Payload) =>
+    Object.keys(payload).every((key) => ["cy", "rr", "har"].includes(key));
+
   return (
     <Layout
+      topBlock={
+        <JSONFileUpload onChange={handleDataChange} validate={validate} />
+      }
       leftSidebar={
         <Tabs
           tabs={[

@@ -6,6 +6,7 @@ import { isoDateToTimestamp } from "../utils/isoDateToTimestamp";
 
 export type CypressStepsContextType = {
   steps: CypressStep[];
+  setSteps: (steps: CypressStep[]) => void;
   activeStep: number;
   activeStepObj: CypressStep | null;
   setActiveStep: (i: number) => void;
@@ -13,6 +14,7 @@ export type CypressStepsContextType = {
 
 const CypressStepsContext = createContext<CypressStepsContextType>({
   steps: [],
+  setSteps: () => {},
   activeStep: -1,
   activeStepObj: null,
   setActiveStep: (i: number) => {},
@@ -23,7 +25,7 @@ export const useCypressStepsContext = () => useContext(CypressStepsContext);
 export default function CypressStepsContextProvider({
   children,
 }: PropsWithChildren<unknown>) {
-  const { cypressSteps, loading } = useCypressSteps();
+  const { cypressSteps, setCypressSteps, loading } = useCypressSteps();
   const [activeStep, setActiveStep] = useState(-1);
 
   const orderedSteps = orderBy(cypressSteps, (step) => step.timestamp, "asc");
@@ -35,9 +37,10 @@ export default function CypressStepsContextProvider({
     <CypressStepsContext.Provider
       value={{
         steps: orderedSteps,
+        setSteps: setCypressSteps,
         activeStep,
         setActiveStep,
-        activeStepObj
+        activeStepObj,
       }}
     >
       {children}

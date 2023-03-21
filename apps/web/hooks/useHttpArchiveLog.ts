@@ -15,6 +15,7 @@ export function useHttpArchiveLog() {
 
   return {
     httpArchiveLog,
+    setHttpArchiveLog,
     loading,
   };
 }

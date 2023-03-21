@@ -14,6 +14,7 @@ export function useReplayerData() {
 
   return {
     replayerData,
+    setReplayerData,
     loading,
   };
 }

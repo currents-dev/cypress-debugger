@@ -13,6 +13,7 @@ export function useCypressSteps() {
 
   return {
     cypressSteps,
+    setCypressSteps,
     loading,
   };
 }

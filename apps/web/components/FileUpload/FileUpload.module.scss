@@ -1,0 +1,36 @@
+.file-upload {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    label {
+        cursor: pointer;
+    }
+
+    &_input {
+        width: 100%;
+        height: 100%;
+        position: absolute !important;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+        clip: rect(1px, 1px, 1px, 1px);
+    }
+
+    &_input:is(:focus, :focus-within)+label {
+        outline: thin dotted;
+    }
+}
+
+.dropbox {
+    width: 100%;
+    height: 100%;
+    border: 1px dashed black;
+
+    &--active {
+        border: 2px dashed black;
+
+    }
+}
