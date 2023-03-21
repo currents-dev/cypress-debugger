@@ -8,11 +8,12 @@ import {
 } from "react";
 import rrwebPlayer, { RRwebPlayerOptions } from "rrweb-player";
 import { useReplayerData } from "../hooks/useReplayerData";
-import { CypressStep } from "../types";
+import { CypressStep, ReplayerStepData } from "../types";
 import { useCypressStepsContext } from "./cypressSteps";
 
 export type ReplayerContextType = {
   init: (ref: HTMLElement) => void;
+  setReplayerData: (data: ReplayerStepData[]) => void;
   jumpToTimestamp(ts: number): void;
   onBefore(i: number): void;
   onAfter(i: any): void;
@@ -20,6 +21,7 @@ export type ReplayerContextType = {
 
 const ReplayerContext = createContext<ReplayerContextType>({
   init: () => {},
+  setReplayerData: () => {},
   jumpToTimestamp: () => {},
   onBefore: () => {},
   onAfter: () => {},
@@ -31,7 +33,7 @@ export default function ReplayerContextProvider({
   children,
 }: PropsWithChildren<unknown>) {
   const [replayer, setReplayer] = useState<rrwebPlayer | null>(null);
-  const { replayerData } = useReplayerData();
+  const { replayerData, setReplayerData } = useReplayerData();
   const { activeStepObj } = useCypressStepsContext();
   const [beforeAfter, setBeforeAfter] = useState<"before" | "after">("before");
 
@@ -116,7 +118,7 @@ export default function ReplayerContextProvider({
 
   return (
     <ReplayerContext.Provider
-      value={{ init, jumpToTimestamp, onBefore, onAfter }}
+      value={{ init, jumpToTimestamp, onBefore, onAfter, setReplayerData }}
     >
       {children}
     </ReplayerContext.Provider>

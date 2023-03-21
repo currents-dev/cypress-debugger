@@ -2,7 +2,6 @@ import { orderBy } from "lodash";
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 import { useCypressSteps } from "../hooks/useCypressSteps";
 import { CypressStep } from "../types";
-import { isoDateToTimestamp } from "../utils/isoDateToTimestamp";
 
 export type CypressStepsContextType = {
   steps: CypressStep[];

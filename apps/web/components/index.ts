@@ -7,3 +7,4 @@ export * from "./Network/Network";
 export * from "./Metadata/Metadata";
 export * from "./Replayer/Replayer";
 export * from "./FileUpload/FileUpload";
+export * from "./PayloadHandler/PayloadHandler";

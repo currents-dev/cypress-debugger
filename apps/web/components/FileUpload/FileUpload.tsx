@@ -1,15 +1,21 @@
-import { ChangeEvent, DragEvent, useState } from "react";
+import { ChangeEvent, DragEvent, FormEvent, useState } from "react";
 import styles from "./FileUpload.module.scss";
 
-interface JSONFIleUploadProps<T> {
-  onChange: (payload: T | null) => void;
+interface JsonFileUploadProps<T> {
+  onChange: ({
+    filename,
+    payload,
+  }: {
+    filename: string | null;
+    payload: T | null;
+  }) => void;
   validate: (payload: T) => boolean;
 }
 
-export function JSONFileUpload<T extends Object>({
+export function JsonFileUpload<T extends Object>({
   onChange,
   validate,
-}: JSONFIleUploadProps<T>) {
+}: JsonFileUploadProps<T>) {
   const handleFilesChange = (files: FileList | null) => {
     if (!files || !files[0]) return;
 
@@ -22,11 +28,14 @@ export function JSONFileUpload<T extends Object>({
       let result = evt.target?.result;
 
       if (!result) {
-        onChange(null);
+        onChange({
+          filename: null,
+          payload: null,
+        });
       } else {
         if (typeof result !== "string") {
-          const dec = new TextDecoder("utf-8");
-          result = dec.decode(result);
+          const textDecoder = new TextDecoder("utf-8");
+          result = textDecoder.decode(result);
         }
 
         const parsedResult = JSON.parse(result);
@@ -35,18 +44,18 @@ export function JSONFileUpload<T extends Object>({
           reader.abort();
           alert("Bad input");
         } else {
-          onChange(parsedResult);
+          onChange({
+            filename: file.name,
+            payload: parsedResult,
+          });
         }
       }
     }
 
     reader.addEventListener("load", handleFileLoad);
-    reader.addEventListener(
-      "loadend",
-      function (evt: ProgressEvent<FileReader>) {
-        reader.removeEventListener("load", handleFileLoad);
-      }
-    );
+    reader.addEventListener("loadend", function () {
+      reader.removeEventListener("load", handleFileLoad);
+    });
 
     reader.addEventListener("error", () => {
       alert("Error while uploading the file");
@@ -59,11 +68,9 @@ export function JSONFileUpload<T extends Object>({
 }
 
 export function FileUpload({
-  multiple,
   accept,
   onFilesChange,
 }: {
-  multiple?: boolean;
   accept?: string;
   onFilesChange?: (files: FileList | null) => void;
 }) {
@@ -84,7 +91,7 @@ export function FileUpload({
           onChange={handleFilesChange}
         />
         <label htmlFor="fileElem">
-          Click to select a file, or drag it in the area
+          To upload data - click on the text or drag a file into the area
         </label>
       </div>
     </Dropbox>
@@ -112,7 +119,6 @@ const Dropbox = ({
     setIsDragOver(true);
   };
 
-
   const handleDragLeave = (e: DragEvent<HTMLDivElement>) => {
     e.stopPropagation();
     e.preventDefault();
@@ -126,7 +132,10 @@ const Dropbox = ({
     const dt = e.dataTransfer;
     const files = dt?.files;
 
-    if (accept && [...files].every((file) => accept.includes(file.type))) {
+    if (
+      accept &&
+      [...files].every((file) => file.type && accept.includes(file.type))
+    ) {
       if (onChange) {
         onChange(files);
       }
