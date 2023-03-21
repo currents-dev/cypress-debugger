@@ -19,6 +19,9 @@ import {
 } from "./testHandlers";
 
 export function attachHandlers() {
+  // register commands to generate HAR files
+  require("@neuralegion/cypress-har-generator/commands");
+
   Cypress.on("uncaught:exception", onException);
   Cypress.on("window:before:load", onBeforeWindowLoad);
 

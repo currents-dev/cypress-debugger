@@ -2,6 +2,7 @@ import { last } from "lodash";
 import { getEnvironmentLifetime } from "../env/perf";
 import { warn } from "../logger";
 import { getRRNodes } from "../rr";
+import { uuid } from "../uuid";
 import {
   enhanceCypressEvent,
   enhanceEvent,
@@ -26,8 +27,11 @@ export const reset = () => {
 };
 
 export const getEvents = () => ({
-  cy: cypressEvents,
-  rr: rrEvents,
+  testId: uuid(),
+  events: {
+    cy: cypressEvents,
+    rr: rrEvents,
+  },
 });
 
 export const getLastRREventId = () => last(rrEvents)?.id ?? null;
