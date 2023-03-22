@@ -23,7 +23,7 @@ const cypressEventsMap = new Map<string, number>();
 export const reset = () => {
   cypressEventsMap.clear();
   cypressEvents.splice(0, cypressEvents.length);
-  rrEvents.slice(0, rrEvents.length);
+  rrEvents.splice(0, rrEvents.length);
 };
 
 export const getEvents = () => ({
