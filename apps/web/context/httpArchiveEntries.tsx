@@ -1,5 +1,4 @@
-import { createContext, PropsWithChildren, useContext } from "react";
-import { useHttpArchiveLog } from "../hooks/useHttpArchiveLog";
+import { createContext, PropsWithChildren, useContext, useState } from "react";
 import { HttpArchiveEntry, HttpArchiveLog } from "../types";
 import { isValidDate } from "../utils/isValidDate";
 import { useCypressStepsContext } from "./cypressSteps";
@@ -19,7 +18,9 @@ export const useHttpArchiveContext = () => useContext(CyHttpArchiveContext);
 export default function HttpArchiveContextProvider({
   children,
 }: PropsWithChildren<unknown>) {
-  const { httpArchiveLog, setHttpArchiveLog, loading } = useHttpArchiveLog();
+  const [httpArchiveLog, setHttpArchiveLog] = useState<HttpArchiveLog | null>(
+    null
+  );
   const { activeStepObj } = useCypressStepsContext();
 
   const entries =

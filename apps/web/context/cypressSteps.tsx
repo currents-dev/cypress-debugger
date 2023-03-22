@@ -1,6 +1,5 @@
 import { orderBy } from "lodash";
 import { createContext, PropsWithChildren, useContext, useState } from "react";
-import { useCypressSteps } from "../hooks/useCypressSteps";
 import { CypressStep } from "../types";
 
 export type CypressStepsContextType = {
@@ -24,7 +23,7 @@ export const useCypressStepsContext = () => useContext(CypressStepsContext);
 export default function CypressStepsContextProvider({
   children,
 }: PropsWithChildren<unknown>) {
-  const { cypressSteps, setCypressSteps, loading } = useCypressSteps();
+  const [cypressSteps, setCypressSteps] = useState<CypressStep[]>([]);
   const [activeStep, setActiveStep] = useState(-1);
 
   const orderedSteps = orderBy(cypressSteps, (step) => step.timestamp, "asc");
@@ -32,11 +31,16 @@ export default function CypressStepsContextProvider({
   const activeStepObj =
     activeStep === -1 ? null : orderedSteps[activeStep] ?? null;
 
+  const setSteps = (s: CypressStep[]) => {
+    setCypressSteps(s);
+    setActiveStep(-1);
+  };
+
   return (
     <CypressStepsContext.Provider
       value={{
         steps: orderedSteps,
-        setSteps: setCypressSteps,
+        setSteps,
         activeStep,
         setActiveStep,
         activeStepObj,

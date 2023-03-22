@@ -7,7 +7,6 @@ import {
   useState,
 } from "react";
 import rrwebPlayer, { RRwebPlayerOptions } from "rrweb-player";
-import { useReplayerData } from "../hooks/useReplayerData";
 import { CypressStep, ReplayerStepData } from "../types";
 import { useCypressStepsContext } from "./cypressSteps";
 
@@ -33,7 +32,7 @@ export default function ReplayerContextProvider({
   children,
 }: PropsWithChildren<unknown>) {
   const [replayer, setReplayer] = useState<rrwebPlayer | null>(null);
-  const { replayerData, setReplayerData } = useReplayerData();
+  const [replayerData, setReplayerData] = useState<ReplayerStepData[]>([]);
   const { activeStepObj } = useCypressStepsContext();
   const [beforeAfter, setBeforeAfter] = useState<"before" | "after">("before");
 
@@ -57,9 +56,9 @@ export default function ReplayerContextProvider({
         },
       });
 
-      _replayer.addEventListener("event-cast", (e) => {
-        console.log(e);
-      });
+      // _replayer.addEventListener("event-cast", (e) => {
+      //   console.log(e);
+      // });
 
       setReplayer(_replayer);
     },
@@ -70,11 +69,9 @@ export default function ReplayerContextProvider({
     (ts: number) => {
       if (!replayer) return;
 
-      console.log({
-        first: new Date(replayerData[0].timestamp).toISOString(),
-        current: new Date(ts).toISOString(),
-      });
-      replayer.goto(Math.abs(ts - replayerData[0].timestamp));
+      const initTimestamp = replayerData[0].timestamp;
+
+      replayer.goto(ts - initTimestamp);
       replayer.pause();
     },
     [replayer, replayerData]
@@ -84,16 +81,15 @@ export default function ReplayerContextProvider({
     (step: CypressStep) => {
       const replayerEntry =
         replayerData.find(
-          (entry) =>
-            step.payload.__currents_extra &&
-            entry.id === step.payload.__currents_extra[beforeAfter]?.rrEventId
+          (entry) => step.meta && entry.id === step.meta[beforeAfter]?.rrId
         ) ?? null;
 
       if (replayerEntry) {
         jumpToTimestamp(replayerEntry.timestamp);
         return;
       }
-      jumpToTimestamp(step.timestamp);
+
+      jumpToTimestamp(new Date(step.payload.wallClockStartedAt).getTime());
     },
     [replayerData, jumpToTimestamp, beforeAfter]
   );
