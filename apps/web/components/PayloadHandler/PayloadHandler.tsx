@@ -19,6 +19,7 @@ export function PayloadHandler({
   setHttpArchiveLog: (data: HttpArchiveLog | null) => void;
 }) {
   const [payloadOrigin, setPayloadOrigin] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   usePayloadFetcher({
     onData: ({ payload, param }: { payload: Payload; param: string }) => {
@@ -29,6 +30,7 @@ export function PayloadHandler({
         console.error("Invalid payload URL");
       }
     },
+    onLoading: setLoading,
   });
 
   const handleDataChange = (payload: Payload | null) => {
@@ -55,6 +57,10 @@ export function PayloadHandler({
     setPayloadOrigin(filename);
     handleDataChange(payload);
   };
+
+  if (loading) {
+    return <div className={styles.loading}>Loading...</div>;
+  }
 
   if (payloadOrigin) {
     return (

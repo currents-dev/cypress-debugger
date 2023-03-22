@@ -1,10 +1,12 @@
-.selected-file {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@import '/styles/mixins';
 
+.selected-file,
+.loading {
+  @include full-space;
+  @include centered-flex;
+}
+
+.selected-file {
   span {
     max-width: 600px;
     overflow: hidden;

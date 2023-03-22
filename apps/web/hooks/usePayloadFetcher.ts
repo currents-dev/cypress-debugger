@@ -5,8 +5,10 @@ import { isValidUrl } from "../utils/isValidUrl";
 
 export function usePayloadFetcher({
   onData,
+  onLoading,
 }: {
   onData: ({ payload, param }: { payload: Payload; param: string }) => void;
+  onLoading: (loading: boolean) => void;
 }) {
   const router = useRouter();
 
@@ -23,6 +25,7 @@ export function usePayloadFetcher({
       return;
     }
 
+    onLoading(true);
     fetch(new URL(trimmedParam))
       .then((res) => {
         if (!res.ok) {
@@ -37,6 +40,9 @@ export function usePayloadFetcher({
           param: trimmedParam,
         });
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => {
+        onLoading(false);
+      });
   }, [router.query]);
 }

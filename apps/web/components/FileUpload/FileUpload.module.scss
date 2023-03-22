@@ -1,17 +1,14 @@
+@import '/styles/mixins';
+
 .file-upload {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include full-space;
+  @include centered-flex;
 
   label {
     cursor: pointer;
   }
 
   &_input {
-    width: 100%;
-    height: 100%;
     position: absolute !important;
     height: 1px;
     width: 1px;
@@ -19,7 +16,7 @@
     clip: rect(1px, 1px, 1px, 1px);
   }
 
-  &_input:is(:focus, :focus-within) + label {
+  &_input:is(:focus, :focus-within)+label {
     outline: thin dotted;
   }
 }

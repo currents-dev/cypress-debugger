@@ -1,12 +1,16 @@
+@import '/styles/mixins';
+
 .layout {
     min-width: 1000px;
     overflow: auto;
+    height: 100vh;
 
     &_top-block {
         height: 50px;
     }
 
     &_main-block {
+        height: calc(100vh - 50px);
         display: flex;
     }
 
@@ -18,11 +22,11 @@
     }
 
     &_left-sidebar {
-        max-width: 250px;
+        width: 250px;
     }
 
     &_right-sidebar {
-        max-width: 250px;
+        width: 350px;
     }
 
     &_content {

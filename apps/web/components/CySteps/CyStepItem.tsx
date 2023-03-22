@@ -17,6 +17,10 @@ export function CyStepItem({
 }) {
   const payload = step.payload;
 
+  const showButtons =
+    (!!step.meta.before.rrId && !!step.meta.before.rrNodes?.length) ||
+    (!!step.meta.after.rrId && !!step.meta.after.rrNodes?.length);
+
   return (
     <li
       className={`${styles.step} ${active ? styles["step__active"] : ""}`}
@@ -27,13 +31,11 @@ export function CyStepItem({
       <span className={styles["step_name"]}>{payload.name}</span>
       <div className={styles["step_message"]}>{payload.message}</div>
       <div className={styles["step_actions"]}>
-        {!!step.meta.before.rrId && (
-          <CyStepItemButton onClick={onBefore} disabled={!active}>
-            Before
-          </CyStepItemButton>
-        )}
-        {!!step.meta.after.rrId && (
+        {showButtons && (
           <>
+            <CyStepItemButton onClick={onBefore} disabled={!active}>
+              Before
+            </CyStepItemButton>
             &nbsp;
             <CyStepItemButton onClick={onAfter} disabled={!active}>
               After

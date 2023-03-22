@@ -9,6 +9,10 @@ import {
 } from "../../types";
 
 export function Network({ entries }: { entries: HttpArchiveEntry[] }) {
+  if (entries.length === 0) {
+    return <div>No records</div>;
+  }
+
   return (
     <div className={styles.network}>
       <Collapsible

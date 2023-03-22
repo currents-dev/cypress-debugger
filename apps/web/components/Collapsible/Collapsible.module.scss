@@ -11,9 +11,8 @@
         outline: none;
         font-size: 12px;
 
-        &__active,
         &:hover {
-            background-color: lightgray;
+            background-color: #ccc;
         }
     }
 
@@ -42,7 +41,6 @@
         padding: 0;
         display: none;
         overflow: auto;
-        background-color: #f1f1f1;
 
         &__active {
             display: block;
