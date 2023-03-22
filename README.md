@@ -16,14 +16,14 @@ Runs a few tests
 ```sh
 cd apps/web
 npm install
-npx cypress run
+npx cypress run --browser chrome
 ```
 
-You will see new `json` files created in `apps/web/dump`. Each file contains fields: `cy`, `rr`, and `har`. 
+You will see new `json` files created in `apps/web/dump`. Each file contains fields: `cy`, `rr`, and `har`.
 
 - `cy` - data from cypress events
 - `rr` - data from the [rrweb](https://www.npmjs.com/package/rrweb)
-- `har` - data from the [HttpArchive Generator]((https://github.com/NeuraLegion/cypress-har-generator))
+- `har` - data from the [HttpArchive Generator](https://github.com/NeuraLegion/cypress-har-generator)
 
 Extract those fields and replace the contents of `cy.json`, `rr.json`, and `har.json` respectively in `apps/web/data`.
 
@@ -35,10 +35,10 @@ A `har.json` file could be visualized with [this tool](https://toolbox.googleapp
 
 The [HAR generator](https://github.com/NeuraLegion/cypress-har-generator), currently, only supports Chrome family browsers. Please refer to [this](https://github.com/NeuraLegion/cypress-har-generator#generating-a-har-file) section in order to run cypress for other browsers.
 
-
 ## Usage
 
 - call the `install` function inside the `setupNodeEvents` in the cypress config file:
+
 ```typescript
 const { defineConfig } = require("cypress");
 const { install }  = require("@currents/cypress-debugger");
@@ -56,6 +56,7 @@ module.exports = defineConfig({
 ```
 
 - call the `support` function in the `cypress/support/e2e` file:
+
 ```typescript
 import { support } from "@currents/cypress-debugger";
 import "./commands";
@@ -64,6 +65,4 @@ support();
 beforeEach(() => {
   cy.visit("/");
 });
-
 ```
-
