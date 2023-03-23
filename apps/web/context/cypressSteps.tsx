@@ -7,15 +7,20 @@ export type CypressStepsContextType = {
   setSteps: (steps: CypressStep[]) => void;
   activeStep: number;
   activeStepObj: CypressStep | null;
+  beforeAfter: BeforeAfter;
   setActiveStep: (i: number) => void;
+  setBeforeAfter: (i: BeforeAfter) => void;
 };
 
+type BeforeAfter = "before" | "after";
 const CypressStepsContext = createContext<CypressStepsContextType>({
+  beforeAfter: "before",
   steps: [],
   setSteps: () => {},
   activeStep: -1,
   activeStepObj: null,
   setActiveStep: (i: number) => {},
+  setBeforeAfter: () => {},
 });
 
 export const useCypressStepsContext = () => useContext(CypressStepsContext);
@@ -23,6 +28,7 @@ export const useCypressStepsContext = () => useContext(CypressStepsContext);
 export default function CypressStepsContextProvider({
   children,
 }: PropsWithChildren<unknown>) {
+  const [beforeAfter, setBeforeAfter] = useState<BeforeAfter>("before");
   const [cypressSteps, setCypressSteps] = useState<CypressStep[]>([]);
   const [activeStep, setActiveStep] = useState(-1);
 
@@ -39,11 +45,13 @@ export default function CypressStepsContextProvider({
   return (
     <CypressStepsContext.Provider
       value={{
+        beforeAfter,
         steps: orderedSteps,
         setSteps,
         activeStep,
         setActiveStep,
         activeStepObj,
+        setBeforeAfter,
       }}
     >
       {children}

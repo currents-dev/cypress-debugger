@@ -6,14 +6,10 @@ export function CySteps({
   steps,
   activeStep,
   setActiveStep,
-  onBefore,
-  onAfter,
 }: {
   steps: CypressStep[];
   activeStep: number;
   setActiveStep: (i: number) => void;
-  onBefore: (e: any) => void;
-  onAfter: (e: any) => void;
 }) {
   if (!steps.length) return null;
 
@@ -25,8 +21,6 @@ export function CySteps({
           step={s}
           active={activeStep === i}
           onClick={() => setActiveStep(i)}
-          onBefore={onBefore}
-          onAfter={onAfter}
         />
       ))}
     </ul>

@@ -1,31 +1,26 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useReplayerContext } from "../../context/replayer";
 import { usePayloadFetcher } from "../../hooks/usePayloadFetcher";
-import {
-  CypressStep,
-  HttpArchiveLog,
-  Payload,
-  ReplayerStepData,
-} from "../../types";
+import { CypressStep, HttpArchiveLog, Payload } from "../../types";
 import { JsonFileUpload } from "../FileUpload/FileUpload";
 import styles from "./PayloadHandler.module.scss";
 
 export function PayloadHandler({
   setSteps,
-  setReplayerData,
   setHttpArchiveLog,
 }: {
   setSteps: (steps: CypressStep[]) => void;
-  setReplayerData: (data: ReplayerStepData[]) => void;
   setHttpArchiveLog: (data: HttpArchiveLog | null) => void;
 }) {
-  const [payloadOrigin, setPayloadOrigin] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  const { origin, setOrigin, setReplayerData } = useReplayerContext();
 
   usePayloadFetcher({
     onData: ({ payload, param }: { payload: Payload; param: string }) => {
       if (validate(payload)) {
         handleDataChange(payload);
-        setPayloadOrigin(param);
+        setOrigin(param);
       } else {
         console.error("Invalid payload URL");
       }
@@ -43,7 +38,7 @@ export function PayloadHandler({
     Object.keys(payload).every((key) => ["cy", "rr", "har"].includes(key));
 
   const handleClick = () => {
-    setPayloadOrigin(null);
+    setOrigin(null);
     handleDataChange(null);
   };
 
@@ -54,7 +49,7 @@ export function PayloadHandler({
     filename: string | null;
     payload: Payload | null;
   }) => {
-    setPayloadOrigin(filename);
+    setOrigin(filename);
     handleDataChange(payload);
   };
 
@@ -62,10 +57,10 @@ export function PayloadHandler({
     return <div className={styles.loading}>Loading...</div>;
   }
 
-  if (payloadOrigin) {
+  if (origin) {
     return (
       <div className={styles["selected-file"]}>
-        Payload from:&nbsp;<span>{payloadOrigin}</span>&nbsp;
+        Payload from:&nbsp;<span>{origin}</span>&nbsp;
         <button type="button" onClick={handleClick}>
           Remove
         </button>

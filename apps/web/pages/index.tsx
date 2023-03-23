@@ -1,6 +1,7 @@
 import { Layout } from "../components";
 import CypressStepsContextProvider from "../context/cypressSteps";
 import HttpArchiveContextProvider from "../context/httpArchiveEntries";
+import PlaybackProvider from "../context/playback";
 import ReplayerContextProvider from "../context/replayer";
 
 export default function Web() {
@@ -8,7 +9,9 @@ export default function Web() {
     <CypressStepsContextProvider>
       <ReplayerContextProvider>
         <HttpArchiveContextProvider>
-          <Layout />
+          <PlaybackProvider>
+            <Layout />
+          </PlaybackProvider>
         </HttpArchiveContextProvider>
       </ReplayerContextProvider>
     </CypressStepsContextProvider>
