@@ -1,6 +1,4 @@
 import { Collapsible } from "../Collapsible/Collapsible";
-import { isoDateToTimestamp } from "../../utils/isoDateToTimestamp";
-import { useHar } from "../../hooks/useHttpArchiveLog";
 import styles from "./Network.module.scss";
 import { last } from "lodash";
 import { getUrlProperties } from "../../utils/getUrProperties";
@@ -11,6 +9,10 @@ import {
 } from "../../types";
 
 export function Network({ entries }: { entries: HttpArchiveEntry[] }) {
+  if (entries.length === 0) {
+    return <div>No records</div>;
+  }
+
   return (
     <div className={styles.network}>
       <Collapsible
@@ -25,7 +27,7 @@ export function Network({ entries }: { entries: HttpArchiveEntry[] }) {
 
 const NetworkPreview = ({ entry }: { entry: HttpArchiveEntry }) => {
   const resource =
-    last(getUrlProperties(entry.request.url).pathname.split("/")) ?? null;
+    last(getUrlProperties(entry.request.url)?.pathname.split("/")) ?? null;
 
   const contentType = entry.response.content?.mimeType ?? null;
 

@@ -29,12 +29,12 @@ export function handleAfterEach() {
 
   const harOutputFile = `${testEvents.testId}.raw.json`;
 
-  cy.task("_curr_dump_events", testEvents).then(() => eventsContainer.reset());
+  cy.task("_curr_dump_events", testEvents);
 
   cy.saveHar({ outDir: harOutputDir, fileName: harOutputFile });
 
   cy.task("_move_har_to_dump", {
     filename: harOutputFile,
     dir: harOutputDir,
-  });
+  }).then(() => eventsContainer.reset());
 }

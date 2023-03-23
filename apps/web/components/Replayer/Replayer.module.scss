@@ -1,6 +1,6 @@
+@import '/styles/mixins';
+
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include centered-flex;
     min-width: 800px;
 }

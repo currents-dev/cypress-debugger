@@ -1,13 +1,13 @@
 .step {
     cursor: pointer;
-    padding-left: 5px 0;
+    padding-left: 5px;
 
     &__active {
         background-color: darkgray;
     }
 
     &:hover {
-        background-color: lightgrey;
+        background-color: #ccc;
     }
 
     &_state {

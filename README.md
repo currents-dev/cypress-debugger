@@ -25,9 +25,7 @@ You will see new `json` files created in `apps/web/dump`. Each file contains fie
 - `rr` - data from the [rrweb](https://www.npmjs.com/package/rrweb)
 - `har` - data from the [HttpArchive Generator](https://github.com/NeuraLegion/cypress-har-generator)
 
-Extract those fields and replace the contents of `cy.json`, `rr.json`, and `har.json` respectively in `apps/web/data`.
-
-A basic UI that consumes the data from `apps/web/data` is available at http://localhost:3000/
+Run the local server at http://localhost:3000/ and upload some file from `apps/web/dump` using the UI.
 
 ### Notes
 

@@ -2,6 +2,12 @@ import { RRwebPlayerOptions } from "rrweb-player";
 
 export type RRWebPlayerEvent = RRwebPlayerOptions["props"]["events"][0];
 
+export type Payload = {
+  cy: CypressStep[];
+  rr: ReplayerStepData[];
+  har: HttpArchiveLog;
+};
+
 export interface ReplayerStepData {
   payload: ReplayerPayload;
   id: string;

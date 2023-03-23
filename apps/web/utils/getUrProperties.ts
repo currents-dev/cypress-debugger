@@ -1,5 +1,6 @@
 import parse from "url-parse";
+import { isValidUrl } from "./isValidUrl";
 
 export function getUrlProperties(url: string) {
-  return parse(url, false);
+  return isValidUrl(url) ? parse(url, false) : null;
 }

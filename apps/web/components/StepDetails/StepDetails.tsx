@@ -1,15 +1,17 @@
 import { omit, pick } from "lodash";
 import { CypressStep } from "../../types";
+import { formatMillis } from "../../utils/formatMillis";
 import styles from "./StepDetails.module.scss";
 
 export function StepDetails({ step }: { step: CypressStep | null }) {
-  if (!step) return null;
+  if (!step) {
+    return <div>No step selected</div>
+  };
 
   const parameters = omit(
     step.payload,
     "name",
-    "wallClockStartedAt",
-    "__currents_extra"
+    "wallClockStartedAt"
   );
 
   const messageParts = step.payload.message.split(",");
@@ -44,7 +46,7 @@ export function StepDetails({ step }: { step: CypressStep | null }) {
         <li>
           duration:{" "}
           <span className={styles["details_value"]}>
-            {formatTime(step.duration)}
+            {formatMillis(step.duration)}
           </span>
         </li>
       </ul>
@@ -73,10 +75,3 @@ const Entry = ({ param, value }: { param: string; value: any }) => {
   );
 };
 
-const formatTime = (value: number): string => {
-  if (Math.floor(value / 1000) > 0) {
-    return `${(value / 1000).toFixed(2)}s`;
-  }
-
-  return `${Math.ceil(value)}ms`;
-};

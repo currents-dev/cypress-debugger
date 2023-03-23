@@ -1,8 +1,8 @@
 .details {
+    height: calc(100vh - 82px);
+    overflow: auto;
     display: flex;
     flex-direction: column;
-    max-height: 700px;
-    overflow: auto;
 
     &_block {
         padding: 5px;

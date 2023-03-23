@@ -1,93 +1,17 @@
-import {
-  Layout,
-  Metadata,
-  Network,
-  Replayer,
-  StepDetails,
-  CySteps,
-  Tabs,
-} from "../components";
-import ReplayerContextProvider, {
-  useReplayerContext,
-} from "../context/replayer";
-import CypressStepsContextProvider, {
-  useCypressStepsContext,
-} from "../context/cypressSteps";
-import HttpArchiveContextProvider, {
-  useHttpArchiveContext,
-} from "../context/httpArchiveEntries";
-
-function App() {
-  const { steps, activeStep, activeStepObj, setActiveStep } =
-    useCypressStepsContext();
-
-  const { onBefore, onAfter } = useReplayerContext();
-  const { entries } = useHttpArchiveContext();
-
-  return (
-    <Layout
-      leftSidebar={
-        <Tabs
-          tabs={[
-            {
-              title: "Steps",
-              content: (
-                <CySteps
-                  steps={steps}
-                  activeStep={activeStep}
-                  setActiveStep={setActiveStep}
-                  onBefore={onBefore}
-                  onAfter={onAfter}
-                />
-              ),
-            },
-            {
-              title: "Metadata",
-              content: <Metadata step={activeStepObj} />,
-            },
-          ]}
-        />
-      }
-      content={
-        <Tabs
-          tabs={[
-            {
-              title: "Action",
-              content: <Replayer />,
-            },
-            {
-              title: "Network calls",
-              content: <div>TODO</div>,
-            },
-          ]}
-        />
-      }
-      rightSidebar={
-        <Tabs
-          tabs={[
-            {
-              title: "Step Details",
-              content: <StepDetails step={activeStepObj} />,
-            },
-            {
-              title: `Network ${
-                entries.length > 0 ? `(${entries.length})` : ""
-              }`,
-              content: <Network entries={entries} />,
-            },
-          ]}
-        />
-      }
-    ></Layout>
-  );
-}
+import { Layout } from "../components";
+import CypressStepsContextProvider from "../context/cypressSteps";
+import HttpArchiveContextProvider from "../context/httpArchiveEntries";
+import PlaybackProvider from "../context/playback";
+import ReplayerContextProvider from "../context/replayer";
 
 export default function Web() {
   return (
     <CypressStepsContextProvider>
       <ReplayerContextProvider>
         <HttpArchiveContextProvider>
-          <App />
+          <PlaybackProvider>
+            <Layout />
+          </PlaybackProvider>
         </HttpArchiveContextProvider>
       </ReplayerContextProvider>
     </CypressStepsContextProvider>
