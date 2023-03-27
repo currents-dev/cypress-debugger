@@ -1,13 +1,13 @@
+import { TestExecutionResult } from "@currents/cypress-debugger-plugin";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { Payload } from "../types";
 import { isValidUrl } from "../utils/isValidUrl";
 
 export function usePayloadFetcher({
   onData,
   onLoading,
 }: {
-  onData: ({ payload, param }: { payload: Payload; param: string }) => void;
+  onData: ({ payload, param }: { payload: TestExecutionResult; param: string }) => void;
   onLoading: (loading: boolean) => void;
 }) {
   const router = useRouter();

@@ -5,12 +5,12 @@ import {
   CypressEvent,
   CypressEventMeta,
   CypressEventPayload,
-  Event,
-  RawEvent,
+  CypressRawEvent,
   RRWebEvent,
+  RRWebRawEvent,
 } from "./event";
 
-export const enhanceEvent = (event: RawEvent): Event => ({
+export const enhanceEvent = (event: any): any => ({
   payload: event,
   id: uuid(),
   timestamp: Date.now(),
@@ -19,17 +19,19 @@ export const enhanceEvent = (event: RawEvent): Event => ({
 });
 
 export const enhanceCypressEvent = (
-  event: RawEvent,
+  event: CypressRawEvent,
   meta: CypressEventMeta
 ): CypressEvent => ({
   ...enhanceEvent(event),
   meta,
 });
 
-export const enhanceRREvent = (event: RawEvent): RRWebEvent =>
+export const enhanceRREvent = (event: RRWebRawEvent): RRWebEvent =>
   enhanceEvent(event);
 
-export const formatCypressEvent = (event: Event): CypressEventPayload => {
+export const formatCypressEvent = (
+  event: CypressRawEvent
+): CypressEventPayload => {
   // TODO: figure out consoleProps, renderProps and $el
   // const consoleProps = pick(event.consoleProps, ["Command", "Elements", "Selector"]);
 

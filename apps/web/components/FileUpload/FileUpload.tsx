@@ -1,4 +1,4 @@
-import { ChangeEvent, DragEvent, FormEvent, useState } from "react";
+import { ChangeEvent, DragEvent, useState } from "react";
 import styles from "./FileUpload.module.scss";
 
 interface JsonFileUploadProps<T> {

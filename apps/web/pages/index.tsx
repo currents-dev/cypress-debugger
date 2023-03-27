@@ -1,12 +1,13 @@
 import { Layout } from "../components";
-import CypressStepsContextProvider from "../context/cypressSteps";
+import CypresEventsContextProvider from "../context/cypressEvents";
 import HttpArchiveContextProvider from "../context/httpArchiveEntries";
 import PlaybackProvider from "../context/playback";
 import ReplayerContextProvider from "../context/replayer";
 
 export default function Web() {
+  console.log("Test log");
   return (
-    <CypressStepsContextProvider>
+    <CypresEventsContextProvider>
       <ReplayerContextProvider>
         <HttpArchiveContextProvider>
           <PlaybackProvider>
@@ -14,6 +15,6 @@ export default function Web() {
           </PlaybackProvider>
         </HttpArchiveContextProvider>
       </ReplayerContextProvider>
-    </CypressStepsContextProvider>
+    </CypresEventsContextProvider>
   );
 }

@@ -1,5 +1,5 @@
 import { createContext, PropsWithChildren, useContext } from "react";
-import { useCypressStepsContext } from "./cypressSteps";
+import { useCypressEventsContext } from "./cypressEvents";
 
 interface PlaybackContextType {
   rrIdOrTs: string | number | null;
@@ -12,11 +12,15 @@ export const usePlayback = () => useContext(PlaybackContext);
 export default function PlaybackProvider({
   children,
 }: PropsWithChildren<unknown>) {
-  const { beforeAfter, activeStepObj: step, steps } = useCypressStepsContext();
+  const {
+    beforeAfter,
+    selectedEventObject: step,
+    events,
+  } = useCypressEventsContext();
 
   const rrIdOrTs =
     (step
-      ? steps.find((s) => s.id === step.id)?.meta[beforeAfter].rrId
+      ? events.find((s) => s.id === step.id)?.meta[beforeAfter].rrId
       : null) ??
     step?.timestamp ??
     null;

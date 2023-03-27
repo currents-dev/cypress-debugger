@@ -1,7 +1,10 @@
+import {
+  HttpArchiveEntry,
+  HttpArchiveLog,
+} from "@currents/cypress-debugger-support";
 import { createContext, PropsWithChildren, useContext, useState } from "react";
-import { HttpArchiveEntry, HttpArchiveLog } from "../types";
 import { isValidDate } from "../utils/isValidDate";
-import { useCypressStepsContext } from "./cypressSteps";
+import { useCypressEventsContext } from "./cypressEvents";
 
 export type HttpArchiveEntriesContextType = {
   entries: HttpArchiveEntry[];
@@ -21,15 +24,15 @@ export default function HttpArchiveContextProvider({
   const [httpArchiveLog, setHttpArchiveLog] = useState<HttpArchiveLog | null>(
     null
   );
-  const { activeStepObj } = useCypressStepsContext();
+  const { selectedEventObject } = useCypressEventsContext();
 
   const entries =
-    httpArchiveLog && activeStepObj
+    httpArchiveLog && selectedEventObject
       ? httpArchiveLog.log.entries.filter((e) => {
           const harDate = new Date(e.startedDateTime);
 
           const cypressStepDate = new Date(
-            activeStepObj.payload.wallClockStartedAt
+            selectedEventObject.payload.wallClockStartedAt
           );
 
           if (!isValidDate(harDate) || !isValidDate(cypressStepDate))

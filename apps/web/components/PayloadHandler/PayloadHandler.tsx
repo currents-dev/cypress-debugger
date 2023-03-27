@@ -1,23 +1,28 @@
+import { TestExecutionResult } from "@currents/cypress-debugger-plugin";
 import { useState } from "react";
 import { useReplayerContext } from "../../context/replayer";
 import { usePayloadFetcher } from "../../hooks/usePayloadFetcher";
-import { CypressStep, HttpArchiveLog, Payload } from "../../types";
 import { JsonFileUpload } from "../FileUpload/FileUpload";
 import styles from "./PayloadHandler.module.scss";
+import { useHttpArchiveContext } from "../../context/httpArchiveEntries";
+import { useCypressEventsContext } from "../../context/cypressEvents";
 
-export function PayloadHandler({
-  setSteps,
-  setHttpArchiveLog,
-}: {
-  setSteps: (steps: CypressStep[]) => void;
-  setHttpArchiveLog: (data: HttpArchiveLog | null) => void;
-}) {
+export function PayloadHandler() {
   const [loading, setLoading] = useState(false);
 
   const { origin, setOrigin, setReplayerData } = useReplayerContext();
+  const { setHttpArchiveLog } = useHttpArchiveContext();
+
+  const { setEvents, setMeta, setBrowserLogs } = useCypressEventsContext();
 
   usePayloadFetcher({
-    onData: ({ payload, param }: { payload: Payload; param: string }) => {
+    onData: ({
+      payload,
+      param,
+    }: {
+      payload: TestExecutionResult;
+      param: string;
+    }) => {
       if (validate(payload)) {
         handleDataChange(payload);
         setOrigin(param);
@@ -28,14 +33,20 @@ export function PayloadHandler({
     onLoading: setLoading,
   });
 
-  const handleDataChange = (payload: Payload | null) => {
-    setSteps(payload?.cy || []);
+  const handleDataChange = (payload: TestExecutionResult | null) => {
+    setEvents(payload?.cy || []);
     setReplayerData(payload?.rr || []);
     setHttpArchiveLog(payload?.har || null);
+    setMeta(payload?.meta ?? null);
+    setBrowserLogs(payload?.browserLogs || null);
   };
 
-  const validate = (payload: Payload) =>
-    Object.keys(payload).every((key) => ["cy", "rr", "har"].includes(key));
+  const validate = (payload: TestExecutionResult) =>
+    Object.keys(payload).every((key) =>
+      ["id", "meta", "cy", "rr", "har", "pluginMeta", "browserLogs"].includes(
+        key
+      )
+    );
 
   const handleClick = () => {
     setOrigin(null);
@@ -47,7 +58,7 @@ export function PayloadHandler({
     payload,
   }: {
     filename: string | null;
-    payload: Payload | null;
+    payload: TestExecutionResult | null;
   }) => {
     setOrigin(filename);
     handleDataChange(payload);

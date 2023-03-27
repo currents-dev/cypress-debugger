@@ -1,7 +1,6 @@
 import { eventsContainer } from "../events";
 import { injectRROnce } from "../rr";
-
-const harOutputDir = "dump_har";
+import { getRunContext } from "./runContext";
 
 export function handleBefore() {
   console.log("before");
@@ -10,7 +9,9 @@ export function handleBefore() {
 
 export function handleAfter() {
   console.log("after");
-  cy.task("_remove_dump_har", { dir: harOutputDir });
+
+  // remove har directory
+  cy.task("_remove_har_dir");
 }
 
 export function handleBeforeEach() {
@@ -25,16 +26,27 @@ export function handleBeforeEach() {
 export function handleAfterEach() {
   console.log("after each");
 
-  const testEvents = eventsContainer.getEvents();
+  const eventsBatch = eventsContainer.getEvents();
 
-  const harOutputFile = `${testEvents.testId}.raw.json`;
+  // get cy and rr events + test meta
+  cy.task("_curr_dump_events", {
+    id: eventsBatch.testId,
+    meta: getRunContext(),
+    cy: eventsBatch.events.cy,
+    rr: eventsBatch.events.rr,
+  })
 
-  cy.task("_curr_dump_events", testEvents);
+  const harFilename = `${eventsBatch.testId}.raw.json`;
 
-  cy.saveHar({ outDir: harOutputDir, fileName: harOutputFile });
+  // create dump file for network data
+  cy.saveHar({
+    outDir: "dump_har",
+    fileName: harFilename,
+  });
 
-  cy.task("_move_har_to_dump", {
-    filename: harOutputFile,
-    dir: harOutputDir,
-  }).then(() => eventsContainer.reset());
+  // read the data from generated har file
+  cy.task("_read_har_data", harFilename);
+
+  // create dump file + reset current execution events
+  cy.task("_create_dump_file").then(() => eventsContainer.reset());
 }
