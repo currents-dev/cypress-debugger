@@ -73,6 +73,8 @@ export default function CypresEventsContextProvider({
     const logTimestamp = logDate.getTime();
     const cypressStepTimestamp = cypressStepDate.getTime();
 
+    console.log({logTimestamp, cypressStepTimestamp, delta: logTimestamp - cypressStepTimestamp})
+
     return logTimestamp <= cypressStepTimestamp;
   };
 

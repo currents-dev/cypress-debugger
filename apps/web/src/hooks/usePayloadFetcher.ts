@@ -1,5 +1,5 @@
 import { TestExecutionResult } from "@currents/cypress-debugger-plugin";
-import { useRouter } from "next/router";
+import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { isValidUrl } from "../utils/isValidUrl";
 
@@ -7,14 +7,18 @@ export function usePayloadFetcher({
   onData,
   onLoading,
 }: {
-  onData: ({ payload, param }: { payload: TestExecutionResult; param: string }) => void;
+  onData: ({
+    payload,
+    param,
+  }: {
+    payload: TestExecutionResult;
+    param: string;
+  }) => void;
   onLoading: (loading: boolean) => void;
 }) {
-  const router = useRouter();
+  const { payload } = useParams();
 
   useEffect(() => {
-    const { payload } = router.query;
-
     const param = Array.isArray(payload) ? payload[0] : payload;
     const trimmedParam = param?.trim();
 
@@ -44,5 +48,5 @@ export function usePayloadFetcher({
       .finally(() => {
         onLoading(false);
       });
-  }, [router.query]);
+  }, [payload]);
 }

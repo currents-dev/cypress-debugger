@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useState } from "react";
 import styles from "./Collapsible.module.scss";
 
@@ -42,14 +41,9 @@ export function Collapsible({ elements }: { elements: CollapsibleElement[] }) {
                     : ""
                 }`}
               >
-                <Image
-                  src="/chevron.svg"
-                  alt="chevron"
-                  width={12}
-                  height={12}
-                />
+                <img src="/chevron.svg" alt="chevron" width={12} height={12} />
               </div>
-             <div className={styles["collapsible_title"]}>{e.title}</div>
+              <div className={styles["collapsible_title"]}>{e.title}</div>
             </div>
           </button>
           <div

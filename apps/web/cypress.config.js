@@ -10,6 +10,9 @@ module.exports = defineConfig({
         meta: {
           key: "value",
         },
+        callback: (val) => {
+          // executed after each test
+        },
       });
 
       return config;
