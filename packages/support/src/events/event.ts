@@ -11,7 +11,6 @@ export type CypressEventMeta = {
     rrId: string | null;
     rrNodes: number[];
   };
-  consoleEvens?: any[];
 };
 
 export type CypressEventPayload = {

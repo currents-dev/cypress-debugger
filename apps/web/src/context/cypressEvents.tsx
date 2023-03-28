@@ -1,9 +1,5 @@
 import { CypressEvent } from "@currents/cypress-debugger-support";
-import {
-  LogEntry,
-  RuntimeConsoleAPICalled,
-  TestExecutionResult,
-} from "@currents/cypress-debugger-plugin";
+import { TestExecutionResult } from "@currents/cypress-debugger-plugin";
 import { orderBy } from "lodash";
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 import { isValidDate } from "../utils/isValidDate";
@@ -61,8 +57,8 @@ export default function CypresEventsContextProvider({
   };
 
   // TODO: display the logs per step; currently, logs timestamp is greater than cypress events timestamp
-  const filterFn = (val: LogEntry | RuntimeConsoleAPICalled): boolean => {
-    const logDate = new Date(val.timestamp);
+  const filterFn = (ts: number): boolean => {
+    const logDate = new Date(ts);
 
     const cypressStepDate = new Date(
       selectedEventObject!.payload.wallClockStartedAt
@@ -70,20 +66,21 @@ export default function CypresEventsContextProvider({
 
     if (!isValidDate(logDate) || !isValidDate(cypressStepDate)) return false;
 
-    const logTimestamp = logDate.getTime();
-    const cypressStepTimestamp = cypressStepDate.getTime();
-
-    console.log({logTimestamp, cypressStepTimestamp, delta: logTimestamp - cypressStepTimestamp})
-
-    return logTimestamp <= cypressStepTimestamp;
+    return logDate.getTime() <= cypressStepDate.getTime();
   };
 
   const browserLogs = !selectedEventObject
     ? null
     : {
-        logEntry: _browserLogs?.logEntry.filter(filterFn) ?? [],
+        console:
+          _browserLogs?.console.filter((val) => filterFn(val.meta.timestamp)) ??
+          [],
+        logEntry:
+          _browserLogs?.logEntry.filter((val) => filterFn(val.timestamp)) ?? [],
         runtimeConsoleApiCalled:
-          _browserLogs?.runtimeConsoleApiCalled.filter(filterFn) ?? [],
+          _browserLogs?.runtimeConsoleApiCalled.filter((val) =>
+            filterFn(val.timestamp)
+          ) ?? [],
       };
 
   return (
@@ -98,7 +95,7 @@ export default function CypresEventsContextProvider({
         setBeforeAfter,
         meta,
         setMeta,
-        browserLogs: _browserLogs,
+        browserLogs,
         setBrowserLogs,
       }}
     >

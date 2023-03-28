@@ -94,7 +94,33 @@ export type RuntimeConsoleAPICalled = {
   context?: string;
 };
 
+export type ConsoleMessage = {
+  source?:
+    | "xml"
+    | "javascript"
+    | "network"
+    | "console-api"
+    | "storage"
+    | "appcache"
+    | "rendering"
+    | "security"
+    | "other"
+    | "deprecation"
+    | "worker";
+  level?: "log" | "warning" | "error" | "debug" | "info";
+  text?: string;
+  url?: string;
+  line?: number;
+  column?: number;
+};
+
+export type WithMeta<T, K> = T & { meta: K };
+export type LogMeta = {
+  timestamp: number;
+};
+
 export type BrowserLog = {
+  console: WithMeta<ConsoleMessage, LogMeta>[];
   logEntry: LogEntry[];
   runtimeConsoleApiCalled: RuntimeConsoleAPICalled[];
 };
