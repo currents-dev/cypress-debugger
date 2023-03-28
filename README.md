@@ -68,14 +68,23 @@ To obtain a result containing `browserLogs` run `npx cypress run --browser chrom
 
 - call the `install` function inside the `setupNodeEvents` in the cypress config file:
 
+The function takes the cypress events as the first parameter, and an optional object as the second parameter.
+
+Available options:
+ - `meta` - the field is passed down to every generated file.
+ - `callback` -  a function that executes after each test having the generated data as a parameter.
+
 ```typescript
 const { defineConfig } = require("cypress");
+
+const options: { meta?: any; callback?: Function } = {}
 
 module.exports = defineConfig({
   e2e: {
     ...
     setupNodeEvents(on, config) {
-      require("@currents/cypress-debugger").install(on);
+      require("@currents/cypress-debugger").install(on, options);
+
       return config;
     },
   },

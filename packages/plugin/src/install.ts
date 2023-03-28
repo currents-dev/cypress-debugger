@@ -17,26 +17,14 @@ let id: string,
   browserLogs: any,
   pluginMeta: any;
 
-const createDumpFile = () => {
+const createDumpFile = (data: TestExecutionResult) => {
   if (!fs.existsSync(dumpDir)) {
     fs.mkdirSync(dumpDir, { recursive: true });
   }
 
   fs.writeFileSync(
     path.join(dumpDir, `${id}.raw.json`),
-    JSON.stringify(
-      {
-        id,
-        meta,
-        cy,
-        rr,
-        har,
-        browserLogs,
-        pluginMeta,
-      },
-      null,
-      2
-    )
+    JSON.stringify(data, null, 2)
   );
 };
 
@@ -60,6 +48,7 @@ export const installPlugin = (
   on: Cypress.PluginEvents,
   options?: {
     meta: any;
+    callback: Function;
   }
 ) => {
   // attach metadata to the generated files
@@ -95,7 +84,18 @@ export const installPlugin = (
 
     // called the last in "afterEach" hook to create the dump file
     _create_dump_file() {
-      createDumpFile();
+      const data = {
+        id,
+        meta,
+        cy,
+        rr,
+        har,
+        browserLogs,
+        pluginMeta,
+      };
+
+      options?.callback(data);
+      createDumpFile(data);
       return null;
     },
 

@@ -1,7 +1,7 @@
 import CDP from "chrome-remote-interface";
 import { BrowserLog } from "./types";
 
-const logs: BrowserLog = {
+let logs: BrowserLog = {
   logEntry: [],
   runtimeConsoleApiCalled: [],
 };
@@ -83,6 +83,8 @@ export function getLogs() {
 }
 
 export function clearLogs() {
-  logs.logEntry = [];
-  logs.runtimeConsoleApiCalled = [];
+  logs = {
+    logEntry: [],
+    runtimeConsoleApiCalled: [],
+  };
 }
