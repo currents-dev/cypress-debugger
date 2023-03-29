@@ -1,5 +1,5 @@
 import { TestExecutionResult } from "@currents/cypress-debugger-plugin";
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import { isValidUrl } from "../utils/isValidUrl";
 
@@ -16,10 +16,10 @@ export function usePayloadFetcher({
   }) => void;
   onLoading: (loading: boolean) => void;
 }) {
-  const { payload } = useParams();
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    const param = Array.isArray(payload) ? payload[0] : payload;
+    const param = searchParams.get('payload');
     const trimmedParam = param?.trim();
 
     if (!trimmedParam) return;
@@ -48,5 +48,5 @@ export function usePayloadFetcher({
       .finally(() => {
         onLoading(false);
       });
-  }, [payload]);
+  }, [searchParams]);
 }
