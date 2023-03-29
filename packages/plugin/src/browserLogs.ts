@@ -72,7 +72,7 @@ export function browserLaunchHandler(browser: any = {}, launchOptions: any) {
         // deprecated, but works as intended
         cdp.Console.enable();
         cdp.Console.messageAdded((event) => {
-          logs.console.push(enhanceLog(event));
+          logs.console.push(enhanceLog(event.message));
         });
 
         cdp.Runtime.enable();
