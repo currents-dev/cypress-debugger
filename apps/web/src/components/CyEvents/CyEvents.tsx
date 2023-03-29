@@ -1,12 +1,17 @@
-import { CypressEvent } from "@currents/cypress-debugger-support";
+import {
+  CypressEvent,
+  RunContextData,
+} from "@currents/cypress-debugger-support";
 import { CyEventItem } from "./CyEventItem";
 import styles from "./CyEvents.module.scss";
 
 export function CyEvents({
+  meta,
   events,
   selectedEvent,
   setSelectedEvent,
 }: {
+  meta: RunContextData | null;
   events: CypressEvent[];
   selectedEvent: number;
   setSelectedEvent: (i: number) => void;
@@ -15,6 +20,16 @@ export function CyEvents({
 
   return (
     <ul className={styles.events}>
+      {meta && (
+        <li className={styles["events_meta"]}>
+          [{meta?.spec}&nbsp;]{meta?.test.join(" > ")}
+          <span>
+            {" "}
+            retry:
+            {meta.retryAttempt}
+          </span>
+        </li>
+      )}
       {events.map((e, i) => (
         <CyEventItem
           key={e.id}

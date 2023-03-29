@@ -46,13 +46,9 @@ export function Collapsible({ elements }: { elements: CollapsibleElement[] }) {
               <div className={styles["collapsible_title"]}>{e.title}</div>
             </div>
           </button>
-          <div
-            className={`${styles["collapsible_content"]} ${
-              opened.includes(i) ? styles["collapsible_content__active"] : ""
-            }`}
-          >
-            {e.content}
-          </div>
+          {opened.includes(i) ? (
+            <div className={styles["collapsible_content"]}>{e.content}</div>
+          ) : null}
         </li>
       ))}
     </ul>

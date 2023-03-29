@@ -1,29 +1,25 @@
-import { omit, pick } from "lodash";
-import { CypressStep } from "../../types";
+import { CypressEvent } from "@currents/cypress-debugger-support";
+import { omit } from "lodash";
 import { formatMillis } from "../../utils/formatMillis";
-import styles from "./StepDetails.module.scss";
+import styles from "./EventDetails.module.scss";
 
-export function StepDetails({ step }: { step: CypressStep | null }) {
-  if (!step) {
-    return <div>No step selected</div>
-  };
+export function EventDetails({ event }: { event: CypressEvent | null }) {
+  if (!event) {
+    return <div>No event selected</div>;
+  }
 
-  const parameters = omit(
-    step.payload,
-    "name",
-    "wallClockStartedAt"
-  );
+  const parameters = omit(event.payload, "name", "wallClockStartedAt");
 
-  const messageParts = step.payload.message.split(",");
+  const messageParts = event.payload.message.split(",");
   const message =
-    step.payload.name === "task" ? messageParts[0] : step.payload.message;
+    event.payload.name === "task" ? messageParts[0] : event.payload.message;
   const taskArgs =
-    step.payload.name === "task" ? messageParts.slice(1).join(",") : null;
+    event.payload.name === "task" ? messageParts.slice(1).join(",") : null;
 
   return (
     <div className={styles.details}>
       <ul className={styles["details_block"]}>
-        <li className={styles["details_value"]}>{step.payload.name}</li>
+        <li className={styles["details_value"]}>{event.payload.name}</li>
         {message && (
           <li>
             message: <span className={styles["details_value"]}>{message}</span>
@@ -40,13 +36,13 @@ export function StepDetails({ step }: { step: CypressStep | null }) {
         <li>
           wall time:{" "}
           <span className={styles["details_value"]}>
-            {step.payload.wallClockStartedAt}
+            {event.payload.wallClockStartedAt}
           </span>
         </li>
         <li>
           duration:{" "}
           <span className={styles["details_value"]}>
-            {formatMillis(step.duration)}
+            {formatMillis(event.duration)}
           </span>
         </li>
       </ul>
@@ -60,7 +56,7 @@ export function StepDetails({ step }: { step: CypressStep | null }) {
   );
 }
 
-const Entry = ({ param, value }: { param: string; value: any }) => {
+export const Entry = ({ param, value }: { param: string; value: any }) => {
   const displayed =
     typeof value === "string"
       ? `\"${value}\"`
@@ -74,4 +70,3 @@ const Entry = ({ param, value }: { param: string; value: any }) => {
     </li>
   );
 };
-

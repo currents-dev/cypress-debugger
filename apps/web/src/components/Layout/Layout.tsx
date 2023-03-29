@@ -2,11 +2,10 @@ import { useCypressEventsContext } from "../../context/cypressEvents";
 import { useHttpArchiveContext } from "../../context/httpArchiveEntries";
 import { Console } from "../Console/Console";
 import { CyEvents } from "../CyEvents/CyEvents";
-import { Metadata } from "../Metadata/Metadata";
 import { Network } from "../Network/Network";
 import { PayloadHandler } from "../PayloadHandler/PayloadHandler";
 import { Player } from "../Replayer/Replayer";
-import { StepDetails } from "../StepDetails/StepDetails";
+import { EventDetails } from "../EventDetails/EventDetails";
 import { Tabs } from "../Tabs/Tabs";
 import styles from "./Layout.module.scss";
 
@@ -35,15 +34,12 @@ export function Layout() {
                   title: "Steps",
                   content: (
                     <CyEvents
+                      meta={meta}
                       events={events}
                       selectedEvent={selectedEvent}
                       setSelectedEvent={setSelectedEvent}
                     />
                   ),
-                },
-                {
-                  title: "Metadata",
-                  content: <Metadata meta={meta} />,
                 },
               ]}
             />
@@ -56,7 +52,7 @@ export function Layout() {
               tabs={[
                 {
                   title: "Step Details",
-                  content: <StepDetails step={selectedEventObject} />,
+                  content: <EventDetails event={selectedEventObject} />,
                 },
                 {
                   title: `Network ${

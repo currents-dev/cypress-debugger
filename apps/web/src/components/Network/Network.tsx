@@ -6,7 +6,7 @@ import {
   HeadersEntity,
   HttpArchiveEntry,
   HttpArchiveEntryResponse,
-} from "../../types";
+} from "@currents/cypress-debugger-support";
 
 export function Network({ entries }: { entries: HttpArchiveEntry[] }) {
   if (entries.length === 0) {
