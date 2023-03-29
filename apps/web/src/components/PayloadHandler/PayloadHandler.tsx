@@ -6,14 +6,17 @@ import { JsonFileUpload } from "../FileUpload/FileUpload";
 import styles from "./PayloadHandler.module.scss";
 import { useHttpArchiveContext } from "../../context/httpArchiveEntries";
 import { useCypressEventsContext } from "../../context/cypressEvents";
+import { usePayloadQueryParam } from "../../hooks/useQuery";
 
 export function PayloadHandler() {
   const [loading, setLoading] = useState(false);
-
+  
   const { origin, setOrigin, setReplayerData } = useReplayerContext();
   const { setHttpArchiveLog } = useHttpArchiveContext();
 
   const { setEvents, setMeta, setBrowserLogs } = useCypressEventsContext();
+
+  const { clearParam } = usePayloadQueryParam();
 
   usePayloadFetcher({
     onData: ({
@@ -51,6 +54,7 @@ export function PayloadHandler() {
   const handleClick = () => {
     setOrigin(null);
     handleDataChange(null);
+    clearParam();
   };
 
   const handleFileChange = ({
