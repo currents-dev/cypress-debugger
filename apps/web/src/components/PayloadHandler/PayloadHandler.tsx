@@ -1,5 +1,5 @@
 import { TestExecutionResult } from "@currents/cypress-debugger-plugin";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useReplayerContext } from "../../context/replayer";
 import { usePayloadFetcher } from "../../hooks/usePayloadFetcher";
 import { JsonFileUpload } from "../FileUpload/FileUpload";
@@ -10,13 +10,13 @@ import { usePayloadQueryParam } from "../../hooks/useQuery";
 
 export function PayloadHandler() {
   const [loading, setLoading] = useState(false);
-  
+
   const { origin, setOrigin, setReplayerData } = useReplayerContext();
   const { setHttpArchiveLog } = useHttpArchiveContext();
 
   const { setEvents, setMeta, setBrowserLogs } = useCypressEventsContext();
 
-  const { clearParam } = usePayloadQueryParam();
+  const [param, , clearParam] = usePayloadQueryParam();
 
   usePayloadFetcher({
     onData: ({
@@ -43,6 +43,13 @@ export function PayloadHandler() {
     setMeta(payload?.meta ?? null);
     setBrowserLogs(payload?.browserLogs || null);
   };
+
+  useEffect(() => {
+    if (!param) {
+      setOrigin(null);
+      handleDataChange(null);
+    }
+  }, [param]);
 
   const validate = (payload: TestExecutionResult) =>
     Object.keys(payload).every((key) =>

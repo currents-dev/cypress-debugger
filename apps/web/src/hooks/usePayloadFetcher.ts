@@ -16,10 +16,10 @@ export function usePayloadFetcher({
   }) => void;
   onLoading: (loading: boolean) => void;
 }) {
-  const { getParam } = usePayloadQueryParam()
+  const [param] = usePayloadQueryParam()
 
   useEffect(() => {
-    const trimmedParam = getParam()?.trim();
+    const trimmedParam = param?.trim();
 
     if (!trimmedParam) return;
 
@@ -47,5 +47,5 @@ export function usePayloadFetcher({
       .finally(() => {
         onLoading(false);
       });
-  }, []);
+  }, [param]);
 }
