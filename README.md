@@ -36,7 +36,7 @@ The plugin generates a `json` file for each test into `apps/web/dump`. Each file
   }
   ```
 
-- `browserLogs` - the browser logs at a moment in time. The data by connecting to the browser using [chrome-remote-interface](https://www.npmjs.com/package/chrome-remote-interface), a [Chrome Debugging Protocol](https://chromedevtools.github.io/devtools-protocol/) interface. The Chrome Debugging Protocol is connecting to the browser at `before:browser:launch` event.
+- `browserLogs` - the browser logs at a moment in time. Only works with Chrome, Chromium, or Canary browsers. The data by connecting to the browser using [chrome-remote-interface](https://www.npmjs.com/package/chrome-remote-interface), a [Chrome Debugging Protocol](https://chromedevtools.github.io/devtools-protocol/) interface. The Chrome Debugging Protocol is connecting to the browser at `before:browser:launch` event.
 
 - `pluginMeta` - an object containing the data passed down to the `meta` field of the install optional, second parameter:
   ```js
