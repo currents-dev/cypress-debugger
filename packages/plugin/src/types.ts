@@ -50,7 +50,7 @@ export type RuntimeRemoteObject = {
     | "boolean"
     | "symbol"
     | "bigint";
-  description?: string;
+  value?: string;
 };
 
 export type LogEntry = {
@@ -114,13 +114,7 @@ export type ConsoleMessage = {
   column?: number;
 };
 
-export type WithMeta<T, K> = T & { meta: K };
-export type LogMeta = {
-  timestamp: number;
-};
-
 export type BrowserLog = {
-  console: WithMeta<ConsoleMessage, LogMeta>[];
   logEntry: LogEntry[];
   runtimeConsoleApiCalled: RuntimeConsoleAPICalled[];
 };

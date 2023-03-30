@@ -1,19 +1,14 @@
 .collapsible {
 
     &_button {
-        background-color: darkgray;
-        color: white;
+        background: none;
         cursor: pointer;
-        padding: 7px;
         width: 100%;
-        border: none;
         text-align: left;
         outline: none;
-        font-size: 12px;
-
-        &:hover {
-            background-color: #ccc;
-        }
+        border: none;
+        border-bottom: 1px solid #f0f0f0;
+        padding: 5px 5px 5px 0;
     }
 
     &_button-content {
@@ -21,9 +16,10 @@
     }
 
     &_chevron {
-        min-width: 12px;
-        padding-right: 2px;
+        padding: 0 5px;
         position: relative;
+        display: flex;
+        align-items: center;
 
         &__active {
             img {

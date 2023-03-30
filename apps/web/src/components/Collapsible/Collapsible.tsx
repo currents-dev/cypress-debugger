@@ -4,6 +4,7 @@ import styles from "./Collapsible.module.scss";
 export type CollapsibleElement = {
   title: JSX.Element | string;
   content: JSX.Element;
+  className?: string;
 };
 
 export function Collapsible({ elements }: { elements: CollapsibleElement[] }) {
@@ -27,7 +28,7 @@ export function Collapsible({ elements }: { elements: CollapsibleElement[] }) {
   return (
     <ul className={styles.collapsible}>
       {elements.map((e, i) => (
-        <li key={i} className={styles["collapsible_element"]}>
+        <li key={i} className={e.className ?? ""}>
           <button
             type="button"
             className={styles["collapsible_button"]}

@@ -20,6 +20,10 @@ export function Layout() {
   } = useCypressEventsContext();
   const { entries } = useHttpArchiveContext();
 
+  const logsCount =
+    (browserLogs?.logEntry.length ?? 0) +
+    (browserLogs?.runtimeConsoleApiCalled.length ?? 0);
+
   return (
     <div className={styles.layout}>
       <div className={styles["layout_top-block"]}>
@@ -61,7 +65,7 @@ export function Layout() {
                   content: <Network entries={entries} />,
                 },
                 {
-                  title: "Console",
+                  title: `Console  ${logsCount > 0 ? `(${logsCount})` : ""}`,
                   content: <Console logs={browserLogs} />,
                 },
               ]}

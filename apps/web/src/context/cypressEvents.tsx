@@ -19,7 +19,7 @@ export type CypressEventsContextType = {
 };
 
 type BeforeAfter = "before" | "after";
-const CypressStepsContext = createContext<CypressEventsContextType>({
+const CypressEventsContext = createContext<CypressEventsContextType>({
   beforeAfter: "before",
   events: [],
   setEvents: () => {},
@@ -33,7 +33,7 @@ const CypressStepsContext = createContext<CypressEventsContextType>({
   setBrowserLogs: () => {},
 });
 
-export const useCypressEventsContext = () => useContext(CypressStepsContext);
+export const useCypressEventsContext = () => useContext(CypressEventsContext);
 
 export default function CypresEventsContextProvider({
   children,
@@ -46,35 +46,31 @@ export default function CypresEventsContextProvider({
     TestExecutionResult["browserLogs"] | null
   >(null);
 
-  const orderedSteps = orderBy(cypressEvents, (step) => step.timestamp, "asc");
+  const orderedEvents = orderBy(cypressEvents, (event) => event.timestamp, "asc");
 
   const selectedEventObject =
-    selectedEvent === -1 ? null : orderedSteps[selectedEvent] ?? null;
+    selectedEvent === -1 ? null : orderedEvents[selectedEvent] ?? null;
 
   const setEvents = (e: CypressEvent[]) => {
     setCypressEvents(e);
     setSelectedEvent(-1);
   };
 
-  // TODO: display the logs per step; currently, logs timestamp is greater than cypress events timestamp
   const filterFn = (ts: number): boolean => {
     const logDate = new Date(ts);
 
-    const cypressStepDate = new Date(
+    const cypressEventDate = new Date(
       selectedEventObject!.payload.wallClockStartedAt
     );
 
-    if (!isValidDate(logDate) || !isValidDate(cypressStepDate)) return false;
+    if (!isValidDate(logDate) || !isValidDate(cypressEventDate)) return false;
 
-    return logDate.getTime() <= cypressStepDate.getTime();
+    return logDate.getTime() <= cypressEventDate.getTime();
   };
 
   const browserLogs = !selectedEventObject
     ? null
     : {
-        console:
-          _browserLogs?.console.filter((val) => filterFn(val.meta.timestamp)) ??
-          [],
         logEntry:
           _browserLogs?.logEntry.filter((val) => filterFn(val.timestamp)) ?? [],
         runtimeConsoleApiCalled:
@@ -84,10 +80,10 @@ export default function CypresEventsContextProvider({
       };
 
   return (
-    <CypressStepsContext.Provider
+    <CypressEventsContext.Provider
       value={{
         beforeAfter,
-        events: orderedSteps,
+        events: orderedEvents,
         setEvents,
         selectedEvent,
         setSelectedEvent,
@@ -100,6 +96,6 @@ export default function CypresEventsContextProvider({
       }}
     >
       {children}
-    </CypressStepsContext.Provider>
+    </CypressEventsContext.Provider>
   );
 }

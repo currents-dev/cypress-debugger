@@ -14,15 +14,15 @@ export default function PlaybackProvider({
 }: PropsWithChildren<unknown>) {
   const {
     beforeAfter,
-    selectedEventObject: step,
+    selectedEventObject: event,
     events,
   } = useCypressEventsContext();
 
   const rrIdOrTs =
-    (step
-      ? events.find((s) => s.id === step.id)?.meta[beforeAfter].rrId
+    (event
+      ? events.find((s) => s.id === event.id)?.meta[beforeAfter].rrId
       : null) ??
-    step?.timestamp ??
+    event?.timestamp ??
     null;
 
   return (

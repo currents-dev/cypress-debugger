@@ -1,45 +1,103 @@
 import {
   TestExecutionResult,
   BrowserLog,
+  RuntimeStackTrace,
 } from "@currents/cypress-debugger-plugin";
+import { orderBy } from "lodash";
+import { Collapsible } from "../Collapsible/Collapsible";
 import styles from "./Console.module.scss";
 
+type Log = {
+  message?: string;
+  type: string;
+  timestamp: number;
+  stackTrace?: RuntimeStackTrace;
+};
 export function Console({
   logs,
 }: {
   logs: TestExecutionResult["browserLogs"] | null;
 }) {
+  if (!logs) return <div>No records</div>;
+
+  const _logs: Log[] = [
+    ...logs.logEntry.map((log) => ({
+      message: log.text,
+      type: log.level,
+      timestamp: log.timestamp,
+      stackTrace: log.stackTrace,
+    })),
+    ...logs.runtimeConsoleApiCalled.map((log) => ({
+      message: log.args[0].value,
+      type: log.type,
+      timestamp: log.timestamp,
+      stackTrace: log.stackTrace,
+    })),
+  ];
+
+  const orderedLogs = orderBy(_logs, (log) => log.timestamp, "asc");
+
   return (
-    <ul className={styles.console}>
-      {logs?.console.map((msg, i) => (
-        <Message key={i} message={msg} />
-      ))}
-    </ul>
+    <div className={styles.console}>
+      <Collapsible
+        elements={orderedLogs.map((log) => ({
+          title: (
+            <Message
+              message={log.message ?? ""}
+              type={log.type}
+              timestamp={log.timestamp}
+            />
+          ),
+          content: log.stackTrace ? (
+            <StackTrace trace={log.stackTrace} />
+          ) : (
+            <div> - </div>
+          ),
+          className: ["warning", "error"].includes(log.type)
+            ? styles[`message__${log.type}`]
+            : undefined,
+        }))}
+      />
+    </div>
   );
 }
 
-const Message = ({ message }: { message: BrowserLog["console"][0] }) => {
-  const displayUrl = message.url && message.line && message.column;
-
+const Message = ({
+  message,
+  type,
+  timestamp,
+}: {
+  message: string;
+  type: string;
+  timestamp: number;
+}) => {
   return (
-    <li
-      className={`${styles["console-message"]} ${
-        styles[`console-message__${message.level ?? ""}`]
-      }`}
-    >
-      <div className={styles["console-message_info"]}>
-        [{message.source}] <span>{formatDate(message.meta.timestamp)}</span>
+    <div className={styles.message}>
+      <div className={styles["message_header"]}>
+        [{type}] <span>{formatDate(timestamp)}</span>
       </div>
 
-      {displayUrl && (
-        <div>
-          <span className={styles["console-message_url"]}>
-            {message.url}:{message.line}:{message.column}
-          </span>
-        </div>
-      )}
-      <div className={styles["console-message_text"]}>{message.text}</div>
-    </li>
+      <div className={styles["message_text"]}>{message}</div>
+    </div>
+  );
+};
+
+const StackTrace = ({
+  trace,
+}: {
+  trace: BrowserLog["runtimeConsoleApiCalled"][0]["stackTrace"];
+}) => {
+  return (
+    <ul className={styles["stack-trace"]}>
+      {trace?.callFrames.map((frame, i) => (
+        <li key={i}>
+          <>
+            &nbsp;&nbsp;&nbsp;at&nbsp;{frame.functionName}&nbsp;(
+            {frame.url}:{frame.lineNumber})
+          </>
+        </li>
+      ))}
+    </ul>
   );
 };
 

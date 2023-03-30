@@ -22,7 +22,7 @@ export function CyEvents({
     <ul className={styles.events}>
       {meta && (
         <li className={styles["events_meta"]}>
-          [{meta?.spec}&nbsp;]{meta?.test.join(" > ")}
+          [{meta?.spec}]&nbsp;{meta?.test.join(" > ")}
           <span>
             {" "}
             retry:

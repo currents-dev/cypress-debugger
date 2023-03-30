@@ -67,12 +67,12 @@ const NetworkDetails = ({ entry }: { entry: HttpArchiveEntry }) => {
           ))}
         </ul>
       )}
-      {!!entry.response.content && (
+      {/* {!!entry.response.content && (
         <div>
           <div className={styles["network-details_title"]}>Response Body</div>
           <ResponseBody content={entry.response.content} />
         </div>
-      )}
+      )} */}
     </div>
   );
 };

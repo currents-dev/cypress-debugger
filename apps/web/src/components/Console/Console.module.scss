@@ -1,27 +1,17 @@
 .console {
     height: calc(100vh - 82px);
     overflow: auto;
-    font-family: 'Courier New', Courier, monospace;
 }
 
-.console-message {
-    padding: 5px 10px;
-    border: 1px solid #f0f0f0;
+.message {
     display: flex;
     flex-direction: column;
-    gap: 3px;
-    font-size: 10px;
+    gap: 5px;
     word-break: break-all;
 
-
-    &_info {
+    &_header {
         display: flex;
         justify-content: space-between;
-    }
-
-    &_text {
-        font-size: 12px;
-        color: brown;
     }
 
     &__warning {
@@ -31,8 +21,11 @@
     &__error {
         background-color: #fff0f0;
     }
+}
 
-    a {
-        text-decoration: underline;
-    }
+.stack-trace {
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px;
+    word-break: break-all;
 }

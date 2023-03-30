@@ -1,23 +1,13 @@
 import CDP from "chrome-remote-interface";
-import { BrowserLog, LogEntry, LogMeta, WithMeta } from "./types";
+import { BrowserLog } from "./types";
 
 let logs: BrowserLog = {
-  console: [],
   logEntry: [],
   runtimeConsoleApiCalled: [],
 };
 
 function debugLog(msg: any) {
   console.log(`[cypress-debugger] ${msg}`);
-}
-
-function enhanceLog<T>(log: T): WithMeta<T, LogMeta> {
-  return {
-    ...log,
-    meta: {
-      timestamp: new Date().getTime(),
-    },
-  };
 }
 
 function isChrome(browser: any) {
@@ -69,12 +59,6 @@ export function browserLaunchHandler(browser: any = {}, launchOptions: any) {
           logs.logEntry.push(event.entry);
         });
 
-        // deprecated, but works as intended
-        cdp.Console.enable();
-        cdp.Console.messageAdded((event) => {
-          logs.console.push(enhanceLog(event.message));
-        });
-
         cdp.Runtime.enable();
         cdp.Runtime.consoleAPICalled((event) => {
           logs.runtimeConsoleApiCalled.push(event);
@@ -100,7 +84,6 @@ export function getLogs() {
 
 export function clearLogs() {
   logs = {
-    console: [],
     logEntry: [],
     runtimeConsoleApiCalled: [],
   };
