@@ -16,7 +16,7 @@ Runs a few tests
 ```sh
 cd apps/web
 npm install
-npx cypress run --browser chrome
+npx cypress run
 ```
 
 The plugin generates a `json` file for each test into `apps/web/dump`. Each file contains the following information about a specific test: 
@@ -56,11 +56,11 @@ The plugin generates a `json` file for each test into `apps/web/dump`. Each file
 
 Run the local server at http://localhost:3000/ and upload some files from `apps/web/dump` using the UI.
 
-### Notes
+## Notes
+
+To run tests with the Electron browser - run `ELECTRON_EXTRA_LAUNCH_ARGS="--remote-debugging-port=9222" npx cypress run`. Please refer to the [Electron documentation](https://www.electronjs.org/docs/latest/api/command-line-switches#--remote-debugging-portport) and the [Cypress documentation](https://docs.cypress.io/api/plugins/browser-launch-api#Modify-Electron-app-switches) for more information on how to properly configure this switch.
 
 A `har.json` file could be visualized with [this tool](https://toolbox.googleapps.com/apps/har_analyzer/)
-
-The [HAR generator](https://github.com/NeuraLegion/cypress-har-generator), currently, only supports Chrome family browsers. Please refer to [this](https://github.com/NeuraLegion/cypress-har-generator#generating-a-har-file) section in order to run cypress for other browsers.
 
 To obtain a result containing `browserLogs` run `npx cypress run --browser chrome --spec ./cypress/e2e/local.spec.js`
 

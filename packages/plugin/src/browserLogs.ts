@@ -12,9 +12,8 @@ function debugLog(msg: any) {
 
 function isChrome(browser: any) {
   return (
-    browser.family === "chrome" ||
-    ["chrome", "chromium", "canary"].includes(browser.name) ||
-    (browser.family === "chromium" && browser.name !== "electron")
+    ["chrome", "chromium"].includes(browser.family) ||
+    ["chrome", "chromium", "canary"].includes(browser.name)
   );
 }
 
@@ -27,11 +26,8 @@ function ensureRdpPort(args: any) {
     return Number(existing.split("=")[1]);
   }
 
-  const port = 40000 + Math.round(Math.random() * 25000);
-
-  args.push(`--remote-debugging-port=${port}`);
-
-  return port;
+  // running cypress with ELECTRON_EXTRA_LAUNCH_ARGS="--remote-debugging-port=9222" do not set the args
+  return 9222;
 }
 
 export function browserLaunchHandler(browser: any = {}, launchOptions: any) {
