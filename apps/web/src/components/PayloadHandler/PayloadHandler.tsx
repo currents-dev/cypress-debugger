@@ -49,7 +49,7 @@ export function PayloadHandler() {
       setOrigin(null);
       handleDataChange(null);
     }
-  }, [param]);
+  }, [param]); // eslint-disable-line
 
   const validate = (payload: TestExecutionResult) =>
     Object.keys(payload).every((key) =>

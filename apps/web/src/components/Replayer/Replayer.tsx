@@ -26,7 +26,7 @@ export function Player() {
       },
     });
     return () => playerRef.current?.getReplayer().destroy();
-  }, [origin]);
+  }, [origin]); // eslint-disable-line
 
   useEffect(() => {
     if (!playerRef.current) return;
@@ -44,7 +44,7 @@ export function Player() {
       playerRef.current.goto(rrIdOrTs - start);
       playerRef.current.pause();
     }
-  }, [rrIdOrTs, origin]);
+  }, [rrIdOrTs, origin]); // eslint-disable-line
 
   return <div className={styles.container} ref={divRef}></div>;
 }

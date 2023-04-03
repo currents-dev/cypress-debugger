@@ -13,10 +13,8 @@ dump
 dump_har
 screenshots
 
-# next.js
-.next/
-out/
-build
+# vite
+tsconfig.tsbuildinfo
 
 # misc
 .DS_Store
