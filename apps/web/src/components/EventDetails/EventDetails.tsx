@@ -56,7 +56,13 @@ export function EventDetails({ event }: { event: CypressEvent | null }) {
   );
 }
 
-export const Entry = ({ param, value }: { param: string; value: any }) => {
+export const Entry = ({
+  param,
+  value,
+}: {
+  param: string;
+  value: string | number | boolean;
+}) => {
   const displayed =
     typeof value === "string"
       ? `\"${value}\"`

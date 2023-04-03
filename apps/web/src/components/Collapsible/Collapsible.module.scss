@@ -16,10 +16,8 @@
     }
 
     &_chevron {
-        padding: 0 5px;
+        padding-left: 4px;
         position: relative;
-        display: flex;
-        align-items: center;
 
         &__active {
             img {
@@ -30,6 +28,7 @@
 
     &_title {
         width: 100%;
+        line-height: 20px;
     }
 
     &_content {

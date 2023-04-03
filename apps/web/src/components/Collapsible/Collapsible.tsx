@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Collapsible.module.scss";
 
 export type CollapsibleElement = {
@@ -42,7 +42,7 @@ export function Collapsible({ elements }: { elements: CollapsibleElement[] }) {
                     : ""
                 }`}
               >
-                <img src="/chevron.svg" alt="chevron" width={12} height={12} />
+                <img src="/chevron_right.svg" alt="chevron" width={20} height={20} />
               </div>
               <div className={styles["collapsible_title"]}>{e.title}</div>
             </div>

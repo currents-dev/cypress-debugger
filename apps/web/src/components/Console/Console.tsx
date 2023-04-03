@@ -74,11 +74,34 @@ const Message = ({
   return (
     <div className={styles.message}>
       <div className={styles["message_header"]}>
-        [{type}] <span>{formatDate(timestamp)}</span>
+        <div className={styles["message_type"]}>
+          <span>[{type}]</span>
+          {type !== "log" && <MessageIcon type={type} />}
+        </div>
+        <span className={styles["message_timestamp"]}>
+          {formatDate(timestamp)}
+        </span>
       </div>
 
       <div className={styles["message_text"]}>{message}</div>
     </div>
+  );
+};
+
+const MessageIcon = ({ type }: { type: string }) => {
+  const src =
+    type === "error"
+      ? "error"
+      : type === "debug"
+      ? "bug_report"
+      : type === "info"
+      ? "info"
+      : "warning";
+
+  return (
+    <span>
+      <img src={`/${src}.svg`} alt="chevron" width={16} height={16} />
+    </span>
   );
 };
 
