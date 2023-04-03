@@ -1,19 +1,7 @@
-export type CypressRawEvent = any;
-export type RRWebRawEvent = any;
-export type RawEvent = CypressRawEvent | RRWebRawEvent;
+import { eventWithTime } from "@rrweb/types";
 
-export type CypressEventMeta = {
-  before: {
-    rrId: string | null;
-    rrNodes: number[];
-  };
-  after: {
-    rrId: string | null;
-    rrNodes: number[];
-  };
-};
-
-export type CypressEventPayload = {
+export type RRWebRawEvent = eventWithTime;
+export type CypressRawEvent = {
   chainerId?: string;
   ended?: boolean;
   event: boolean;
@@ -30,18 +18,21 @@ export type CypressEventPayload = {
   viewportHeight: number;
   viewportWidth: number;
   wallClockStartedAt: string;
+  [x: string]: any;
 };
 
-export type RRWebEventPayload = {
-  type: number;
-  data: Data;
-  timestamp: number;
-};
+export type RawEvent = CypressRawEvent | RRWebRawEvent;
 
-interface Data {
-  node?: Node;
-  initialOffset?: InitialOffset;
-}
+export type CypressEventMeta = {
+  before: {
+    rrId: string | null;
+    rrNodes: number[];
+  };
+  after: {
+    rrId: string | null;
+    rrNodes: number[];
+  };
+};
 
 interface Node {
   type: number;
@@ -62,24 +53,19 @@ interface Attributes {
   [key: string]: any;
 }
 
-interface InitialOffset {
-  left: number;
-  top: number;
-}
-
-type BaseEvent = {
+export type BaseEvent = {
   id: string;
   timestamp: number;
   offset: number;
   duration: number;
 };
 export type CypressEvent = BaseEvent & {
-  payload: CypressEventPayload;
+  payload: CypressRawEvent;
   meta: CypressEventMeta;
 };
 
 export type RRWebEvent = BaseEvent & {
-  payload: RRWebEventPayload;
+  payload: RRWebRawEvent;
 };
 
 export type Event = CypressEvent | RRWebEvent;

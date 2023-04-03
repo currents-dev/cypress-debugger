@@ -6,31 +6,33 @@ let logs: BrowserLog = {
   runtimeConsoleApiCalled: [],
 };
 
-function debugLog(msg: any) {
+function debugLog(msg: string) {
   console.log(`[cypress-debugger] ${msg}`);
 }
 
-function isChrome(browser: any) {
+function isChrome(browser: Cypress.Browser) {
   return (
     ["chrome", "chromium"].includes(browser.family) ||
     ["chrome", "chromium", "canary"].includes(browser.name)
   );
 }
 
-function ensureRdpPort(args: any) {
-  const existing = args.find(
-    (arg: any) => arg.slice(0, 23) === "--remote-debugging-port"
-  );
+function ensureRdpPort(args: string[]) {
+  const portArg = "--remote-debugging-port";
+  const existing = args.find((arg) => arg.slice(0, portArg.length) === portArg);
 
   if (existing) {
     return Number(existing.split("=")[1]);
   }
 
-  // running cypress with ELECTRON_EXTRA_LAUNCH_ARGS="--remote-debugging-port=9222" do not set the args
+  // default debugging port
   return 9222;
 }
 
-export function browserLaunchHandler(browser: any = {}, launchOptions: any) {
+export function browserLaunchHandler(
+  browser: Cypress.Browser,
+  launchOptions: Cypress.BrowserLaunchOptions
+) {
   const args = launchOptions.args || launchOptions;
 
   if (!isChrome(browser)) {

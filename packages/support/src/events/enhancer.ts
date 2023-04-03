@@ -2,15 +2,19 @@ import { pick } from "lodash";
 import { getEnvironmentLifetime } from "../env/perf";
 import { uuid } from "../uuid";
 import {
+  BaseEvent,
   CypressEvent,
   CypressEventMeta,
-  CypressEventPayload,
   CypressRawEvent,
   RRWebEvent,
   RRWebRawEvent,
 } from "./event";
 
-export const enhanceEvent = (event: any): any => ({
+export const enhanceEvent = <T>(
+  event: T
+): BaseEvent & {
+  payload: T;
+} => ({
   payload: event,
   id: uuid(),
   timestamp: Date.now(),
@@ -31,7 +35,33 @@ export const enhanceRREvent = (event: RRWebRawEvent): RRWebEvent =>
 
 export const formatCypressEvent = (
   event: CypressRawEvent
-): CypressEventPayload => {
+): Pick<
+  CypressRawEvent,
+  | "alias"
+  | "aliasType"
+  | "chainerId"
+  | "displayName"
+  | "ended"
+  | "err"
+  | "event"
+  | "highlightAttr"
+  | "hookId"
+  | "id"
+  | "numElements"
+  | "instrument"
+  | "message"
+  | "method"
+  | "name"
+  | "state"
+  | "testCurrentRetry"
+  | "testId"
+  | "totalTime"
+  | "type"
+  | "url"
+  | "viewportHeight"
+  | "viewportWidth"
+  | "wallClockStartedAt"
+> => {
   // TODO: figure out consoleProps, renderProps and $el
   // const consoleProps = pick(event.consoleProps, ["Command", "Elements", "Selector"]);
 
