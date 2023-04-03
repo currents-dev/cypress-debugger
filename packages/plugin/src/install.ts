@@ -1,5 +1,10 @@
 import path from "path";
-import { browserLaunchHandler, getLogs, clearLogs } from "./browserLogs";
+import {
+  browserLaunchHandler,
+  getLogs,
+  clearLogs,
+  reconnect,
+} from "./browserLogs";
 import {
   install,
   ensureBrowserFlags,
@@ -83,5 +88,11 @@ export const installPlugin = (
     browserLaunchHandler(browser, launchOptions);
 
     return launchOptions;
+  });
+
+  on("before:spec", () => {
+    // reconnecting to Chrome Debugging Protocol.
+    // the connection closes after each spec file
+    reconnect();
   });
 };

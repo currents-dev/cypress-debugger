@@ -1,6 +1,10 @@
 import CDP from "chrome-remote-interface";
 import { BrowserLog } from "./types";
 
+let _browser: Cypress.Browser;
+let _launchOptions: Cypress.BrowserLaunchOptions;
+let _connected = false;
+
 let logs: BrowserLog = {
   logEntry: [],
   runtimeConsoleApiCalled: [],
@@ -33,6 +37,9 @@ export function browserLaunchHandler(
   browser: Cypress.Browser,
   launchOptions: Cypress.BrowserLaunchOptions
 ) {
+  _browser = browser;
+  _launchOptions = launchOptions;
+
   const args = launchOptions.args || launchOptions;
 
   if (!isChrome(browser)) {
@@ -55,6 +62,7 @@ export function browserLaunchHandler(
     })
       .then((cdp) => {
         debugLog("Connected to Chrome Debugging Protocol");
+        _connected = true;
 
         cdp.Log.enable();
         cdp.Log.entryAdded((event) => {
@@ -67,6 +75,7 @@ export function browserLaunchHandler(
         });
 
         cdp.on("disconnect", () => {
+          _connected = false;
           debugLog("Chrome Debugging Protocol disconnected");
         });
       })
@@ -91,6 +100,16 @@ export function browserLaunchHandler(
   tryConnect();
 
   return launchOptions;
+}
+
+export function reconnect() {
+  if (!_browser || !_launchOptions) {
+    return debugLog("Browser not set");
+  }
+
+  if (!_connected) {
+    browserLaunchHandler(_browser, _launchOptions);
+  }
 }
 
 export function getLogs() {
