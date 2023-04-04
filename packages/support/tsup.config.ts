@@ -5,8 +5,9 @@ export default defineConfig({
   clean: true,
   bundle: true,
   noExternal: ["rrweb"],
-  entry: ["src/index.ts", "src/plugin/index.ts", "src/support/index.ts"],
+  entry: ["src/index.ts"],
   loader: {
     ".src": "text",
   },
+  dts: true,
 });

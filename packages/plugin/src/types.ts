@@ -128,3 +128,8 @@ export type TestExecutionResult = {
   browserLogs: BrowserLog;
   pluginMeta?: any;
 };
+
+export type PluginOptions = {
+  meta?: any;
+  callback?: (result: TestExecutionResult) => void;
+};

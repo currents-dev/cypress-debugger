@@ -3,7 +3,7 @@
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {
-    "types": [ "node", "@neuralegion/cypress-har-generator" ],
-    "typeRoots": ["./node_modules/@types", "./src/@types"]
+    "types": ["node", "@neuralegion/cypress-har-generator"],
+    "typeRoots": ["./node_modules/@types"]
   }
 }

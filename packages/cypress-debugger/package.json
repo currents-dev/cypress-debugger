@@ -1,12 +1,14 @@
 {
-  "name": "@currents/cypress-debugger",
+  "name": "cypress-debugger",
   "version": "0.0.0",
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "dev": "tsup --watch",
-    "lint": "TIMING=1 eslint \"**/*.ts*\""
+    "dev": "tsup-node --watch",
+    "build": "tsup-node",
+    "lint": "tsc"
   },
   "devDependencies": {
     "esbuild": "^0.17.7",

@@ -6,6 +6,13 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
+    "cypress-debugger#build": {
+      "dependsOn": [
+        "@currents/cypress-debugger-plugin#build",
+        "@currents/cypress-debugger-support#build"
+      ],
+      "outputs": ["dist/**"]
+    },
     "lint": {
       "outputs": []
     },

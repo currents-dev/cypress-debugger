@@ -1,4 +1,5 @@
 import { attachHandlers } from "./cy";
-export { attachHandlers };
+
+export const debuggerSupport = attachHandlers;
 export * from "./events/event";
 export type { RunContextData } from "./cy/runContext";

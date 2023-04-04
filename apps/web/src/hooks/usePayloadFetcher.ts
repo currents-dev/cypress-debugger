@@ -1,4 +1,4 @@
-import { TestExecutionResult } from "@currents/cypress-debugger-plugin";
+import { TestExecutionResult } from "cypress-debugger";
 import { useEffect } from "react";
 import { isValidUrl } from "../utils/isValidUrl";
 import { usePayloadQueryParam } from "./useQuery";
@@ -16,7 +16,7 @@ export function usePayloadFetcher({
   }) => void;
   onLoading: (loading: boolean) => void;
 }) {
-  const [param] = usePayloadQueryParam()
+  const [param] = usePayloadQueryParam();
 
   useEffect(() => {
     const trimmedParam = param?.trim();
@@ -47,5 +47,5 @@ export function usePayloadFetcher({
       .finally(() => {
         onLoading(false);
       });
-  }, [param]);
+  }, [param]); // eslint-disable-line
 }

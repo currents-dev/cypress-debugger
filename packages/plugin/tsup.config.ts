@@ -8,4 +8,5 @@ export default defineConfig({
   loader: {
     ".src": "text",
   },
+  dts: true,
 });

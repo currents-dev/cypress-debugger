@@ -21,6 +21,8 @@ export function handleBeforeEach() {
   });
 
   cy.recordHar();
+
+  cy.visit("/");
 }
 
 export function handleAfterEach() {

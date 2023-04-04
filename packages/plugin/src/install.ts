@@ -9,12 +9,12 @@ import {
   install,
   ensureBrowserFlags,
 } from "@neuralegion/cypress-har-generator";
-import { TestExecutionResult } from "./types";
+import { PluginOptions, TestExecutionResult } from "./types";
 import { HttpArchiveLog } from "@currents/cypress-debugger-support";
 import { createDir, readFile, removeDir, removeFile, writeFile } from "./fs";
 
 const dumpDir = "./dump";
-const harDir = "dump_har";
+const harDir = "./dump_har";
 
 const createDumpFile = (data: TestExecutionResult) => {
   createDir(dumpDir);
@@ -37,10 +37,7 @@ const getHar = (filename: string): HttpArchiveLog => {
 
 export const installPlugin = (
   on: Cypress.PluginEvents,
-  options?: {
-    meta: any;
-    callback: Function;
-  }
+  options?: PluginOptions
 ) => {
   on("task", {
     // called in "afterEach" hook
@@ -64,7 +61,9 @@ export const installPlugin = (
         pluginMeta: options?.meta,
       };
 
-      options?.callback(dumpData);
+      if (options && options.callback) {
+        options.callback(dumpData);
+      }
       createDumpFile(dumpData);
 
       return null;
@@ -91,7 +90,7 @@ export const installPlugin = (
   });
 
   on("before:spec", () => {
-    // reconnecting to Chrome Debugging Protocol.
+    // reconnecting to Chrome DevTools Protocol.
     // the connection closes after each spec file
     reconnect();
   });
