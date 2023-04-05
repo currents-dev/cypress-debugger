@@ -3,19 +3,15 @@ import { injectRROnce } from "../rr";
 import { getRunContext } from "./runContext";
 
 export function handleBefore() {
-  console.log("before");
   cy.window().then((window) => {});
 }
 
 export function handleAfter() {
-  console.log("after");
-
   // remove har directory
   cy.task("_curr_cleanup");
 }
 
 export function handleBeforeEach() {
-  console.log("before each");
   cy.window().then((window) => {
     injectRROnce(window);
   });
@@ -24,8 +20,6 @@ export function handleBeforeEach() {
 }
 
 export function handleAfterEach() {
-  console.log("after each");
-
   const eventsBatch = eventsContainer.getEvents();
   const harFilename = `${eventsBatch.testId}.raw.json`;
 
