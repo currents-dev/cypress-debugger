@@ -1,7 +1,7 @@
 import {
   CypressEvent,
   RunContextData,
-} from "@currents/cypress-debugger-support";
+} from "@currents/cypress-debugger";
 import { CyEventItem } from "./CyEventItem";
 import styles from "./CyEvents.module.scss";
 

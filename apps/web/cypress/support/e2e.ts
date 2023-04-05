@@ -1,7 +1,7 @@
-import { support } from "@currents/cypress-debugger";
+import { debuggerSupport } from "@currents/cypress-debugger";
 import "./commands";
 
-support();
+debuggerSupport();
 beforeEach(() => {
-  cy.visit("/");
-});
+    cy.visit("/");
+  });

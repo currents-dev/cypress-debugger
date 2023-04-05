@@ -1,4 +1,4 @@
-import { TestExecutionResult } from "@currents/cypress-debugger-plugin";
+import { TestExecutionResult } from "@currents/cypress-debugger";
 import { useEffect } from "react";
 import { isValidUrl } from "../utils/isValidUrl";
 import { usePayloadQueryParam } from "./useQuery";

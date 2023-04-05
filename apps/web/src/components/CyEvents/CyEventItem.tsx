@@ -1,4 +1,4 @@
-import { CypressEvent } from "@currents/cypress-debugger-support";
+import { CypressEvent } from "@currents/cypress-debugger";
 import { MouseEventHandler } from "react";
 import { useCypressEventsContext } from "../../context/cypressEvents";
 import styles from "./CyEventItem.module.scss";

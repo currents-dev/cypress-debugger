@@ -2,7 +2,7 @@ import {
   TestExecutionResult,
   BrowserLog,
   RuntimeStackTrace,
-} from "@currents/cypress-debugger-plugin";
+} from "@currents/cypress-debugger";
 import { orderBy } from "lodash";
 import { Collapsible } from "../Collapsible/Collapsible";
 import styles from "./Console.module.scss";
