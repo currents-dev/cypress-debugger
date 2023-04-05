@@ -50,7 +50,7 @@ export function browserLaunchHandler(
 
   const rdp = ensureRdpPort(args);
 
-  debugLog("Attempting to connect to Chrome Debugging Protocol");
+  debugLog("Attempting to connect to Chrome DevTools Protocol");
 
   const MAX_CONNECTION_ATTEMPTS = 5;
   const CONNECTION_TIMEOUT = 100;
@@ -76,13 +76,13 @@ export function browserLaunchHandler(
 
         cdp.on("disconnect", () => {
           _connected = false;
-          debugLog("Chrome Debugging Protocol disconnected");
+          debugLog("Chrome DevTools Protocol disconnected");
         });
       })
       .catch(() => {
         if (++connectionAttempt === MAX_CONNECTION_ATTEMPTS) {
           debugLog(
-            `Failed to connect to Chrome Debugging Protocol after ${
+            `Failed to connect to Chrome DevTools Protocol after ${
               CONNECTION_TIMEOUT * connectionAttempt
             }ms`
           );
