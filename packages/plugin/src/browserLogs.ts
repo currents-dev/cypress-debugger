@@ -21,7 +21,13 @@ function isChrome(browser: Cypress.Browser) {
   );
 }
 
-function ensureRdpPort(args: string[]) {
+function ensureRdpPort(browser: Cypress.Browser, args: string[]) {
+  // --remote-debugging-port is not set for Electron, details: https://docs.cypress.io/api/plugins/browser-launch-api#Modify-browser-launch-arguments
+  // return the value in order to be used with Electron app switch - ELECTRON_EXTRA_LAUNCH_ARGS=--remote-debugging-port=9222, details: https://docs.cypress.io/api/plugins/browser-launch-api#Modify-Electron-app-switches
+  if (browser.name === "electron") {
+    return 9222;
+  }
+
   const portArg = "--remote-debugging-port";
   const existing = args.find((arg) => arg.slice(0, portArg.length) === portArg);
 
@@ -29,8 +35,11 @@ function ensureRdpPort(args: string[]) {
     return Number(existing.split("=")[1]);
   }
 
-  // default debugging port
-  return 9222;
+  // use a random port if --remote-debugging-port is not set
+  const port = 40000 + Math.round(Math.random() * 25000);
+  args.push(`--remote-debugging-port=${port}`);
+
+  return port;
 }
 
 export function browserLaunchHandler(
@@ -48,7 +57,7 @@ export function browserLaunchHandler(
     );
   }
 
-  const rdp = ensureRdpPort(args);
+  const rdp = ensureRdpPort(browser, args);
 
   debugLog("Attempting to connect to Chrome DevTools Protocol");
 
