@@ -2,15 +2,19 @@ import { pick } from "lodash";
 import { getEnvironmentLifetime } from "../env/perf";
 import { uuid } from "../uuid";
 import {
+  BaseEvent,
   CypressEvent,
   CypressEventMeta,
-  CypressEventPayload,
-  Event,
-  RawEvent,
+  CypressRawEvent,
   RRWebEvent,
+  RRWebRawEvent,
 } from "./event";
 
-export const enhanceEvent = (event: RawEvent): Event => ({
+export const enhanceEvent = <T>(
+  event: T
+): BaseEvent & {
+  payload: T;
+} => ({
   payload: event,
   id: uuid(),
   timestamp: Date.now(),
@@ -19,17 +23,45 @@ export const enhanceEvent = (event: RawEvent): Event => ({
 });
 
 export const enhanceCypressEvent = (
-  event: RawEvent,
+  event: CypressRawEvent,
   meta: CypressEventMeta
 ): CypressEvent => ({
   ...enhanceEvent(event),
   meta,
 });
 
-export const enhanceRREvent = (event: RawEvent): RRWebEvent =>
+export const enhanceRREvent = (event: RRWebRawEvent): RRWebEvent =>
   enhanceEvent(event);
 
-export const formatCypressEvent = (event: Event): CypressEventPayload => {
+export const formatCypressEvent = (
+  event: CypressRawEvent
+): Pick<
+  CypressRawEvent,
+  | "alias"
+  | "aliasType"
+  | "chainerId"
+  | "displayName"
+  | "ended"
+  | "err"
+  | "event"
+  | "highlightAttr"
+  | "hookId"
+  | "id"
+  | "numElements"
+  | "instrument"
+  | "message"
+  | "method"
+  | "name"
+  | "state"
+  | "testCurrentRetry"
+  | "testId"
+  | "totalTime"
+  | "type"
+  | "url"
+  | "viewportHeight"
+  | "viewportWidth"
+  | "wallClockStartedAt"
+> => {
   // TODO: figure out consoleProps, renderProps and $el
   // const consoleProps = pick(event.consoleProps, ["Command", "Elements", "Selector"]);
 

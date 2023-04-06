@@ -1,0 +1,16 @@
+@import '../../assets/mixins.scss';
+
+.selected-file,
+.loading {
+  @include full-space;
+  @include centered-flex;
+}
+
+.selected-file {
+  span {
+    max-width: 600px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

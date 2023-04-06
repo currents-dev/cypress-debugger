@@ -1,66 +1,128 @@
 # Cypress Debugger
 
-Debug cypress tests in CI - use rrweb to capture the execution, cypress hooks to capture cypress commands, and HttpArchive Generator to record the network.
+Debug cypress tests in CI - collect and analyze rrweb records, browser network information, and browser console logs for each cypress step.
 
-## Development
+The plugin generates a `json` file for each test into the `dump` folder inside the working directory. Each file contains the following fields:
 
-Start the packages in development mode
+- `cy` - a list of cypress events. The data is collected from the cypress [`log:added`](https://docs.cypress.io/api/cypress-api/catalog-of-events) event.
+
+- `rr` - a list of [rrweb](https://www.npmjs.com/package/rrweb) records, which represents the mutations in the DOM. The entries are linked to `cy` events on cypress `log:added` and `log:changed` events.
+
+- `har` - an [HTTPArchive(HAR)](http://www.softwareishard.com/blog/har-12-spec/) object, recorded by the [HttpArchive Generator](https://github.com/NeuraLegion/cypress-har-generator).
+
+- `meta` - [`RunContextData`](./packages/support/src/cy/runContext.ts) an object with the following fields:
+  ```typescript
+  {
+    spec: string; // spec filename
+    test: string[]; // test title
+    retryAttempt: number; // https://docs.cypress.io/guides/guides/test-retries
+  }
+  ```
+
+- `browserLogs` - the browser logs at a moment in time. The data is collected using [chrome-remote-interface](https://www.npmjs.com/package/chrome-remote-interface).
+
+- `pluginMeta` - the data passed down to the optional `meta` field of the `debuggerPlugin` options argument.
+
+The collected data can be visualized by uploading a file to the web app.
+
+## Requirements
+
+- Cypress version 10+
+- NodeJS [14+](https://docs.cypress.io/guides/getting-started/installing-cypress#:~:text=If%20you're%20using%20npm,Node.js%2014.x)
+
+## Setup
+
+Install the package:
 
 ```sh
-npm install
-npm run dev
+npm install cypress-debugger
 ```
 
-Runs a few tests
+Add `cypress-debugger` to `cypress.config.{js|ts|mjs}`
 
-```sh
-cd apps/web
-npm install
-npx cypress run --browser chrome
+```js
+// cypress.config.js
+const { defineConfig } = require("cypress");
+const { debuggerPlugin } = require("cypress-debugger");
+module.exports = defineConfig({
+  e2e: {
+    setupNodeEvents(on, config) {
+        debuggerPlugin(on);
+        return config;
+    },
+  },
+});
 ```
 
-You will see new `json` files created in `apps/web/dump`. Each file contains fields: `cy`, `rr`, and `har`.
+Add `cypress-debugger` to `cypress/support/e2e.{js|ts}`
 
-- `cy` - data from cypress events
-- `rr` - data from the [rrweb](https://www.npmjs.com/package/rrweb)
-- `har` - data from the [HttpArchive Generator](https://github.com/NeuraLegion/cypress-har-generator)
-
-Run the local server at http://localhost:3000/ and upload some file from `apps/web/dump` using the UI.
-
-### Notes
-
-A `har.json` file could be visualized with [this tool](https://toolbox.googleapps.com/apps/har_analyzer/)
-
-The [HAR generator](https://github.com/NeuraLegion/cypress-har-generator), currently, only supports Chrome family browsers. Please refer to [this](https://github.com/NeuraLegion/cypress-har-generator#generating-a-har-file) section in order to run cypress for other browsers.
+```js
+// cypress/support/e2e.js
+const { debuggerSupport } = require("cypress-debugger");
+debuggerSupport();
+```
 
 ## Usage
 
-- call the `install` function inside the `setupNodeEvents` in the cypress config file:
+Start running the tests with the following command:
+```sh
+npx cypress run --chrome
+```
 
-```typescript
+To run the plugin with the Electron app you need to set the remote-debugging-port launch argument: 
+
+```sh
+ELECTRON_EXTRA_LAUNCH_ARGS=--remote-debugging-port=9222 npx cypress run --browser electron
+```
+
+Please refer to the [Electron documentation](https://www.electronjs.org/docs/latest/api/command-line-switches#--remote-debugging-portport) and the [Cypress documentation](https://docs.cypress.io/api/plugins/browser-launch-api#Modify-Electron-app-switches) for more information on usage with Electron.
+
+## Example
+
+See an example in [apps/web](https://github.com/currents-dev/cypress-debugger//blob/main/apps/web) directory.
+
+## API
+
+### debuggerPlugin
+
+Installs cypress-debugger.
+
+```ts
+debuggerPlugin(on: Cypress.PluginEvents, options?: PluginOptions): void
+```
+
+- `on` - [`Cypress.PluginEvents`](https://docs.cypress.io/guides/tooling/plugins-guide) `setupNodeEvents` method first argument
+- `options` - [`PluginOptions`](./packages/plugin/src/types.ts) an object with the following fields:
+  - `meta`: an optional field which is added to the `TestExecutionResult` as `pluginMeta`
+  - `callback`: a callback function which is called after each test having the current test results as argument
+
+Example:
+
+```js
+// cypress.config.js
 const { defineConfig } = require("cypress");
-const { install }  = require("@currents/cypress-debugger");
-
+const { debuggerPlugin } = require("cypress-debugger");
 module.exports = defineConfig({
   e2e: {
-    ...
     setupNodeEvents(on, config) {
-      install(on, config);
-      return config;
+        debuggerPlugin(on, {
+            meta: {
+                key: 'value'
+            },
+            callback: (data) => {
+                console.log(data)
+            }
+        });
+        return config;
     },
   },
-  ...
 });
 ```
 
-- call the `support` function in the `cypress/support/e2e` file:
+### debuggerSupport
 
-```typescript
-import { support } from "@currents/cypress-debugger";
-import "./commands";
+Attaches required handlers to [Cypress events](https://docs.cypress.io/api/cypress-api/catalog-of-events)
 
-support();
-beforeEach(() => {
-  cy.visit("/");
-});
+```ts
+debuggerSupport(): void
 ```

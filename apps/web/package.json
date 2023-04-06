@@ -1,34 +1,33 @@
 {
   "name": "web",
-  "version": "0.0.0",
   "private": true,
+  "version": "0.0.0",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "cypress": "^12.7.0",
+    "@currents/cypress-debugger": "^0.0.0",
+    "cypress": "^12.8.1",
     "lodash": "^4.17.21",
-    "next": "^13.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.9.0",
     "rrweb-player": "^1.0.0-alpha.4",
-    "ui": "*",
     "url-parse": "^1.5.10"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@currents/cypress-debugger": "*",
-    "@types/node": "^17.0.12",
-    "@types/react": "^18.0.22",
-    "@types/react-dom": "^18.0.7",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
     "@types/url-parse": "^1.4.8",
-    "eslint": "7.32.0",
+    "@vitejs/plugin-react": "^3.1.0",
+    "eslint": "^8.36.0",
     "eslint-config-custom": "*",
-    "sass": "^1.59.3",
+    "sass": "^1.60.0",
     "tsconfig": "*",
-    "typescript": "^4.5.3"
+    "typescript": "^4.9.3",
+    "vite": "^4.2.0",
+    "vite-plugin-eslint": "^1.8.1"
   }
 }

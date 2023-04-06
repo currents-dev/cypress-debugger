@@ -1,5 +1,5 @@
 const { defineConfig } = require("cypress");
-const { install }  = require("@currents/cypress-debugger");
+const { debuggerPlugin } = require("@currents/cypress-debugger");
 
 module.exports = defineConfig({
   e2e: {
@@ -7,7 +7,15 @@ module.exports = defineConfig({
     specPattern: "cypress/e2e/*.spec.js",
     supportFile: "cypress/support/e2e.ts",
     setupNodeEvents(on, config) {
-      install(on, config);
+      debuggerPlugin(on, {
+        meta: {
+          key: "value",
+        },
+        callback: (val) => {
+          // executed after each test
+        },
+      });
+
       return config;
     },
   },
