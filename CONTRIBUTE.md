@@ -2,12 +2,27 @@
 ## Project Structure
 
 The project is a monorepo created with [turbo](https://turbo.build/repo). It consists of a cypress plugin and a web application.
-The cypress plugin collects the following information about test execution: 
-- the steps performed by cypress
-- the DOM mutation caused by cypress instuctions
-- network records caused by navigation or requests and console logs that ocurred in the browser durring the test.
 
-The information is written to a file with the following signature `dump/{filename}.raw.json`.
+The plugin generates a `json` file for each test into the `dump` folder inside the working directory. Each file contains the following fields:
+
+- `cy` - a list of cypress events. The data is collected from the cypress [`log:added`](https://docs.cypress.io/api/cypress-api/catalog-of-events) event.
+
+- `rr` - a list of [rrweb](https://www.npmjs.com/package/rrweb) records, which represents the mutations in the DOM. The entries are linked to `cy` events on cypress `log:added` and `log:changed` events.
+
+- `har` - an [HTTPArchive(HAR)](http://www.softwareishard.com/blog/har-12-spec/) object, recorded by the [HttpArchive Generator](https://github.com/NeuraLegion/cypress-har-generator).
+
+- `meta` - [`RunContextData`](./packages/support/src/cy/runContext.ts) an object with the following fields:
+  ```typescript
+  {
+    spec: string; // spec filename
+    test: string[]; // test title
+    retryAttempt: number; // https://docs.cypress.io/guides/guides/test-retries
+  }
+  ```
+
+- `browserLogs` - the browser logs at a moment in time. The data is collected using [chrome-remote-interface](https://www.npmjs.com/package/chrome-remote-interface).
+
+- `pluginMeta` - the data passed down to the optional `meta` field of the `debuggerPlugin` options argument.
 
 ### Folder structure:
 

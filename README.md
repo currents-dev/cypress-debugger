@@ -1,34 +1,16 @@
 # Cypress Debugger
 
-Debug cypress tests in CI - collect and analyze rrweb records, browser network information, and browser console logs for each cypress step.
-
-The plugin generates a `json` file for each test into the `dump` folder inside the working directory. Each file contains the following fields:
-
-- `cy` - a list of cypress events. The data is collected from the cypress [`log:added`](https://docs.cypress.io/api/cypress-api/catalog-of-events) event.
-
-- `rr` - a list of [rrweb](https://www.npmjs.com/package/rrweb) records, which represents the mutations in the DOM. The entries are linked to `cy` events on cypress `log:added` and `log:changed` events.
-
-- `har` - an [HTTPArchive(HAR)](http://www.softwareishard.com/blog/har-12-spec/) object, recorded by the [HttpArchive Generator](https://github.com/NeuraLegion/cypress-har-generator).
-
-- `meta` - [`RunContextData`](./packages/support/src/cy/runContext.ts) an object with the following fields:
-  ```typescript
-  {
-    spec: string; // spec filename
-    test: string[]; // test title
-    retryAttempt: number; // https://docs.cypress.io/guides/guides/test-retries
-  }
-  ```
-
-- `browserLogs` - the browser logs at a moment in time. The data is collected using [chrome-remote-interface](https://www.npmjs.com/package/chrome-remote-interface).
-
-- `pluginMeta` - the data passed down to the optional `meta` field of the `debuggerPlugin` options argument.
-
-The collected data can be visualized by uploading a file to the web app.
+Debug cypress tests in CI - collect and analyze the following information from the test execution: 
+- the steps performed by cypress
+- the DOM mutation caused by each cypress instuction
+- network records caused by navigation or requests
+- console logs that occur in the browser durring the test
 
 ## Requirements
 
 - Cypress version 10+
 - NodeJS [14+](https://docs.cypress.io/guides/getting-started/installing-cypress#:~:text=If%20you're%20using%20npm,Node.js%2014.x)
+- Chromium family browsers only
 
 ## Setup
 
@@ -75,7 +57,9 @@ To run the plugin with the Electron app you need to set the remote-debugging-por
 ELECTRON_EXTRA_LAUNCH_ARGS=--remote-debugging-port=9222 npx cypress run --browser electron
 ```
 
-Please refer to the [Electron documentation](https://www.electronjs.org/docs/latest/api/command-line-switches#--remote-debugging-portport) and the [Cypress documentation](https://docs.cypress.io/api/plugins/browser-launch-api#Modify-Electron-app-switches) for more information on usage with Electron.
+Get the test execution information from the `dump` directory, relative to the cypress configuation file.
+
+Analyze the information using the debugger web app.
 
 ## Example
 
