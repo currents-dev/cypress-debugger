@@ -1,28 +1,26 @@
+import { HttpArchiveLog } from "@currents/cypress-debugger-support";
+import {
+  ensureBrowserFlags,
+  install,
+} from "@neuralegion/cypress-har-generator";
 import path from "path";
 import {
   browserLaunchHandler,
-  getLogs,
   clearLogs,
+  getLogs,
   recordLogs,
 } from "./browserLogs";
-import {
-  install,
-  ensureBrowserFlags,
-} from "@neuralegion/cypress-har-generator";
-import { PluginOptions, TestExecutionResult } from "./types";
-import { HttpArchiveLog } from "@currents/cypress-debugger-support";
 import { createDir, readFile, removeDir, removeFile, writeFile } from "./fs";
+import { PluginOptions, TestExecutionResult } from "./types";
 
 const dumpDir = "./dump";
 const harDir = "dump_har";
 
-const createDumpFile = (data: TestExecutionResult) => {
+const createDumpFile = (data: TestExecutionResult): string => {
   createDir(dumpDir);
-
-  writeFile(
-    path.join(dumpDir, `${data.id}.raw.json`),
-    JSON.stringify(data, null, 2)
-  );
+  const resultsPath = path.join(dumpDir, `${data.id}.raw.json`);
+  writeFile(resultsPath, JSON.stringify(data, null, 2));
+  return resultsPath;
 };
 
 const getHar = (filename: string): HttpArchiveLog => {
@@ -61,10 +59,11 @@ export const installPlugin = (
         pluginMeta: options?.meta,
       };
 
+      const resultsFilePath = createDumpFile(dumpData);
+
       if (options && options.callback) {
-        options.callback(dumpData);
+        options.callback(resultsFilePath, dumpData);
       }
-      createDumpFile(dumpData);
 
       return null;
     },

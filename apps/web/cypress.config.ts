@@ -1,5 +1,5 @@
-const { defineConfig } = require("cypress");
-const { debuggerPlugin } = require("@currents/cypress-debugger");
+import { debuggerPlugin } from "@currents/cypress-debugger";
+import { defineConfig } from "cypress";
 
 module.exports = defineConfig({
   e2e: {
@@ -11,8 +11,12 @@ module.exports = defineConfig({
         meta: {
           key: "value",
         },
-        callback: (val) => {
+        callback: (file, data) => {
           // executed after each test
+          console.log("results", {
+            file,
+            data,
+          });
         },
       });
 
