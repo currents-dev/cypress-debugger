@@ -1,10 +1,12 @@
-name: Deploy Web App
+name: Deploy
+
 on:
   push:
     branches:
     - main
   pull_request:
     branches: [main]
+
 jobs:
   build:
     if: "!contains(toJSON(github.event.commits.*.message), '[skip ci]')"
@@ -17,7 +19,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v3
         with:
-          node-version: '16',
+          node-version: '16'
 
       - name: Install dependencies
         run: npm ci
@@ -25,11 +27,10 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy
-        working-directory: './apps/web'
+      - name: Deploy Cypress App
         uses: reggionick/s3-deploy@v3
         with:
-          folder: dist
+          folder: /apps/web/dist
           bucket: ${{ secrets.S3_BUCKET }}
           bucket-region: ${{ secrets.S3_BUCKET_REGION }}
           dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
