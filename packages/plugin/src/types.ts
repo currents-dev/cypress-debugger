@@ -130,6 +130,6 @@ export type TestExecutionResult = {
 };
 
 export type PluginOptions = {
-  meta?: any;
-  callback?: (result: TestExecutionResult) => void;
+  meta?: Record<string, unknown>;
+  callback?: (path: string, result: TestExecutionResult) => void;
 };

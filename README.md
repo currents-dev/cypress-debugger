@@ -1,10 +1,13 @@
 # Cypress Debugger
 
-Debug cypress tests in CI - collect and analyze the following information from the test execution: 
-- the steps performed by cypress
-- the DOM mutation caused by each cypress instuction
-- network records caused by navigation or requests
-- console logs that occur in the browser durring the test
+Debug your failed and flaky CI cypress tests. Capture everything that's happening in Cypress tests:
+
+- Cypress test execution steps
+- DOM snapshots
+- network requests (HAR)
+- browser console logs
+
+The plugin captures all the information, saving it in a file that you can later replay in the web player.
 
 ## Requirements
 
@@ -29,8 +32,20 @@ const { debuggerPlugin } = require("cypress-debugger");
 module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
-        debuggerPlugin(on);
-        return config;
+      debuggerPlugin(on, {
+        meta: {
+          key: "value",
+        },
+        // path: abosulte path to the dump file
+        // data: captured data
+        callback: (path, data) => {
+          console.log({
+            path,
+            data,
+          });
+        },
+      });
+      return config;
     },
   },
 });
@@ -46,20 +61,23 @@ debuggerSupport();
 
 ## Usage
 
-Start running the tests with the following command:
+Configure the plugin as documented above. Use the `callback` function to fetch the location of the replay file you can open in the player. Get the test execution information from the `dump` directory, relative to the cypress configuration file.
+
+Analyze the information using the debugger web app.
+
+### Chore / Chromium
+
 ```sh
 npx cypress run --chrome
 ```
 
-To run the plugin with the Electron app you need to set the remote-debugging-port launch argument: 
+### Electron
+
+Set the `remote-debugging-port` via `ELECTRON_EXTRA_LAUNCH_ARGS` environment variable:
 
 ```sh
 ELECTRON_EXTRA_LAUNCH_ARGS=--remote-debugging-port=9222 npx cypress run --browser electron
 ```
-
-Get the test execution information from the `dump` directory, relative to the cypress configuation file.
-
-Analyze the information using the debugger web app.
 
 ## Example
 
@@ -76,9 +94,9 @@ debuggerPlugin(on: Cypress.PluginEvents, options?: PluginOptions): void
 ```
 
 - `on` - [`Cypress.PluginEvents`](https://docs.cypress.io/guides/tooling/plugins-guide) `setupNodeEvents` method first argument
-- `options` - [`PluginOptions`](./packages/plugin/src/types.ts) an object with the following fields:
-  - `meta`: an optional field which is added to the `TestExecutionResult` as `pluginMeta`
-  - `callback`: a callback function which is called after each test having the current test results as argument
+- `options` - [`PluginOptions`](./packages/plugin/src/types.ts):
+  - `meta: Record<string, unknown>`: an optional field that is added to the `TestExecutionResult` as `pluginMeta`
+  - `callback: (path: string, data: TestExecutionResult`: a callback function that will be called after each test
 
 Example:
 
@@ -89,15 +107,15 @@ const { debuggerPlugin } = require("cypress-debugger");
 module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
-        debuggerPlugin(on, {
-            meta: {
-                key: 'value'
-            },
-            callback: (data) => {
-                console.log(data)
-            }
-        });
-        return config;
+      debuggerPlugin(on, {
+        meta: {
+          key: "value",
+        },
+        callback: (path, data) => {
+          console.log({ path, data });
+        },
+      });
+      return config;
     },
   },
 });
