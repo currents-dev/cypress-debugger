@@ -8,7 +8,7 @@ import {
   browserLaunchHandler,
   clearLogs,
   getLogs,
-  reconnect,
+  recordLogs,
 } from "./browserLogs";
 import { createDir, readFile, removeDir, removeFile, writeFile } from "./fs";
 import { PluginOptions, TestExecutionResult } from "./types";
@@ -88,9 +88,7 @@ export const installPlugin = (
     return launchOptions;
   });
 
-  on("before:spec", () => {
-    // reconnecting to Chrome DevTools Protocol.
-    // the connection closes after each spec file
-    reconnect();
+  on("before:spec", async () => {
+    await recordLogs();
   });
 };
