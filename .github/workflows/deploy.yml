@@ -11,10 +11,7 @@ jobs:
   build:
     if: "!contains(toJSON(github.event.commits.*.message), '[skip ci]')"
     runs-on: ubuntu-latest
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_REGION: ${{ secrets.AWS_REGION }}
+    environment: Production
 
     steps:
       - name: Checkout source code
@@ -33,7 +30,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region:  ${{ secrets.AWS_REGION }}
 
       - name: Deploy dashboard to bucket
         run: aws s3 sync ./apps/web/dist s3://${{ secrets.S3_BUCKET }}
