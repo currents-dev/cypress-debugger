@@ -3,7 +3,7 @@ import {
   browserLaunchHandler,
   getLogs,
   clearLogs,
-  reconnect,
+  recordLogs,
 } from "./browserLogs";
 import {
   install,
@@ -89,9 +89,7 @@ export const installPlugin = (
     return launchOptions;
   });
 
-  on("before:spec", () => {
-    // reconnecting to Chrome DevTools Protocol.
-    // the connection closes after each spec file
-    reconnect();
+  on("before:spec", async () => {
+    await recordLogs();
   });
 };
