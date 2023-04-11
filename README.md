@@ -128,36 +128,3 @@ Attaches required handlers to [Cypress events](https://docs.cypress.io/api/cypre
 ```ts
 debuggerSupport(): void
 ```
-
-## Releasing
-
-### Beta channel
-
-```sh
-cd packages/cypress-debugger
-npm run release -- --preRelease=beta && npm run release:npm -- -t beta
-```
-
-### Latest channel
-
-```sh
-cd packages/cypress-debugger
-npm run release && npm run release:npm -- -t latest
-```
-
-### Localhost
-
-Publishing from `packages/cypress-debugger`:
-
-```sh
-docker run -it --rm --name verdaccio -p 4873:4873 verdaccio/verdaccio
-npm adduser --registry http://localhost:4873
-npm login --registry http://localhost:4873
-npm_config_registry=http://localhost:4873  npm run release:npm -- --tag latest
-```
-
-Using:
-
-```sh
-npm install cypress-debugger --registry http://localhost:4873
-```

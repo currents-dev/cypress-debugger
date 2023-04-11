@@ -1,14 +1,14 @@
 {
   "name": "web",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "cypress-debugger": "^0.0.0",
+    "cypress-debugger": "^1.0.0",
     "cypress": "^12.8.1",
     "lodash": "^4.17.21",
     "react": "^18.2.0",

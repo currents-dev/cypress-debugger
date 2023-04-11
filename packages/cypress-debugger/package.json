@@ -1,6 +1,6 @@
 {
   "name": "cypress-debugger",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "./dist/index.js",
   "author": "Currents Software Inc",
   "homepage": "https://github.com/currents-dev/cypress-debugger",
@@ -15,9 +15,7 @@
   "scripts": {
     "build": "tsup-node --dts",
     "dev": "tsup --watch",
-    "lint": "TIMING=1 eslint \"**/*.ts*\"",
-    "release": "release-it",
-    "release:npm": "npm run build && ./publish.js"
+    "lint": "TIMING=1 eslint \"**/*.ts*\""
   },
   "keywords": [
     "cypress",
@@ -25,17 +23,15 @@
     "cypress-debugger"
   ],
   "devDependencies": {
-    "@release-it/conventional-changelog": "^5.1.1",
     "commander": "^10.0.0",
     "esbuild": "^0.17.7",
-    "release-it": "^15.10.1",
     "tsconfig": "*",
     "tsup": "^6.6.0",
     "typescript": "^4.5.2"
   },
   "dependencies": {
-    "cypress-debugger-plugin": "*",
-    "cypress-debugger-support": "*"
+    "@currents/cypress-debugger-plugin": "^1.0.0",
+    "@currents/cypress-debugger-support": "^1.0.0"
   },
   "peerDependencies": {
     "cypress": ">=10.0.0"
@@ -60,25 +56,5 @@
     "sourcemap": "inline",
     "platform": "node",
     "target": "esnext"
-  },
-  "release-it": {
-    "github": {
-      "release": true,
-      "releaseName": "v${version}"
-    },
-    "npm": {
-      "publish": false
-    },
-    "git": {
-      "requireCleanWorkingDir": false,
-      "commitMessage": "chore: release v${version}",
-      "tagName": "v${version}"
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular",
-        "infile": "../../CHANGELOG.md"
-      }
-    }
   }
 }
