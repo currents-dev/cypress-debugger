@@ -57,3 +57,58 @@ Runs a few tests
 cd apps/web
 npx cypress run --browser chrome
 ```
+
+## Releasing
+
+The project uses [Changesets](https://github.com/changesets/changesets) to manage releases.
+
+### Beta channel
+
+When you want to do a prerelease, you need to enter prerelease mode. You can do that with the `pre enter <tag>`. The tag that you need to pass is used in versions(e.g. `1.0.0-beta.0`) and for the npm dist tag.
+
+Please check [Changesets Prereleases](https://github.com/changesets/changesets/blob/main/docs/prereleases.md) for reference.
+
+Enter prerelease mode and made the first prerelease
+```sh
+npx changeset pre enter beta
+npx changeset version
+git add .
+git commit -m "Enter prerelease mode and version packages"
+npx changeset publish
+git push --follow-tags
+```
+
+To add another prerelease, run:
+```sh
+npx changeset version
+git add .
+git commit -m "Version packages"
+npx changeset publish
+git push --follow-tags
+```
+
+To exit the prerelease mode and publish to latest:
+
+```sh
+npx changeset pre exit
+npx changeset version
+git add .
+git commit -m "Exit prerelease mode and version packages"
+npx changeset publish
+git push --follow-tags
+```
+
+### Latest channel
+
+```sh
+npx changeset publish
+```
+
+### Localhost
+
+```sh
+docker run -it --rm --name verdaccio -p 4873:4873 verdaccio/verdaccio
+npm adduser --registry http://localhost:4873
+npm login --registry http://localhost:4873
+npm_config_registry=http://localhost:4873/ npx changeset publish
+```
