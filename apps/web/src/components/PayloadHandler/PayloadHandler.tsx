@@ -1,4 +1,4 @@
-import { TestExecutionResult } from "@currents/cypress-debugger";
+import { TestExecutionResult } from "cypress-debugger";
 import { useEffect, useState } from "react";
 import { useReplayerContext } from "../../context/replayer";
 import { usePayloadFetcher } from "../../hooks/usePayloadFetcher";

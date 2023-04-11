@@ -1,4 +1,4 @@
-import { RRWebEvent } from "@currents/cypress-debugger";
+import { RRWebEvent } from "cypress-debugger";
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 
 export type ReplayerContextType = {

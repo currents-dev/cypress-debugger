@@ -1,4 +1,4 @@
-import { HttpArchiveEntry, HttpArchiveLog } from "@currents/cypress-debugger";
+import { HttpArchiveEntry, HttpArchiveLog } from "cypress-debugger";
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 import { isValidDate } from "../utils/isValidDate";
 import { useCypressEventsContext } from "./cypressEvents";

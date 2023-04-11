@@ -1,4 +1,4 @@
-import { CypressEvent } from "@currents/cypress-debugger";
+import { CypressEvent } from "cypress-debugger";
 import { omit } from "lodash";
 import { formatMillis } from "../../utils/formatMillis";
 import styles from "./EventDetails.module.scss";

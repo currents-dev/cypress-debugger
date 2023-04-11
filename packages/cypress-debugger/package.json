@@ -1,5 +1,5 @@
 {
-  "name": "@currents/cypress-debugger",
+  "name": "cypress-debugger",
   "version": "0.0.0",
   "main": "./dist/index.js",
   "author": "Currents Software Inc",
@@ -34,8 +34,8 @@
     "typescript": "^4.5.2"
   },
   "dependencies": {
-    "@currents/cypress-debugger-plugin": "*",
-    "@currents/cypress-debugger-support": "*"
+    "cypress-debugger-plugin": "*",
+    "cypress-debugger-support": "*"
   },
   "peerDependencies": {
     "cypress": ">=10.0.0"

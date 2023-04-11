@@ -1,4 +1,4 @@
-import { debuggerPlugin } from "@currents/cypress-debugger";
+import { debuggerPlugin } from "cypress-debugger";
 import { defineConfig } from "cypress";
 
 module.exports = defineConfig({

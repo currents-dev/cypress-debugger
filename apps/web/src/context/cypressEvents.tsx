@@ -1,5 +1,5 @@
-import { CypressEvent } from "@currents/cypress-debugger";
-import { TestExecutionResult } from "@currents/cypress-debugger";
+import { CypressEvent } from "cypress-debugger";
+import { TestExecutionResult } from "cypress-debugger";
 import { orderBy } from "lodash";
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 import { isValidDate } from "../utils/isValidDate";

@@ -1,4 +1,4 @@
-import { debuggerSupport } from "@currents/cypress-debugger";
+import { debuggerSupport } from "cypress-debugger";
 import "./commands";
 
 debuggerSupport();
