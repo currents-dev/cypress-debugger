@@ -12,10 +12,17 @@ export function Entry({
 }) {
   let displayed = value;
 
-  if (typeof value === 'string') {
-    displayed = `"${value}"`;
-  } else if (typeof value === 'boolean') {
-    displayed = `${value}`;
+  switch (typeof value) {
+    case 'string':
+      displayed = `"${value}"`;
+      break;
+
+    case 'boolean':
+      displayed = value ? 'true' : 'false';
+      break;
+    default:
+      displayed = JSON.stringify(value);
+      break;
   }
 
   return (
