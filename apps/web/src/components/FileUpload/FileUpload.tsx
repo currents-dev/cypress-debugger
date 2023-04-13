@@ -43,6 +43,7 @@ function Dropbox({
         onChange(files);
       }
     } else {
+      // eslint-disable-next-line no-alert
       alert('Bad file type');
     }
   };

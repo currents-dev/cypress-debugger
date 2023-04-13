@@ -24,6 +24,19 @@ function CyEventItemButton({
   );
 }
 
+function getStepColor(state) {
+  switch (state) {
+    case 'passed':
+      return 'green';
+      break;
+    case 'failed':
+      return 'red';
+
+    default:
+      return 'gray';
+  }
+}
+
 function CyEventItem({
   event,
   active,
@@ -54,7 +67,14 @@ function CyEventItem({
 
   return (
     <li className={className} onClick={onClick} role="presentation">
-      <span className={styles.event_state}>[{payload.state}]&nbsp;</span>
+      <span
+        className={styles.event_state}
+        style={{
+          color: getStepColor(payload.state),
+        }}
+      >
+        [{payload.state}]&nbsp;
+      </span>
       {payload.type === 'child' && <span> - </span>}
       <span className={styles.event_name}>{payload.name}</span>
       <div className={styles.event_message}>{payload.message}</div>

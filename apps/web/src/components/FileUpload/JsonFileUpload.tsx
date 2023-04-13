@@ -41,6 +41,7 @@ function JsonFileUpload<T extends object>({
 
         if (!validate(parsedResult)) {
           reader.abort();
+          // eslint-disable-next-line no-alert
           alert('Bad input');
         } else {
           onChange({
@@ -57,6 +58,7 @@ function JsonFileUpload<T extends object>({
     });
 
     reader.addEventListener('error', () => {
+      // eslint-disable-next-line no-alert
       alert('Error while uploading the file');
     });
   };
