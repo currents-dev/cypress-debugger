@@ -12,6 +12,9 @@
   "engines": {
     "node": ">=14.7.0"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup-node --dts",
     "dev": "tsup --watch",
@@ -30,15 +33,12 @@
     "typescript": "^4.5.2"
   },
   "dependencies": {
-    "@currents/cypress-debugger-plugin": "^1.0.2",
-    "@currents/cypress-debugger-support": "^1.0.2"
+    "@currents/cypress-debugger-plugin": "*",
+    "@currents/cypress-debugger-support": "*"
   },
   "peerDependencies": {
     "cypress": ">=10.0.0"
   },
-  "files": [
-    "dist"
-  ],
   "tsup": {
     "entry": [
       "./index.ts"
