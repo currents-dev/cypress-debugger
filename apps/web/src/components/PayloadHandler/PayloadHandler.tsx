@@ -57,6 +57,7 @@ function PayloadHandler() {
         handleDataChange(payload);
         setOrigin(param);
       } else {
+        // eslint-disable-next-line no-console
         console.error('Invalid payload URL');
       }
     },

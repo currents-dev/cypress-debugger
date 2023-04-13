@@ -24,6 +24,7 @@ function usePayloadFetcher({
     if (!trimmedParam) return;
 
     if (!isValidUrl(trimmedParam)) {
+      // eslint-disable-next-line no-console
       console.error('Invalid url');
       return;
     }
@@ -43,6 +44,7 @@ function usePayloadFetcher({
           param: trimmedParam,
         });
       })
+      // eslint-disable-next-line no-console
       .catch(console.error)
       .finally(() => {
         onLoading(false);

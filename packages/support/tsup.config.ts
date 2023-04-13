@@ -5,7 +5,10 @@ export default defineConfig({
   clean: true,
   bundle: true,
   minify: true,
-  target: 'es2015',
   noExternal: ['rrweb'],
+  target: 'es2015',
   entry: ['src/index.ts'],
+  loader: {
+    '.src': 'text',
+  },
 });
