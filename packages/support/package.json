@@ -1,6 +1,6 @@
 {
   "name": "@currents/cypress-debugger-support",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "./dist/index.js",
   "types": "./src/index.ts",
   "license": "MIT",
@@ -8,9 +8,6 @@
     "build": "tsup --dts",
     "dev": "tsup --watch",
     "lint": "TIMING=1 eslint \"**/*.ts*\""
-  },
-  "publishConfig": {
-    "registry": "http://localhost:4873"
   },
   "devDependencies": {
     "@types/json-stringify-safe": "^5.0.0",
