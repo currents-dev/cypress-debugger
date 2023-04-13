@@ -1,6 +1,6 @@
 {
   "name": "cypress-debugger",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./dist/index.js",
   "author": "Currents Software Inc",
   "homepage": "https://github.com/currents-dev/cypress-debugger",
@@ -11,6 +11,9 @@
   "license": "MIT",
   "engines": {
     "node": ">=14.7.0"
+  },
+  "publishConfig": {
+    "registry": "http://localhost:4873"
   },
   "scripts": {
     "build": "tsup-node --dts",
@@ -30,8 +33,8 @@
     "typescript": "^4.5.2"
   },
   "dependencies": {
-    "@currents/cypress-debugger-plugin": "^1.0.0",
-    "@currents/cypress-debugger-support": "^1.0.0"
+    "@currents/cypress-debugger-plugin": "^1.0.1",
+    "@currents/cypress-debugger-support": "^1.0.1"
   },
   "peerDependencies": {
     "cypress": ">=10.0.0"
