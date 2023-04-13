@@ -1,10 +1,10 @@
 .events {
-    height: calc(100vh - 82px);
-    overflow: auto;
+  height: calc(100vh - 82px);
+  overflow: auto;
 
-    &_meta {
-        font-size: 12px;
-        padding: 5px;
-        border-bottom: 1px solid black;
-    }
+  &_meta {
+    font-size: 12px;
+    padding: 5px;
+    border-bottom: 1px solid black;
+  }
 }

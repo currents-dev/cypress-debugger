@@ -1,15 +1,15 @@
-import { useCypressEventsContext } from "../../context/cypressEvents";
-import { useHttpArchiveContext } from "../../context/httpArchiveEntries";
-import { Console } from "../Console/Console";
-import { CyEvents } from "../CyEvents/CyEvents";
-import { Network } from "../Network/Network";
-import { PayloadHandler } from "../PayloadHandler/PayloadHandler";
-import { Player } from "../Replayer/Replayer";
-import { EventDetails } from "../EventDetails/EventDetails";
-import { Tabs } from "../Tabs/Tabs";
-import styles from "./Layout.module.scss";
+import { useCypressEventsContext } from '../../context/cypressEvents';
+import { useHttpArchiveContext } from '../../context/httpArchiveEntries';
+import Console from '../Console/Console';
+import CyEvents from '../CyEvents/CyEvents';
+import { EventDetails } from '../EventDetails/EventDetails';
+import Network from '../Network/Network';
+import PayloadHandler from '../PayloadHandler/PayloadHandler';
+import Player from '../Player/Player';
+import Tabs from '../Tabs/Tabs';
+import styles from './Layout.module.scss';
 
-export function Layout() {
+function Layout() {
   const {
     events,
     selectedEvent,
@@ -26,16 +26,16 @@ export function Layout() {
 
   return (
     <div className={styles.layout}>
-      <div className={styles["layout_top-block"]}>
+      <div className={styles['layout_top-block']}>
         <PayloadHandler />
       </div>
       {events.length > 0 && (
-        <div className={styles["layout_main-block"]}>
-          <div className={styles["layout_left-sidebar"]}>
+        <div className={styles['layout_main-block']}>
+          <div className={styles['layout_left-sidebar']}>
             <Tabs
               tabs={[
                 {
-                  title: "Steps",
+                  title: 'Steps',
                   content: (
                     <CyEvents
                       meta={meta}
@@ -48,24 +48,24 @@ export function Layout() {
               ]}
             />
           </div>
-          <div className={styles["layout_content"]}>
+          <div className={styles.layout_content}>
             <Player />
           </div>
-          <div className={styles["layout_right-sidebar"]}>
+          <div className={styles['layout_right-sidebar']}>
             <Tabs
               tabs={[
                 {
-                  title: "Step Details",
+                  title: 'Step Details',
                   content: <EventDetails event={selectedEventObject} />,
                 },
                 {
                   title: `Network ${
-                    entries.length > 0 ? `(${entries.length})` : ""
+                    entries.length > 0 ? `(${entries.length})` : ''
                   }`,
                   content: <Network entries={entries} />,
                 },
                 {
-                  title: `Console  ${logsCount > 0 ? `(${logsCount})` : ""}`,
+                  title: `Console  ${logsCount > 0 ? `(${logsCount})` : ''}`,
                   content: <Console logs={browserLogs} />,
                 },
               ]}
@@ -76,3 +76,5 @@ export function Layout() {
     </div>
   );
 }
+
+export default Layout;

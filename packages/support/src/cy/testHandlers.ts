@@ -1,19 +1,19 @@
-import { eventsContainer } from "../events";
-import { injectRROnce } from "../rr";
-import { getRunContext } from "./runContext";
+import { eventsContainer } from '../events';
+import { injectRROnce } from '../rr';
+import { getRunContext } from './runContext';
 
 export function handleBefore() {
-  cy.window().then((window) => {});
+  cy.window().then(() => {});
 }
 
 export function handleAfter() {
   // remove har directory
-  cy.task("_curr_cleanup");
+  cy.task('cleanup');
 }
 
 export function handleBeforeEach() {
   cy.window().then((window) => {
-    injectRROnce(window);
+    injectRROnce(window, eventsContainer.addRREvent);
   });
 
   cy.recordHar();
@@ -25,12 +25,12 @@ export function handleAfterEach() {
 
   // create dump file for network data
   cy.saveHar({
-    outDir: "dump_har",
+    outDir: 'dump_har',
     fileName: harFilename,
   });
 
   // get cy and rr events + test meta
-  cy.task("_curr_dump_events", {
+  cy.task('dumpEvents', {
     id: eventsBatch.testId,
     meta: getRunContext(),
     cy: eventsBatch.events.cy,

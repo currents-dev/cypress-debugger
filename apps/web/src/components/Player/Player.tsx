@@ -1,13 +1,13 @@
-import { useEffect, useRef } from "react";
-import styles from "./Replayer.module.scss";
+import { useEffect, useRef } from 'react';
 
-import rrwebPlayer from "rrweb-player";
-import { usePlayback } from "../../context/playback";
-import { useReplayerContext } from "../../context/replayer";
+import RRWebPlayer from 'rrweb-player';
+import { usePlayback } from '../../context/playback';
+import { useReplayerContext } from '../../context/replayer';
+import styles from './Player.module.scss';
 
-export function Player() {
+function Player() {
   const divRef = useRef<HTMLDivElement>(null);
-  const playerRef = useRef<rrwebPlayer | null>(null);
+  const playerRef = useRef<RRWebPlayer | null>(null);
 
   const { playerData, origin } = useReplayerContext();
   const { rrIdOrTs } = usePlayback();
@@ -16,7 +16,7 @@ export function Player() {
     if (!origin) return;
     if (!divRef.current) return;
 
-    playerRef.current = new rrwebPlayer({
+    playerRef.current = new RRWebPlayer({
       target: divRef.current,
       props: {
         width: 800,
@@ -25,26 +25,30 @@ export function Player() {
         events: playerData.map((e) => e.payload),
       },
     });
+
+    // eslint-disable-next-line consistent-return
     return () => playerRef.current?.getReplayer().destroy();
-  }, [origin]); // eslint-disable-line
+  }, [origin]);
 
   useEffect(() => {
     if (!playerRef.current) return;
 
     const start = playerData[0].timestamp;
 
-    if (typeof rrIdOrTs === "string") {
+    if (typeof rrIdOrTs === 'string') {
       const rrNode = playerData.find((e) => e.id === rrIdOrTs);
       if (!rrNode) return;
 
       playerRef.current.goto(rrNode.timestamp - start);
       playerRef.current.pause();
     }
-    if (typeof rrIdOrTs === "number") {
+    if (typeof rrIdOrTs === 'number') {
       playerRef.current.goto(rrIdOrTs - start);
       playerRef.current.pause();
     }
-  }, [rrIdOrTs, origin]); // eslint-disable-line
+  }, [rrIdOrTs, origin]);
 
-  return <div className={styles.container} ref={divRef}></div>;
+  return <div className={styles.container} ref={divRef} />;
 }
+
+export default Player;

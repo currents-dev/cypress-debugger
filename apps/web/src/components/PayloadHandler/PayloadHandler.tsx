@@ -1,40 +1,30 @@
-import { TestExecutionResult } from "cypress-debugger";
-import { useEffect, useState } from "react";
-import { useReplayerContext } from "../../context/replayer";
-import { usePayloadFetcher } from "../../hooks/usePayloadFetcher";
-import { JsonFileUpload } from "../FileUpload/FileUpload";
-import styles from "./PayloadHandler.module.scss";
-import { useHttpArchiveContext } from "../../context/httpArchiveEntries";
-import { useCypressEventsContext } from "../../context/cypressEvents";
-import { usePayloadQueryParam } from "../../hooks/useQuery";
+import { TestExecutionResult } from 'cypress-debugger';
+import { useEffect, useState } from 'react';
+import { useCypressEventsContext } from '../../context/cypressEvents';
+import { useHttpArchiveContext } from '../../context/httpArchiveEntries';
+import { useReplayerContext } from '../../context/replayer';
+import usePayloadFetcher from '../../hooks/usePayloadFetcher';
+import { usePayloadQueryParam } from '../../hooks/useQuery';
+import JsonFileUpload from '../FileUpload/JsonFileUpload';
+import styles from './PayloadHandler.module.scss';
 
-export function PayloadHandler() {
+function PayloadHandler() {
   const [loading, setLoading] = useState(false);
 
   const { origin, setOrigin, setReplayerData } = useReplayerContext();
+
   const { setHttpArchiveLog } = useHttpArchiveContext();
 
   const { setEvents, setMeta, setBrowserLogs } = useCypressEventsContext();
 
-  const [param, , clearParam] = usePayloadQueryParam();
+  const [queryParam, , clearQueryParam] = usePayloadQueryParam();
 
-  usePayloadFetcher({
-    onData: ({
-      payload,
-      param,
-    }: {
-      payload: TestExecutionResult;
-      param: string;
-    }) => {
-      if (validate(payload)) {
-        handleDataChange(payload);
-        setOrigin(param);
-      } else {
-        console.error("Invalid payload URL");
-      }
-    },
-    onLoading: setLoading,
-  });
+  const validate = (payload: TestExecutionResult) =>
+    Object.keys(payload).every((key) =>
+      ['id', 'meta', 'cy', 'rr', 'har', 'pluginMeta', 'browserLogs'].includes(
+        key
+      )
+    );
 
   const handleDataChange = (payload: TestExecutionResult | null) => {
     setEvents(payload?.cy || []);
@@ -42,26 +32,6 @@ export function PayloadHandler() {
     setHttpArchiveLog(payload?.har || null);
     setMeta(payload?.meta ?? null);
     setBrowserLogs(payload?.browserLogs || null);
-  };
-
-  useEffect(() => {
-    if (!param) {
-      setOrigin(null);
-      handleDataChange(null);
-    }
-  }, [param]); // eslint-disable-line
-
-  const validate = (payload: TestExecutionResult) =>
-    Object.keys(payload).every((key) =>
-      ["id", "meta", "cy", "rr", "har", "pluginMeta", "browserLogs"].includes(
-        key
-      )
-    );
-
-  const handleClick = () => {
-    setOrigin(null);
-    handleDataChange(null);
-    clearParam();
   };
 
   const handleFileChange = ({
@@ -75,13 +45,44 @@ export function PayloadHandler() {
     handleDataChange(payload);
   };
 
+  usePayloadFetcher({
+    onData: ({
+      payload,
+      param,
+    }: {
+      payload: TestExecutionResult;
+      param: string;
+    }) => {
+      if (validate(payload)) {
+        handleDataChange(payload);
+        setOrigin(param);
+      } else {
+        console.error('Invalid payload URL');
+      }
+    },
+    onLoading: setLoading,
+  });
+
+  useEffect(() => {
+    if (!queryParam) {
+      setOrigin(null);
+      handleDataChange(null);
+    }
+  }, [queryParam]); // eslint-disable-line
+
+  const handleClick = () => {
+    setOrigin(null);
+    handleDataChange(null);
+    clearQueryParam();
+  };
+
   if (loading) {
     return <div className={styles.loading}>Loading...</div>;
   }
 
   if (origin) {
     return (
-      <div className={styles["selected-file"]}>
+      <div className={styles['selected-file']}>
         Payload from:&nbsp;<span>{origin}</span>&nbsp;
         <button type="button" onClick={handleClick}>
           Remove
@@ -92,3 +93,5 @@ export function PayloadHandler() {
 
   return <JsonFileUpload onChange={handleFileChange} validate={validate} />;
 }
+
+export default PayloadHandler;

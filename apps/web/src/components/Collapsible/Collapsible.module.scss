@@ -1,40 +1,39 @@
 .collapsible {
+  &_button {
+    background: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 5px 5px 5px 0;
+  }
 
-    &_button {
-        background: none;
-        cursor: pointer;
-        width: 100%;
-        text-align: left;
-        outline: none;
-        border: none;
-        border-bottom: 1px solid #f0f0f0;
-        padding: 5px 5px 5px 0;
+  &_button-content {
+    display: flex;
+  }
+
+  &_chevron {
+    padding-left: 4px;
+    position: relative;
+
+    &__active {
+      img {
+        rotate: 90deg;
+      }
     }
+  }
 
-    &_button-content {
-        display: flex;
-    }
+  &_title {
+    width: 100%;
+    line-height: 20px;
+  }
 
-    &_chevron {
-        padding-left: 4px;
-        position: relative;
-
-        &__active {
-            img {
-                rotate: 90deg;
-            }
-        }
-    }
-
-    &_title {
-        width: 100%;
-        line-height: 20px;
-    }
-
-    &_content {
-        width: 100%;
-        padding: 0;
-        display: block;
-        overflow: auto;
-    }
+  &_content {
+    width: 100%;
+    padding: 0;
+    display: block;
+    overflow: auto;
+  }
 }

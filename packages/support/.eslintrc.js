@@ -1,8 +1,8 @@
 module.exports = {
-  extends: ['custom/eslint-react'],
+  extends: ['custom/eslint-node'],
   parserOptions: {
     root: true,
     tsconfigRootDir: __dirname,
-    project: ['./tsconfig.json'],
+    project: './tsconfig.json',
   },
 };

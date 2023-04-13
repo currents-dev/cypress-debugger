@@ -1,4 +1,5 @@
-import { attachHandlers } from "./cy";
+import { attachHandlers } from './cy';
+
+export type { RunContextData } from './cy/runContext';
+export * from './events/event';
 export { attachHandlers };
-export * from "./events/event";
-export type { RunContextData } from "./cy/runContext";

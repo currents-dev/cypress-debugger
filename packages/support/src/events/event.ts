@@ -1,4 +1,5 @@
-import { eventWithTime } from "@rrweb/types";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { eventWithTime } from '@rrweb/types';
 
 export type RRWebRawEvent = eventWithTime;
 export type CypressRawEvent = {
@@ -18,7 +19,7 @@ export type CypressRawEvent = {
   viewportHeight: number;
   viewportWidth: number;
   wallClockStartedAt: string;
-  [x: string]: any;
+  [x: string]: unknown;
 };
 
 export type RawEvent = CypressRawEvent | RRWebRawEvent;
@@ -50,7 +51,7 @@ interface ChildNodesEntity extends Node {
 }
 
 interface Attributes {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export type BaseEvent = {
@@ -71,8 +72,8 @@ export type RRWebEvent = BaseEvent & {
 export type Event = CypressEvent | RRWebEvent;
 
 export enum EventType {
-  RRWeb = "rr",
-  Cypress = "cy",
+  RRWeb = 'rr',
+  Cypress = 'cy',
 }
 
 export interface HttpArchiveLog {
@@ -81,7 +82,7 @@ export interface HttpArchiveLog {
 
 interface Log {
   version: string;
-  pages?: any[] | null;
+  pages?: unknown[] | null;
   creator: Creator;
   entries: HttpArchiveEntry[];
 }
@@ -102,8 +103,8 @@ export interface HttpArchiveEntry {
   serverIPAddress: string;
   _priority: string;
   _resourceType: string;
-  _webSocketMessages?: any[] | null;
-  _eventSourceMessages?: any[] | null;
+  _webSocketMessages?: unknown[] | null;
+  _eventSourceMessages?: unknown[] | null;
   connection?: string;
 }
 
@@ -123,7 +124,7 @@ export interface HttpArchiveEntryRequest {
   httpVersion: string;
   headers?: HeadersEntity[] | null;
   queryString?: QueryStringEntity[] | null;
-  cookies?: any[] | null;
+  cookies?: unknown[] | null;
   headersSize: number;
   bodySize: number;
 }
@@ -133,15 +134,15 @@ interface Entity {
   value: string;
 }
 
-export interface HeadersEntity extends Entity {}
-export interface QueryStringEntity extends Entity {}
+export type HeadersEntity = Entity;
+export type QueryStringEntity = Entity;
 
 export interface HttpArchiveEntryResponse {
   status: number;
   statusText: string;
   httpVersion: string;
   headers?: HeadersEntity[] | null;
-  cookies?: any[] | null;
+  cookies?: unknown[] | null;
   content: Content;
   redirectURL: string;
   headersSize: number;
@@ -157,5 +158,5 @@ interface Content {
 }
 
 interface Cache {
-  [key: string]: any;
+  [key: string]: unknown;
 }

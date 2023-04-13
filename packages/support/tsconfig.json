@@ -1,9 +1,9 @@
 {
   "extends": "tsconfig/base.json",
-  "include": ["."],
+  "include": ["src/**/*"],
   "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {
-    "types": [ "node", "@neuralegion/cypress-har-generator" ],
+    "types": ["node", "@neuralegion/cypress-har-generator"],
     "typeRoots": ["./node_modules/@types", "./src/@types"]
   }
 }

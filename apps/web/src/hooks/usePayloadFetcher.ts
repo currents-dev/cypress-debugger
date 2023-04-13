@@ -1,9 +1,9 @@
-import { TestExecutionResult } from "cypress-debugger";
-import { useEffect } from "react";
-import { isValidUrl } from "../utils/isValidUrl";
-import { usePayloadQueryParam } from "./useQuery";
+import { TestExecutionResult } from 'cypress-debugger';
+import { useEffect } from 'react';
+import isValidUrl from '../utils/isValidUrl';
+import { usePayloadQueryParam } from './useQuery';
 
-export function usePayloadFetcher({
+function usePayloadFetcher({
   onData,
   onLoading,
 }: {
@@ -16,7 +16,7 @@ export function usePayloadFetcher({
   }) => void;
   onLoading: (loading: boolean) => void;
 }) {
-  const [param] = usePayloadQueryParam()
+  const [param] = usePayloadQueryParam();
 
   useEffect(() => {
     const trimmedParam = param?.trim();
@@ -24,7 +24,7 @@ export function usePayloadFetcher({
     if (!trimmedParam) return;
 
     if (!isValidUrl(trimmedParam)) {
-      console.error("Invalid url");
+      console.error('Invalid url');
       return;
     }
 
@@ -32,7 +32,7 @@ export function usePayloadFetcher({
     fetch(new URL(trimmedParam))
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Failed to load the data");
+          throw new Error('Failed to load the data');
         }
 
         return res.json();
@@ -49,3 +49,5 @@ export function usePayloadFetcher({
       });
   }, [param]);
 }
+
+export default usePayloadFetcher;

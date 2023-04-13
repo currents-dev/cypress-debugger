@@ -18,7 +18,7 @@
   "scripts": {
     "build": "tsup-node --dts",
     "dev": "tsup --watch",
-    "lint": "TIMING=1 eslint \"**/*.ts*\""
+    "lint": "eslint --fix"
   },
   "keywords": [
     "cypress",

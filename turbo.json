@@ -4,7 +4,8 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**"]
+      "outputs": ["dist/**"],
+      "env": ["ELECTRON_EXTRA_LAUNCH_ARGS"]
     },
     "lint": {
       "outputs": []

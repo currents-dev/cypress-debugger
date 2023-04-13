@@ -1,3 +1,2 @@
-export function isValidDate(date: Date) {
-  return date instanceof Date && !isNaN(Number(date));
-}
+export default (date: Date) =>
+  date instanceof Date && !Number.isNaN(Number(date));

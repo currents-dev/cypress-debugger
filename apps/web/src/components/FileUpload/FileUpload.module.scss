@@ -16,7 +16,7 @@
     clip: rect(1px, 1px, 1px, 1px);
   }
 
-  &_input:is(:focus, :focus-within)+label {
+  &_input:is(:focus, :focus-within) + label {
     outline: thin dotted;
   }
 }
@@ -26,7 +26,7 @@
   height: 100%;
   border: 1px dashed black;
 
-  &--active {
+  &__active {
     border: 2px dashed black;
   }
 }

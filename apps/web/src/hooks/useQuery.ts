@@ -1,29 +1,30 @@
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+/* eslint-disable import/prefer-default-export */
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 const createUseQueryParams =
-  (param: string) =>
+  (queryParam: string) =>
   (): [string | null, (value: string) => void, () => void] => {
-    const [_param, _setParam] = useState<string | null>(null);
+    const [paramValue, setParamValue] = useState<string | null>(null);
     const [searchParams, setSearchParams] = useSearchParams();
 
     const setParam = (value: string) => {
-      searchParams.set(param, value);
+      searchParams.set(queryParam, value);
       setSearchParams(searchParams);
     };
 
     const clearParam = () => {
-      if (searchParams.has(param)) {
-        searchParams.delete(param);
+      if (searchParams.has(queryParam)) {
+        searchParams.delete(queryParam);
         setSearchParams(searchParams);
       }
     };
 
     useEffect(() => {
-      _setParam(searchParams.get(param));
+      setParamValue(searchParams.get(queryParam));
     }, [searchParams]);
 
-    return [_param, setParam, clearParam];
+    return [paramValue, setParam, clearParam];
   };
 
-export const usePayloadQueryParam = createUseQueryParams("payload");
+export const usePayloadQueryParam = createUseQueryParams('payload');

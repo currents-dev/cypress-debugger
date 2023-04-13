@@ -1,5 +1,5 @@
-import { createContext, PropsWithChildren, useContext } from "react";
-import { useCypressEventsContext } from "./cypressEvents";
+import { createContext, PropsWithChildren, useContext } from 'react';
+import { useCypressEventsContext } from './cypressEvents';
 
 interface PlaybackContextType {
   rrIdOrTs: string | number | null;
@@ -27,6 +27,7 @@ export default function PlaybackProvider({
 
   return (
     <PlaybackContext.Provider
+      // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         rrIdOrTs,
       }}

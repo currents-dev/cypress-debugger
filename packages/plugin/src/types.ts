@@ -3,22 +3,23 @@ import {
   HttpArchiveLog,
   RRWebEvent,
   RunContextData,
-} from "@currents/cypress-debugger-support";
-export type LogEntryLevel = "verbose" | "info" | "warning" | "error";
+} from '@currents/cypress-debugger-support';
+
+export type LogEntryLevel = 'verbose' | 'info' | 'warning' | 'error';
 export type LogEntrySource =
-  | "xml"
-  | "javascript"
-  | "network"
-  | "storage"
-  | "appcache"
-  | "rendering"
-  | "security"
-  | "deprecation"
-  | "worker"
-  | "violation"
-  | "intervention"
-  | "recommendation"
-  | "other";
+  | 'xml'
+  | 'javascript'
+  | 'network'
+  | 'storage'
+  | 'appcache'
+  | 'rendering'
+  | 'security'
+  | 'deprecation'
+  | 'worker'
+  | 'violation'
+  | 'intervention'
+  | 'recommendation'
+  | 'other';
 
 export type RuntimeCallFrame = {
   functionName: string;
@@ -42,14 +43,14 @@ export type RuntimeStackTrace = {
 
 export type RuntimeRemoteObject = {
   type:
-    | "object"
-    | "function"
-    | "undefined"
-    | "string"
-    | "number"
-    | "boolean"
-    | "symbol"
-    | "bigint";
+    | 'object'
+    | 'function'
+    | 'undefined'
+    | 'string'
+    | 'number'
+    | 'boolean'
+    | 'symbol'
+    | 'bigint';
   value?: string;
 };
 
@@ -57,7 +58,7 @@ export type LogEntry = {
   source: LogEntrySource;
   level: LogEntryLevel;
   text: string;
-  category?: "cors";
+  category?: 'cors';
   timestamp: number;
   url?: string;
   lineNumber?: number;
@@ -69,24 +70,24 @@ export type LogEntry = {
 
 export type RuntimeConsoleAPICalled = {
   type:
-    | "log"
-    | "debug"
-    | "info"
-    | "error"
-    | "warning"
-    | "dir"
-    | "dirxml"
-    | "table"
-    | "trace"
-    | "clear"
-    | "startGroup"
-    | "startGroupCollapsed"
-    | "endGroup"
-    | "assert"
-    | "profile"
-    | "profileEnd"
-    | "count"
-    | "timeEnd";
+    | 'log'
+    | 'debug'
+    | 'info'
+    | 'error'
+    | 'warning'
+    | 'dir'
+    | 'dirxml'
+    | 'table'
+    | 'trace'
+    | 'clear'
+    | 'startGroup'
+    | 'startGroupCollapsed'
+    | 'endGroup'
+    | 'assert'
+    | 'profile'
+    | 'profileEnd'
+    | 'count'
+    | 'timeEnd';
   args: Array<RuntimeRemoteObject>;
   executionContextId: number;
   timestamp: number;
@@ -96,18 +97,18 @@ export type RuntimeConsoleAPICalled = {
 
 export type ConsoleMessage = {
   source?:
-    | "xml"
-    | "javascript"
-    | "network"
-    | "console-api"
-    | "storage"
-    | "appcache"
-    | "rendering"
-    | "security"
-    | "other"
-    | "deprecation"
-    | "worker";
-  level?: "log" | "warning" | "error" | "debug" | "info";
+    | 'xml'
+    | 'javascript'
+    | 'network'
+    | 'console-api'
+    | 'storage'
+    | 'appcache'
+    | 'rendering'
+    | 'security'
+    | 'other'
+    | 'deprecation'
+    | 'worker';
+  level?: 'log' | 'warning' | 'error' | 'debug' | 'info';
   text?: string;
   url?: string;
   line?: number;
@@ -126,7 +127,7 @@ export type TestExecutionResult = {
   rr: RRWebEvent[];
   har: HttpArchiveLog;
   browserLogs: BrowserLog;
-  pluginMeta?: any;
+  pluginMeta?: Record<string, unknown>;
 };
 
 export type PluginOptions = {

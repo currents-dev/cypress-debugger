@@ -10,13 +10,16 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --check .",
+    "format-fix": "prettier --write ."
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.1",
+    "eslint": "^8.38.0",
     "eslint-config-custom": "*",
     "prettier": "latest",
-    "turbo": "^1.9.1"
+    "prettier-plugin-organize-imports": "^3.2.2",
+    "turbo": "latest"
   },
   "engines": {
     "node": ">=14.0.0"
