@@ -5,7 +5,7 @@
   "types": "./src/index.ts",
   "license": "MIT",
   "scripts": {
-    "build": "tsup --dts",
+    "build": "tsup-node",
     "dev": "tsup --watch",
     "lint": "eslint src --fix"
   },

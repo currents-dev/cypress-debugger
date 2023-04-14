@@ -2,6 +2,7 @@
   "name": "cypress-debugger",
   "version": "1.0.2",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "author": "Currents Software Inc",
   "homepage": "https://github.com/currents-dev/cypress-debugger",
   "bugs": {
@@ -55,6 +56,13 @@
     "clean": true,
     "sourcemap": "inline",
     "platform": "node",
-    "target": "esnext"
+    "target": "es2018"
+  },
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
   }
 }

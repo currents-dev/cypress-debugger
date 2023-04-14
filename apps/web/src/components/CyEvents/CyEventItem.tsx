@@ -24,7 +24,7 @@ function CyEventItemButton({
   );
 }
 
-function getStepColor(state) {
+function getStepColor(state: string) {
   switch (state) {
     case 'passed':
       return 'green';

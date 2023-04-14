@@ -3,6 +3,8 @@
   "include": ["src/**/*"],
   "exclude": ["dist", "node_modules"],
   "compilerOptions": {
-    "types": ["cypress"]
+    "types": ["cypress"],
+    "lib": ["ES2018"],
+    "target": "ES2018"
   }
 }
