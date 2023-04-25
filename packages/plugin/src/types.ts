@@ -125,7 +125,7 @@ export type TestExecutionResult = {
   meta: RunContextData;
   cy: CypressEvent[];
   rr: RRWebEvent[];
-  har: HttpArchiveLog;
+  har: HttpArchiveLog | null;
   browserLogs: BrowserLog;
   pluginMeta?: Record<string, unknown>;
 };

@@ -23,14 +23,18 @@ const createDumpFile = (data: TestExecutionResult): string => {
   return resultsPath;
 };
 
-const getHar = (filename: string): HttpArchiveLog => {
-  const filePath = path.join(harDir, filename);
-  const data = readFile(filePath);
-  const parsed = JSON.parse(data.toString('utf-8'));
+const getHar = (filename: string): HttpArchiveLog | null => {
+  try {
+    const filePath = path.join(harDir, filename);
+    const data = readFile(filePath);
+    const parsed = JSON.parse(data.toString('utf-8'));
 
-  removeFile(filePath);
+    removeFile(filePath);
 
-  return parsed;
+    return parsed;
+  } catch (error) {
+    return null;
+  }
 };
 
 function install(on: Cypress.PluginEvents, options?: PluginOptions) {
