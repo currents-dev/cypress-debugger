@@ -1,4 +1,5 @@
-import { useState } from "react";
+/* eslint-disable no-console */
+import { useState } from 'react';
 
 function useLocalStorage<T>(key: string, initialValue: T) {
   // State to store our value
@@ -39,4 +40,4 @@ function useLocalStorage<T>(key: string, initialValue: T) {
   return [storedValue, setValue] as const;
 }
 
-export default useLocalStorage
+export default useLocalStorage;

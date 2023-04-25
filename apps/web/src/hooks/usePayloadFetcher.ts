@@ -56,6 +56,7 @@ function usePayloadFetcher({
         });
       })
       .catch((err) => {
+        // eslint-disable-next-line no-console
         console.error(err);
         toast({
           title: 'Error',
@@ -65,7 +66,7 @@ function usePayloadFetcher({
       .finally(() => {
         onLoading(false);
       });
-  }, [param]);
+  }, [param]); // eslint-disable-line react-hooks/exhaustive-deps
 }
 
 export default usePayloadFetcher;

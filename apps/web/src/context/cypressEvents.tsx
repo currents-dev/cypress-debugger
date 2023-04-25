@@ -1,6 +1,6 @@
 import { CypressEvent, TestExecutionResult } from 'cypress-debugger';
 import { orderBy } from 'lodash';
-import { createContext, PropsWithChildren, useContext, useState } from 'react';
+import { PropsWithChildren, createContext, useContext, useState } from 'react';
 import isValidDate from '../utils/isValidDate';
 
 export type CypressEventsContextType = {
@@ -86,7 +86,6 @@ export default function CypresEventsContextProvider({
 
   return (
     <CypressEventsContext.Provider
-      // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         beforeAfter,
         events: orderedEvents,

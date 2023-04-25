@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import useLocalStorage from '@/hooks/useLocalStorage';
+import { useEffect, useState } from 'react';
 
 function useDarkMode(key = 'darkMode') {
   const getSystemPreference = () =>
@@ -13,6 +13,7 @@ function useDarkMode(key = 'darkMode') {
 
   useEffect(() => {
     setIsDark(isDarkInStorage || (!isDarkInStorage && getSystemPreference()));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -23,6 +24,7 @@ function useDarkMode(key = 'darkMode') {
     }
 
     setIsDarkInStorage(isDark);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDark]);
 
   const reset = () => {

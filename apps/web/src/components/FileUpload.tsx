@@ -69,7 +69,10 @@ function FileUpload({
         isDragging ? 'border-indigo-500' : '',
       ])}
     >
-      <FileUp className="w-9 h-9 text-gray-500 dark:text-slate-500" strokeWidth={1.5} />
+      <FileUp
+        className="w-9 h-9 text-gray-500 dark:text-slate-500"
+        strokeWidth={1.5}
+      />
 
       <p className="text-xl text-gray-500 dark:text-slate-500 text-center">
         Drop file to upload
@@ -77,7 +80,6 @@ function FileUpload({
         or
       </p>
       <label
-        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
         role="button"
         htmlFor="file-upload"
         className="bg-slate-900 text-slate-300 px-9 h-11 inline-flex items-center rounded border dark:border-slate-500 shadow-sm font-medium  hover:bg-slate-800"

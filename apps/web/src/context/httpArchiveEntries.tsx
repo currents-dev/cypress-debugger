@@ -1,5 +1,5 @@
 import { HttpArchiveEntry, HttpArchiveLog } from 'cypress-debugger';
-import { createContext, PropsWithChildren, useContext, useState } from 'react';
+import { PropsWithChildren, createContext, useContext, useState } from 'react';
 import isValidDate from '../utils/isValidDate';
 import { useCypressEventsContext } from './cypressEvents';
 
@@ -44,7 +44,6 @@ export default function HttpArchiveContextProvider({
 
   return (
     <CyHttpArchiveContext.Provider
-      // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         entries,
         setHttpArchiveLog,

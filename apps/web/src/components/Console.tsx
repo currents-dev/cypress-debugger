@@ -138,7 +138,9 @@ function Console({
           className={clsx([
             'py-3 border-b',
             log.type === 'debug' ? 'bg-emerald-50 dark:bg-emerald-950/30' : '',
-            log.type === 'error' ? 'bg-red-50 dark:border-red-950 dark:bg-red-900/20' : '',
+            log.type === 'error'
+              ? 'bg-red-50 dark:border-red-950 dark:bg-red-900/20'
+              : '',
             log.type === 'warning' ? 'bg-amber-50 dark:bg-amber-500/10' : '',
             log.type === 'info' ? 'bg-sky-50 dark:bg-sky-500/10' : '',
           ])}

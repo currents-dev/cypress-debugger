@@ -43,6 +43,7 @@ function HeadersEntry({ header }: { header: HeadersEntity }) {
 }
 
 function ResponseBody({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   content,
 }: {
   content: HttpArchiveEntryResponse['content'];

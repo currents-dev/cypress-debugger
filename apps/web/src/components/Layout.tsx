@@ -99,7 +99,9 @@ function GridLayout() {
                     <TabsTrigger value="network">
                       Network{' '}
                       {entries.length > 0 ? (
-                        <sup className="text-emerald-700 dark:text-emerald-500">{entries.length}</sup>
+                        <sup className="text-emerald-700 dark:text-emerald-500">
+                          {entries.length}
+                        </sup>
                       ) : (
                         ''
                       )}
@@ -107,7 +109,9 @@ function GridLayout() {
                     <TabsTrigger value="console">
                       Console{' '}
                       {logsCount > 0 ? (
-                        <sup className="text-emerald-700 dark:text-emerald-500">{logsCount}</sup>
+                        <sup className="text-emerald-700 dark:text-emerald-500">
+                          {logsCount}
+                        </sup>
                       ) : (
                         ''
                       )}

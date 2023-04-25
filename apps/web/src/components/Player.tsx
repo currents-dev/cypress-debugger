@@ -25,8 +25,8 @@ function Player() {
       },
     });
 
-    // eslint-disable-next-line consistent-return
     return () => playerRef.current?.getReplayer().destroy();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [origin]);
 
   useEffect(() => {
@@ -45,6 +45,7 @@ function Player() {
       playerRef.current.goto(rrIdOrTs - start);
       playerRef.current.pause();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rrIdOrTs, origin]);
 
   return <div className="max-w-full overflow-auto p-4" ref={divRef} />;
