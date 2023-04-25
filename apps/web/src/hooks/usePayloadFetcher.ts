@@ -1,3 +1,4 @@
+import { useToast } from '@/components/ui/useToast';
 import { TestExecutionResult } from 'cypress-debugger';
 import { useEffect } from 'react';
 import isValidUrl from '../utils/isValidUrl';
@@ -17,6 +18,7 @@ function usePayloadFetcher({
   onLoading: (loading: boolean) => void;
 }) {
   const [param] = usePayloadQueryParam();
+  const { toast } = useToast();
 
   useEffect(() => {
     const trimmedParam = param?.trim();
@@ -26,6 +28,10 @@ function usePayloadFetcher({
     if (!isValidUrl(trimmedParam)) {
       // eslint-disable-next-line no-console
       console.error('Invalid url');
+      toast({
+        title: 'Error',
+        description: 'Invalid url',
+      });
       return;
     }
 
@@ -39,17 +45,28 @@ function usePayloadFetcher({
         return res.json();
       })
       .then((result) => {
+        toast({
+          title: 'Success',
+          description: 'Data successfully loaded',
+        });
+
         onData({
           payload: result,
           param: trimmedParam,
         });
       })
-      // eslint-disable-next-line no-console
-      .catch(console.error)
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.error(err);
+        toast({
+          title: 'Error',
+          description: 'Failed to load the data',
+        });
+      })
       .finally(() => {
         onLoading(false);
       });
-  }, [param]);
+  }, [param]); // eslint-disable-line react-hooks/exhaustive-deps
 }
 
 export default usePayloadFetcher;

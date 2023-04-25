@@ -25,7 +25,6 @@ export default function ReplayerContextProvider({
 
   return (
     <ReplayerContext.Provider
-      // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         origin,
         setOrigin,
