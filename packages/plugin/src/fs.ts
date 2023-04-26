@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from 'fs';
 
 export const createDir = (path: string) => {
   if (!fs.existsSync(path)) {
@@ -10,9 +10,7 @@ export const writeFile = (path: string, data: string) => {
   fs.writeFileSync(path, data);
 };
 
-export const readFile = (path: string) => {
-  return fs.readFileSync(path);
-};
+export const readFile = (path: string) => fs.readFileSync(path);
 
 export const removeFile = (path: string) => {
   fs.unlinkSync(path);

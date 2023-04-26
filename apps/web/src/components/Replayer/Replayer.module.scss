@@ -1,7 +1,0 @@
-@import '../../assets/mixins.scss';
-
-.container {
-    @include centered-flex;
-    min-width: 800px;
-    width: 100%;
-}

@@ -1,21 +1,68 @@
 {
-  "name": "@currents/cypress-debugger",
-  "version": "0.0.0",
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
-  "license": "MIT",
-  "scripts": {
-    "dev": "tsup --watch",
-    "lint": "TIMING=1 eslint \"**/*.ts*\""
+  "name": "cypress-debugger",
+  "version": "1.0.2",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "author": "Currents Software Inc",
+  "homepage": "https://github.com/currents-dev/cypress-debugger",
+  "bugs": {
+    "url": "https://github.com/currents-dev/cypress-debugger/issues",
+    "email": "support@currents.dev"
   },
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.7.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup-node --dts",
+    "dev": "tsup --watch",
+    "lint": "eslint --fix"
+  },
+  "keywords": [
+    "cypress",
+    "e2e",
+    "cypress-debugger"
+  ],
   "devDependencies": {
+    "commander": "^10.0.0",
     "esbuild": "^0.17.7",
     "tsconfig": "*",
     "tsup": "^6.6.0",
     "typescript": "^4.5.2"
   },
   "dependencies": {
-    "@currents/cypress-debugger-support": "*",
-    "@currents/cypress-debugger-plugin": "*"
+    "@currents/cypress-debugger-plugin": "*",
+    "@currents/cypress-debugger-support": "*"
+  },
+  "peerDependencies": {
+    "cypress": ">=10.0.0"
+  },
+  "tsup": {
+    "entry": [
+      "./index.ts"
+    ],
+    "external": [
+      "cypress"
+    ],
+    "format": [
+      "cjs",
+      "esm"
+    ],
+    "splitting": false,
+    "shims": true,
+    "clean": true,
+    "sourcemap": "inline",
+    "platform": "node",
+    "target": "es2018"
+  },
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
   }
 }

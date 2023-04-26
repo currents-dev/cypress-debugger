@@ -1,40 +1,31 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /// <reference types="cypress" />
 
 import {
-  onAfterTestRun,
-  onBeforeTestRun,
   onBeforeWindowLoad,
-  onException,
   onHook,
   onLogAdded,
   onLogChanged,
-  onURLChange,
-} from "./globalHandlers";
+} from './globalHandlers';
 
 import {
   handleAfter,
   handleAfterEach,
   handleBefore,
   handleBeforeEach,
-} from "./testHandlers";
+} from './testHandlers';
 
 export function attachHandlers() {
   // register commands to generate HAR files
-  require("@neuralegion/cypress-har-generator/commands");
+  // eslint-disable-next-line global-require
+  require('@neuralegion/cypress-har-generator/commands');
 
-  Cypress.on("uncaught:exception", onException);
-  Cypress.on("window:before:load", onBeforeWindowLoad);
-
-  Cypress.on("url:changed", onURLChange);
-
-  Cypress.on("test:before:run:async", onBeforeTestRun);
-  Cypress.on("test:after:run", onAfterTestRun);
-
-  Cypress.on("log:added", onLogAdded);
-  Cypress.on("log:changed", onLogChanged);
+  Cypress.on('window:before:load', onBeforeWindowLoad);
+  Cypress.on('log:added', onLogAdded);
+  Cypress.on('log:changed', onLogChanged);
 
   // @ts-ignore
-  Cypress.mocha.getRunner().on("hook", onHook);
+  Cypress.mocha.getRunner().on('hook', onHook);
 
   before(handleBefore);
   beforeEach(handleBeforeEach);

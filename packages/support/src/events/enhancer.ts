@@ -1,6 +1,6 @@
-import { pick } from "lodash";
-import { getEnvironmentLifetime } from "../env/perf";
-import { uuid } from "../uuid";
+import { pick } from 'lodash';
+import { getEnvironmentLifetime } from '../env/perf';
+import { uuid } from '../uuid';
 import {
   BaseEvent,
   CypressEvent,
@@ -8,7 +8,7 @@ import {
   CypressRawEvent,
   RRWebEvent,
   RRWebRawEvent,
-} from "./event";
+} from './event';
 
 export const enhanceEvent = <T>(
   event: T
@@ -37,60 +37,59 @@ export const formatCypressEvent = (
   event: CypressRawEvent
 ): Pick<
   CypressRawEvent,
-  | "alias"
-  | "aliasType"
-  | "chainerId"
-  | "displayName"
-  | "ended"
-  | "err"
-  | "event"
-  | "highlightAttr"
-  | "hookId"
-  | "id"
-  | "numElements"
-  | "instrument"
-  | "message"
-  | "method"
-  | "name"
-  | "state"
-  | "testCurrentRetry"
-  | "testId"
-  | "totalTime"
-  | "type"
-  | "url"
-  | "viewportHeight"
-  | "viewportWidth"
-  | "wallClockStartedAt"
-> => {
+  | 'alias'
+  | 'aliasType'
+  | 'chainerId'
+  | 'displayName'
+  | 'ended'
+  | 'err'
+  | 'event'
+  | 'highlightAttr'
+  | 'hookId'
+  | 'id'
+  | 'numElements'
+  | 'instrument'
+  | 'message'
+  | 'method'
+  | 'name'
+  | 'state'
+  | 'testCurrentRetry'
+  | 'testId'
+  | 'totalTime'
+  | 'type'
+  | 'url'
+  | 'viewportHeight'
+  | 'viewportWidth'
+  | 'wallClockStartedAt'
+> =>
   // TODO: figure out consoleProps, renderProps and $el
   // const consoleProps = pick(event.consoleProps, ["Command", "Elements", "Selector"]);
 
-  return {
+  ({
     ...pick(event, [
-      "alias",
-      "aliasType",
-      "chainerId",
-      "displayName",
-      "ended",
-      "err",
-      "event",
-      "highlightAttr",
-      "hookId",
-      "id",
-      "numElements",
-      "instrument",
-      "message",
-      "method",
-      "name",
-      "state",
-      "testCurrentRetry",
-      "testId",
-      "totalTime",
-      "type",
-      "url",
-      "viewportHeight",
-      "viewportWidth",
-      "wallClockStartedAt",
+      'alias',
+      'aliasType',
+      'chainerId',
+      'displayName',
+      'ended',
+      'err',
+      'event',
+      'highlightAttr',
+      'hookId',
+      'id',
+      'numElements',
+      'instrument',
+      'message',
+      'method',
+      'name',
+      'state',
+      'testCurrentRetry',
+      'testId',
+      'totalTime',
+      'type',
+      'url',
+      'viewportHeight',
+      'viewportWidth',
+      'wallClockStartedAt',
     ]),
-  };
-};
+  });

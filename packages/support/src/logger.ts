@@ -1,11 +1,12 @@
-export const error = (...args: any[]) => {
+/* eslint-disable no-console */
+export const error = (...args: unknown[]) => {
   console.error(`🔥`, ...args);
 };
 
-export const warn = (...args: any[]) => {
+export const warn = (...args: unknown[]) => {
   console.warn(`⚠️`, ...args);
 };
 
-export const debug = (...args: any[]) => {
+export const debug = (...args: unknown[]) => {
   console.debug(`🟡`, ...args);
 };

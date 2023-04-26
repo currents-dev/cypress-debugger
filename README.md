@@ -12,7 +12,7 @@ The plugin captures all the information, saving it in a file that you can later 
 ## Requirements
 
 - Cypress version 10+
-- NodeJS [14+](https://docs.cypress.io/guides/getting-started/installing-cypress#:~:text=If%20you're%20using%20npm,Node.js%2014.x)
+- NodeJS [^14.17.0](https://docs.cypress.io/guides/getting-started/installing-cypress#:~:text=If%20you're%20using%20npm,Node.js%2014.x)
 - Chromium family browsers only
 
 ## Setup
@@ -27,14 +27,14 @@ Add `cypress-debugger` to `cypress.config.{js|ts|mjs}`
 
 ```js
 // cypress.config.js
-const { defineConfig } = require("cypress");
-const { debuggerPlugin } = require("cypress-debugger");
+const { defineConfig } = require('cypress');
+const { debuggerPlugin } = require('cypress-debugger');
 module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
       debuggerPlugin(on, {
         meta: {
-          key: "value",
+          key: 'value',
         },
         // path: abosulte path to the dump file
         // data: captured data
@@ -55,7 +55,7 @@ Add `cypress-debugger` to `cypress/support/e2e.{js|ts}`
 
 ```js
 // cypress/support/e2e.js
-const { debuggerSupport } = require("cypress-debugger");
+const { debuggerSupport } = require('cypress-debugger');
 debuggerSupport();
 ```
 
@@ -102,14 +102,14 @@ Example:
 
 ```js
 // cypress.config.js
-const { defineConfig } = require("cypress");
-const { debuggerPlugin } = require("cypress-debugger");
+const { defineConfig } = require('cypress');
+const { debuggerPlugin } = require('cypress-debugger');
 module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
       debuggerPlugin(on, {
         meta: {
-          key: "value",
+          key: 'value',
         },
         callback: (path, data) => {
           console.log({ path, data });

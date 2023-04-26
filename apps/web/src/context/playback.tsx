@@ -1,5 +1,5 @@
-import { createContext, PropsWithChildren, useContext } from "react";
-import { useCypressEventsContext } from "./cypressEvents";
+import { createContext, PropsWithChildren, useContext } from 'react';
+import { useCypressEventsContext } from './cypressEvents';
 
 interface PlaybackContextType {
   rrIdOrTs: string | number | null;

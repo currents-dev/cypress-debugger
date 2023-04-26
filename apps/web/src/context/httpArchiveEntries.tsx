@@ -1,7 +1,7 @@
-import { HttpArchiveEntry, HttpArchiveLog } from "@currents/cypress-debugger";
-import { createContext, PropsWithChildren, useContext, useState } from "react";
-import { isValidDate } from "../utils/isValidDate";
-import { useCypressEventsContext } from "./cypressEvents";
+import { HttpArchiveEntry, HttpArchiveLog } from 'cypress-debugger';
+import { PropsWithChildren, createContext, useContext, useState } from 'react';
+import isValidDate from '../utils/isValidDate';
+import { useCypressEventsContext } from './cypressEvents';
 
 export type HttpArchiveEntriesContextType = {
   entries: HttpArchiveEntry[];
@@ -43,7 +43,12 @@ export default function HttpArchiveContextProvider({
       : [];
 
   return (
-    <CyHttpArchiveContext.Provider value={{ entries, setHttpArchiveLog }}>
+    <CyHttpArchiveContext.Provider
+      value={{
+        entries,
+        setHttpArchiveLog,
+      }}
+    >
       {children}
     </CyHttpArchiveContext.Provider>
   );

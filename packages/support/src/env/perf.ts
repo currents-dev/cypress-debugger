@@ -3,8 +3,8 @@ export function getEnvironmentLifetime(): number {
     if (window?.performance) {
       return window.performance.now();
     }
-    // @ts-ignore
-    return require("node:perf_hooks").performance.now() as number;
+    // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
+    return require('node:perf_hooks').performance.now() as number;
   } catch (e) {
     return 0;
   }

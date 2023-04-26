@@ -1,9 +1,9 @@
-import { RRWebEvent } from "@currents/cypress-debugger";
-import { createContext, PropsWithChildren, useContext, useState } from "react";
+import { RRWebEvent } from 'cypress-debugger';
+import { createContext, PropsWithChildren, useContext, useState } from 'react';
 
 export type ReplayerContextType = {
   origin: null | string;
-  setOrigin: (origin: ReplayerContextType["origin"]) => void;
+  setOrigin: (origin: ReplayerContextType['origin']) => void;
   playerData: RRWebEvent[];
   setReplayerData: (data: RRWebEvent[]) => void;
 };
@@ -20,7 +20,7 @@ export const useReplayerContext = () => useContext(ReplayerContext);
 export default function ReplayerContextProvider({
   children,
 }: PropsWithChildren<unknown>) {
-  const [origin, setOrigin] = useState<ReplayerContextType["origin"]>(null);
+  const [origin, setOrigin] = useState<ReplayerContextType['origin']>(null);
   const [playerData, setReplayerData] = useState<RRWebEvent[]>([]);
 
   return (
@@ -28,7 +28,6 @@ export default function ReplayerContextProvider({
       value={{
         origin,
         setOrigin,
-
         setReplayerData,
         playerData,
       }}

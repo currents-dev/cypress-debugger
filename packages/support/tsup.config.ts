@@ -1,12 +1,15 @@
-import { defineConfig } from "tsup";
+import { defineConfig } from 'tsup';
 
 export default defineConfig({
   sourcemap: true,
   clean: true,
   bundle: true,
-  noExternal: ["rrweb"],
-  entry: ["src/index.ts", "src/plugin/index.ts", "src/support/index.ts"],
+  minify: true,
+  dts: true,
+  noExternal: ['rrweb'],
+  entry: ['src/index.ts'],
+  format: ['cjs', 'esm'],
   loader: {
-    ".src": "text",
+    '.src': 'text',
   },
 });

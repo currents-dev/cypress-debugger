@@ -1,5 +1,9 @@
 {
   "extends": "tsconfig/base.json",
-  "include": ["."],
-  "exclude": ["dist", "build", "node_modules"]
+  "include": ["index.ts"],
+  "exclude": ["dist", "node_modules"],
+  "compilerOptions": {
+    "lib": ["ES2018"],
+    "target": "ES2018"
+  }
 }

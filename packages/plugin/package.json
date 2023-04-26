@@ -1,13 +1,17 @@
 {
   "name": "@currents/cypress-debugger-plugin",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "./dist/index.js",
   "types": "./src/index.ts",
   "license": "MIT",
   "scripts": {
+    "build": "tsup-node",
     "dev": "tsup --watch",
-    "lint": "TIMING=1 eslint \"**/*.ts*\""
+    "lint": "eslint src --fix"
   },
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "@types/chrome-remote-interface": "^0.31.9",
     "@types/debug": "^4.1.7",

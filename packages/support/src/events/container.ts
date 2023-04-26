@@ -1,20 +1,20 @@
-import { last } from "lodash";
-import { getEnvironmentLifetime } from "../env/perf";
-import { warn } from "../logger";
-import { getRRNodes } from "../rr";
-import { uuid } from "../uuid";
+import { last } from 'lodash';
+import { getEnvironmentLifetime } from '../env/perf';
+import { warn } from '../logger';
+import { getRRNodes } from '../rr';
+import { uuid } from '../uuid';
 import {
   enhanceCypressEvent,
   enhanceEvent,
   formatCypressEvent,
-} from "./enhancer";
+} from './enhancer';
 import {
   CypressEvent,
   CypressEventMeta,
   CypressRawEvent,
   RRWebEvent,
   RRWebRawEvent,
-} from "./event";
+} from './event';
 
 const cypressEvents: CypressEvent[] = [];
 const rrEvents: RRWebEvent[] = [];
@@ -60,7 +60,7 @@ export const updateCypressEvent = (id: string, update: CypressRawEvent) => {
   }
   const event = cypressEvents[i];
   if (!event) {
-    warn("Registered cypress event not found in event container");
+    warn('Registered cypress event not found in event container');
     return;
   }
 

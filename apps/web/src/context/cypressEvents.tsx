@@ -1,8 +1,7 @@
-import { CypressEvent } from "@currents/cypress-debugger";
-import { TestExecutionResult } from "@currents/cypress-debugger";
-import { orderBy } from "lodash";
-import { createContext, PropsWithChildren, useContext, useState } from "react";
-import { isValidDate } from "../utils/isValidDate";
+import { CypressEvent, TestExecutionResult } from 'cypress-debugger';
+import { orderBy } from 'lodash';
+import { PropsWithChildren, createContext, useContext, useState } from 'react';
+import isValidDate from '../utils/isValidDate';
 
 export type CypressEventsContextType = {
   events: CypressEvent[];
@@ -12,20 +11,20 @@ export type CypressEventsContextType = {
   beforeAfter: BeforeAfter;
   setSelectedEvent: (i: number) => void;
   setBeforeAfter: (i: BeforeAfter) => void;
-  meta: TestExecutionResult["meta"] | null;
-  setMeta: (events: TestExecutionResult["meta"] | null) => void;
-  browserLogs: TestExecutionResult["browserLogs"] | null;
-  setBrowserLogs: (events: TestExecutionResult["browserLogs"] | null) => void;
+  meta: TestExecutionResult['meta'] | null;
+  setMeta: (events: TestExecutionResult['meta'] | null) => void;
+  browserLogs: TestExecutionResult['browserLogs'] | null;
+  setBrowserLogs: (events: TestExecutionResult['browserLogs'] | null) => void;
 };
 
-type BeforeAfter = "before" | "after";
+type BeforeAfter = 'before' | 'after';
 const CypressEventsContext = createContext<CypressEventsContextType>({
-  beforeAfter: "before",
+  beforeAfter: 'before',
   events: [],
   setEvents: () => {},
   selectedEvent: -1,
   selectedEventObject: null,
-  setSelectedEvent: (i: number) => {},
+  setSelectedEvent: () => {},
   setBeforeAfter: () => {},
   meta: null,
   setMeta: () => {},
@@ -38,15 +37,19 @@ export const useCypressEventsContext = () => useContext(CypressEventsContext);
 export default function CypresEventsContextProvider({
   children,
 }: PropsWithChildren<unknown>) {
-  const [beforeAfter, setBeforeAfter] = useState<BeforeAfter>("before");
+  const [beforeAfter, setBeforeAfter] = useState<BeforeAfter>('before');
   const [cypressEvents, setCypressEvents] = useState<CypressEvent[]>([]);
-  const [meta, setMeta] = useState<TestExecutionResult["meta"] | null>(null);
+  const [meta, setMeta] = useState<TestExecutionResult['meta'] | null>(null);
   const [selectedEvent, setSelectedEvent] = useState(-1);
-  const [_browserLogs, setBrowserLogs] = useState<
-    TestExecutionResult["browserLogs"] | null
+  const [browserLogs, setBrowserLogs] = useState<
+    TestExecutionResult['browserLogs'] | null
   >(null);
 
-  const orderedEvents = orderBy(cypressEvents, (event) => event.timestamp, "asc");
+  const orderedEvents = orderBy(
+    cypressEvents,
+    (event) => event.timestamp,
+    'asc'
+  );
 
   const selectedEventObject =
     selectedEvent === -1 ? null : orderedEvents[selectedEvent] ?? null;
@@ -59,8 +62,10 @@ export default function CypresEventsContextProvider({
   const filterFn = (ts: number): boolean => {
     const logDate = new Date(ts);
 
+    if (!selectedEventObject) return false;
+
     const cypressEventDate = new Date(
-      selectedEventObject!.payload.wallClockStartedAt
+      selectedEventObject.payload.wallClockStartedAt
     );
 
     if (!isValidDate(logDate) || !isValidDate(cypressEventDate)) return false;
@@ -68,13 +73,13 @@ export default function CypresEventsContextProvider({
     return logDate.getTime() <= cypressEventDate.getTime();
   };
 
-  const browserLogs = !selectedEventObject
+  const filteredBrowserLogs = !selectedEventObject
     ? null
     : {
         logEntry:
-          _browserLogs?.logEntry.filter((val) => filterFn(val.timestamp)) ?? [],
+          browserLogs?.logEntry.filter((val) => filterFn(val.timestamp)) ?? [],
         runtimeConsoleApiCalled:
-          _browserLogs?.runtimeConsoleApiCalled.filter((val) =>
+          browserLogs?.runtimeConsoleApiCalled.filter((val) =>
             filterFn(val.timestamp)
           ) ?? [],
       };
@@ -91,7 +96,7 @@ export default function CypresEventsContextProvider({
         setBeforeAfter,
         meta,
         setMeta,
-        browserLogs,
+        browserLogs: filteredBrowserLogs,
         setBrowserLogs,
       }}
     >

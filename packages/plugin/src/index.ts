@@ -1,2 +1,4 @@
-export * from "./install";
-export * from "./types";
+import installPlugin from './install';
+
+export * from './types';
+export { installPlugin };
