@@ -20,7 +20,7 @@ function NetworkPreview({ entry }: { entry: HttpArchiveEntry }) {
   const contentType = entry.response.content?.mimeType ?? null;
 
   return (
-    <div className="w-full flex justify-between align-middle text-sm">
+    <div className="w-full flex justify-between align-middle text-sm pr-1">
       <p className="w-48 overflow-hidden text-ellipsis whitespace-nowrap text-left">
         {entry.response.status} {entry.request.method} {resource}
       </p>

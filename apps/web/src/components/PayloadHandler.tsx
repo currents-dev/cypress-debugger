@@ -1,4 +1,5 @@
 import { TestExecutionResult } from 'cypress-debugger';
+import { Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useCypressEventsContext } from '../context/cypressEvents';
 import { useHttpArchiveContext } from '../context/httpArchiveEntries';
@@ -71,7 +72,11 @@ function PayloadHandler() {
   }, [queryParam]); // eslint-disable-line
 
   if (loading) {
-    return <div className="flex items-center justify-center">Loading...</div>;
+    return (
+      <div className="flex items-center justify-center h-full">
+        <Loader2 className="animate-spin" size="48" strokeWidth="1.5" />
+      </div>
+    );
   }
 
   if (origin) {

@@ -40,5 +40,6 @@ module.exports = {
   ],
   rules: {
     'import/prefer-default-export': 'off',
+    'prettier/prettier': 1,
   },
 };

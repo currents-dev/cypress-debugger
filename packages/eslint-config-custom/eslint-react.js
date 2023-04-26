@@ -57,5 +57,6 @@ module.exports = {
     'default-case': 0,
     'consistent-return': 0,
     'prefer-destructuring': 0,
+    'prettier/prettier': 1,
   },
 };
