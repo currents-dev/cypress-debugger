@@ -6,8 +6,7 @@
     "dev": "vite --host",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint src --fix",
-    "tailwind": "npx tailwindcss -i ./src/styles/globals.css -o ./dist/output.css --watch"
+    "lint": "eslint src --fix"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.1.1",

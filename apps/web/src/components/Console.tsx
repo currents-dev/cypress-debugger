@@ -102,7 +102,7 @@ function Console({
     });
   };
 
-  if (!logs) {
+  if (!logs || !(logs.logEntry.length && logs.runtimeConsoleApiCalled.length)) {
     return <p className="pl-4 pt-3">No logs</p>;
   }
 
@@ -124,10 +124,6 @@ function Console({
     (log) => log.timestamp,
     'asc'
   );
-
-  if (!orderedLogs.length) {
-    return <p className="pl-4 pt-3">No logs</p>;
-  }
 
   return (
     <div className="max-h-[calc(100vh-8rem)] overflow-auto">
