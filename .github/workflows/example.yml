@@ -1,0 +1,33 @@
+name: Example
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [main]
+
+jobs:
+  example:
+    if: "!contains(toJSON(github.event.commits.*.message), '[skip ci]')"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Link dependencies
+        working-directory: ./apps/web
+        run: npm install
+
+      - name: Cypress Tests
+        working-directory: ./apps/web
+        run: npx cypress run --browser chrome

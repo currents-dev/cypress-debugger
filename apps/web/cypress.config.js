@@ -11,12 +11,9 @@ module.exports = defineConfig({
         meta: {
           key: 'value',
         },
-        callback: (file, data) => {
+        callback: (file) => {
           // executed after each test
-          console.log('results', {
-            file,
-            data,
-          });
+          console.log('Trace file %s', file);
         },
       });
 
