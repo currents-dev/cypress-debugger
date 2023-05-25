@@ -10,12 +10,15 @@ Capture and replay Cypress Tests. Debug your failed and flaky CI cypress tests b
 The plugin captures and replays everything that's happening in Cypress tests, think of it as Playwright traces for Cypress.
 
 <p align="center">
-  <img width="830" src="https://github.com/currents-dev/cypress-debugger/assets/1637928/e2fbc9cf-d3bf-4192-8d9d-97d6726c8bdd" />
+  <img width="830" src="https://static.currents.dev/cypress-debugger-banner-gh.png" />
 </p>
 
 <p align="center">
  <a href="https://www.loom.com/share/6c2135fa1dce492ca997edd5cf56efe6">Video Demo</a> | <a href="https://sorry-cypress.dev">Sorry Cypress</a> | <a href="https://currents.dev">Currents</a>
 </p>
+
+
+
 
 ## Requirements
 
