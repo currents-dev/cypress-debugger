@@ -41,6 +41,7 @@ module.exports = {
     'tailwind.config.js',
   ],
   rules: {
+    'react/jsx-no-target-blank': 0,
     'react/react-in-jsx-scope': 0,
     'react/require-default-props': 0,
     'react/jsx-props-no-spreading': 0,

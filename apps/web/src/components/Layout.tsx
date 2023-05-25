@@ -50,6 +50,21 @@ function GridLayout() {
       {!origin && (
         <div className="w-screen h-screen flex items-center justify-center">
           <div className="h-96 w-[70%]">
+            <div className="m-auto w-full p-3 text-center">
+              <a
+                href="https://github.com/currents-dev/cypress-debugger"
+                target="_blank"
+              >
+                Cypress Debugger
+              </a>{' '}
+              by{' '}
+              <a
+                href="https://currents.dev?utm_source=cypress-debugger"
+                target="_blank"
+              >
+                Currents.dev
+              </a>
+            </div>
             <PayloadHandler />
           </div>
         </div>
