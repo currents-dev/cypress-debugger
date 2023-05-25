@@ -13,7 +13,7 @@ module.exports = defineConfig({
         },
         callback: (file) => {
           // executed after each test
-          console.log('Trace file %s', file);
+          console.log('\t🎥 Trace file %s', file);
         },
       });
 

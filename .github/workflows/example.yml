@@ -28,6 +28,13 @@ jobs:
         working-directory: ./apps/web
         run: npm install
 
-      - name: Cypress Tests
+      - name: Cypress tests
         working-directory: ./apps/web
         run: npx cypress run --browser chrome
+
+      - name: Save cypress traces
+        uses: actions/upload-artifact@v3
+        with:
+          name: ctrepss traces
+          path: |
+            app/web/dump
