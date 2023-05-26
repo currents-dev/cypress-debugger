@@ -1,3 +1,5 @@
+# Contribution Guide
+
 ## Project Structure
 
 - `packages/cypress-debugger` - the entry point. It exports `debuggerSupport` and `debuggerPlugin` functions, required for plugin installation and a set of types used in the web application.
@@ -26,7 +28,7 @@ Here are collected the browser logs, and created the files with the collected in
 
 - `pluginMeta` - the data passed down to the optional `meta` field of the `debuggerPlugin` options argument.
 
-### Folder structure:
+### Folder structure
 
 - `packages/cypress-debugger` - the plugin entry point. It exports the `debuggerSupport` and `debuggerPlugin` functions, required for plugin installation and a set of types used in the web application.
 
@@ -87,7 +89,7 @@ The project uses [Changesets](https://github.com/changesets/changesets) to manag
 
 ### Beta channel
 
-When you want to do a prerelease, you need to enter prerelease mode. You can do that with the `pre enter <tag>`. The tag that you need to pass is used in versions(e.g. `1.0.0-beta.0`) and for the npm dist tag.
+When you want to do a prerelease, you need to enter prerelease mode. You can do that with the `pre enter <tag>`. The tag that you need to pass is used in versions (e.g. `1.0.0-beta.0`) and for the npm dist tag.
 
 Please check [Changesets Prereleases](https://github.com/changesets/changesets/blob/main/docs/prereleases.md) for reference.
 
@@ -112,21 +114,20 @@ npx changeset publish
 git push --follow-tags
 ```
 
-To exit the prerelease mode and publish to latest:
+To exit the prerelease mode:
 
 ```sh
 npx changeset pre exit
-npx changeset version
-git add .
-git commit -m "Exit prerelease mode and version packages"
-npx changeset publish
-git push --follow-tags
 ```
 
 ### Latest channel
 
 ```sh
+npx changeset version
+git add .
+git commit -m "chore: Release vX.X.X"
 npx changeset publish
+git push --follow-tags
 ```
 
 ### Localhost
