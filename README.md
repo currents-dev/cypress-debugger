@@ -17,9 +17,6 @@ The plugin captures and replays everything that's happening in Cypress tests, th
  <a href="https://www.loom.com/share/6c2135fa1dce492ca997edd5cf56efe6">Video Demo</a> | <a href="https://sorry-cypress.dev">Sorry Cypress</a> | <a href="https://currents.dev">Currents</a>
 </p>
 
-
-
-
 ## Requirements
 
 - Cypress version 10+
@@ -96,7 +93,7 @@ See an example in [apps/web](https://github.com/currents-dev/cypress-debugger//b
 
 ## API
 
-### debuggerPlugin
+### Plugin: `debuggerPlugin`
 
 Installs cypress-debugger.
 
@@ -132,7 +129,7 @@ module.exports = defineConfig({
 });
 ```
 
-### debuggerSupport
+### Support File: `debuggerSupport`
 
 Attaches required handlers to [Cypress events](https://docs.cypress.io/api/cypress-api/catalog-of-events)
 
