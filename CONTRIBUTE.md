@@ -123,7 +123,10 @@ npx changeset pre exit
 ### Latest channel
 
 ```sh
+npx changeset
+# follow screen instructions
 npx changeset version
+# review the updated files
 git add .
 git commit -m "chore: Release vX.X.X"
 npx changeset publish
