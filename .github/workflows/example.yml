@@ -1,15 +1,9 @@
 name: Example
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches: [main]
+on: workflow_dispatch
 
 jobs:
   example:
-    if: "!contains(toJSON(github.event.commits.*.message), '[skip ci]')"
     runs-on: ubuntu-latest
 
     steps:
