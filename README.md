@@ -73,7 +73,7 @@ Configure the plugin as documented above. Use the `callback` function to fetch t
 
 Analyze the information using the debugger web app.
 
-### Chore / Chromium
+### Chrome / Chromium
 
 ```sh
 npx cypress run --chrome
