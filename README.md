@@ -7,14 +7,14 @@ Capture and replay Cypress Tests. Debug your failed and flaky CI cypress tests b
 - network requests (HAR)
 - browser console logs
 
-The plugin captures and replays everything that's happening in Cypress tests, think of it as Playwright traces for Cypress.
+The plugin captures and replays everything that's happening in Cypress tests, think of it as Playwright traces for Cypress. The player is available at: https://cypress-debugger.dev
 
 <p align="center">
   <img width="830" src="https://static.currents.dev/cypress-debugger-banner-gh.png" />
 </p>
 
 <p align="center">
- <a href="https://www.loom.com/share/6c2135fa1dce492ca997edd5cf56efe6">Video Demo</a> | <a href="https://sorry-cypress.dev">Sorry Cypress</a> | <a href="https://currents.dev">Currents</a>
+ <a href="https://www.loom.com/share/6c2135fa1dce492ca997edd5cf56efe6">Video Demo</a> | <a href="https://cypress-debugger.dev">Player</a> | <a href="https://sorry-cypress.dev">Sorry Cypress</a> | <a href="https://currents.dev">Currents</a>
 </p>
 
 ## Requirements
