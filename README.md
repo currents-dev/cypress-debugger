@@ -146,3 +146,7 @@ Our example setup is working with Chromim-based (Electron and Chrome / Chromium)
 - Use the debug mode to identify possible root cause: `NODE_DEBUG=cypress-har-generator* DEBUG=cypress:*,cypress-debugger* ELECTRON_EXTRA_LAUNCH_ARGS=--remote-debugging-port=9226 npx cypress run --browser electron`
 - If you found a workaround, submit a contribution with code or documentation improvement
 - If you found a bug, submit a [new issue](https://github.com/currents-dev/cypress-debugger/issues/new) with all the details and suggestion
+
+## Disclaimer
+
+All third party trademarks and references (including logos and icons) referenced herein are the property of their respective owners. Unless specifically designated as Made by Currents, integrations are not supported or maintained by Currents. The third party products or services that this software connects to are subject to their respective owners intellectual property and terms of service agreements.
