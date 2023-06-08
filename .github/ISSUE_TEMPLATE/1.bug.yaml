@@ -1,0 +1,124 @@
+name: Bug report
+description: Create an issue report
+labels: bug
+
+body:
+  - type: checkboxes
+    attributes:
+      label: |
+        Before opening, please confirm:
+      options:
+        - label: I have searched for [duplicate or closed issues](https://github.com/currents-dev/cypress-debugger/issues) and [discussions](https://github.com/currents-dev/cypress-debugger/discussions).
+          required: true
+        - label: I have done my best to include a minimal, self-contained set of instructions for consistently reproducing the issue.
+          required: true
+        - label: I acknowledge that I will attach a **full debug log**, otherwise the issue will be closed with no response.
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Environment
+  - type: textarea
+    attributes:
+      label: Environment information
+      description: |
+        Collect environemnt information:
+        - Cypress version
+        - Node.js version
+        - Operating system
+        - Browser version
+        - Dependencies versions
+
+        As a shortcut, run the following command inside your project and copy/paste the output below.
+
+         **👉🏻 Run the command in the right environment 👈🏻, e.g. if the problem is in CI environment, run it in the CI environment.
+
+        ```
+        npx envinfo --system --binaries --browsers --npmPackages --duplicates --npmGlobalPackages
+        ```
+      value: |
+        <details>
+
+        ```
+        # Put output below this line
+
+        ```
+
+        </details>
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        ## Details
+  - type: textarea
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Command and Setup
+      description: |
+        - The exact command you're using, including all flags and arguments -e.g. `LECTRON_EXTRA_LAUNCH_ARGS=--remote-debugging-port=9226 npx cypress run --browser electron`
+        - The relevant configuration files `cypress.config.j|ts|json`, `setupNodeEvents` and `cypress/plugins/index.js` if exusts
+        - ⚠️ Remove all sensitive data from the command and configuration files ⚠️
+      value: |
+        <details>
+
+        ### Command (share the exact `cypress` or `cypress-cloud` command you're running)        
+
+        ```
+        # Put output below this line
+
+        ```
+
+
+        ### Setup files cypress.config.j|ts|json
+
+        ```
+        # Put output below this line
+
+        ```
+        </details>
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Full log and debug output
+      description: |
+        Run in debug mode to provide more info - error messages and stack traces.
+
+        - **👉🏻 Include the full log 👈🏻 - starting from running the command till receiving an error.**
+        - Attach a link / file for long outputs.
+
+        Example:
+
+        - Linux: `NODE_DEBUG=cypress-har-generator* DEBUG=cypress:*,cypress-debugger* ELECTRON_EXTRA_LAUNCH_ARGS=--remote-debugging-port=9226 npx cypress run --browser electron`
+        - Windows: `cmd /V /C "set DEBUG=currents:*,cypress:*&& set NODE_DEBUG=cypress-har-generator*&& set ELECTRON_EXTRA_LAUNCH_ARGS=--remote-debugging-port=9226&& npx cypress run --browser electron"`
+
+        **Be sure to remove any sensitive data.**
+
+      value: |
+        <details>
+
+        ```
+        # Put your logs below this line
+
+
+        ```
+
+        </details>
+    validations:
+      required: true

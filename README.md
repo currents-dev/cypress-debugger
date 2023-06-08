@@ -136,3 +136,13 @@ Attaches required handlers to [Cypress events](https://docs.cypress.io/api/cypre
 ```ts
 debuggerSupport(): void
 ```
+
+## Troubleshooting
+
+Our example setup is working with Chromim-based (Electron and Chrome / Chromium) browsers. We have also created an [example CI integration with GitHub](https://github.com/currents-dev/cypress-debugger/blob/main/.github/workflows/example.yml). Most chances, your existing configuration is more complex and there are additional plugins that interfere with how this plugins works.
+
+- Try to simplify your configuration until you get a working example as appears in the example [apps/web](https://github.com/currents-dev/cypress-debugger//blob/main/apps/web)
+- Slowly enable the rest of the plugins, one-by-one until you face the issue
+- Use the debug mode to identify possible root cause: `NODE_DEBUG=cypress-har-generator* DEBUG=cypress:*,cypress-debugger* ELECTRON_EXTRA_LAUNCH_ARGS=--remote-debugging-port=9226 npx cypress run --browser electron`
+- If you found a workaround, submit a contribution with code or documentation improvement
+- If you found a bug, submit a [new issue](https://github.com/currents-dev/cypress-debugger/issues/new) with all the details and suggestion
