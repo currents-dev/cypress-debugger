@@ -13,10 +13,9 @@ import {
 import { createDir, readFile, removeDir, removeFile, writeFile } from './fs';
 import { PluginOptions, TestExecutionResult } from './types';
 
-const dumpDir = './dump';
 const harDir = 'dump_har';
 
-const createDumpFile = (data: TestExecutionResult): string => {
+const createDumpFile = (data: TestExecutionResult, dumpDir: string): string => {
   createDir(dumpDir);
   const resultsPath = path.join(dumpDir, `${data.id}.raw.json`);
   writeFile(resultsPath, JSON.stringify(data, null, 2));
@@ -60,7 +59,12 @@ function install(on: Cypress.PluginEvents, options?: PluginOptions) {
         pluginMeta: options?.meta,
       };
 
-      const resultsFilePath = createDumpFile(dumpData);
+      const dumpDir =
+        options?.dumpDir &&
+        path.resolve(options.dumpDir) !== path.resolve(harDir)
+          ? options?.dumpDir
+          : 'dump';
+      const resultsFilePath = createDumpFile(dumpData, dumpDir);
 
       if (options && options.callback) {
         options.callback(resultsFilePath, dumpData);
