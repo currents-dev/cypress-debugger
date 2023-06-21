@@ -123,7 +123,7 @@ module.exports = defineConfig({
         callback: (path, data) => {
           console.log({ path, data });
         },
-        dumpDir: 'cypress/e2e/reports'
+        dumpDir: 'cypress/e2e/reports',
       });
       return config;
     },

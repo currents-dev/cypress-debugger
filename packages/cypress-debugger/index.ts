@@ -26,8 +26,8 @@ export type {
   HttpArchiveEntryResponse,
   HttpArchiveLog,
   QueryStringEntity,
-  RRWebEvent,
   RawEvent,
+  RRWebEvent,
   RunContextData,
 } from '@currents/cypress-debugger-support';
 
