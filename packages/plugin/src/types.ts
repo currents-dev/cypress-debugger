@@ -132,6 +132,6 @@ export type TestExecutionResult = {
 
 export type PluginOptions = {
   meta?: Record<string, unknown>;
-  dumpDir?: string;
+  targetDirectory?: string;
   callback?: (path: string, result: TestExecutionResult) => void;
 };

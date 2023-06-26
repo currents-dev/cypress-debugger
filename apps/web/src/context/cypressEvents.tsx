@@ -1,6 +1,6 @@
 import { CypressEvent, TestExecutionResult } from 'cypress-debugger';
 import { orderBy } from 'lodash';
-import { createContext, PropsWithChildren, useContext, useState } from 'react';
+import { PropsWithChildren, createContext, useContext, useState } from 'react';
 import isValidDate from '../utils/isValidDate';
 
 export type CypressEventsContextType = {

@@ -105,7 +105,7 @@ debuggerPlugin(on: Cypress.PluginEvents, options?: PluginOptions): void
 - `options` - [`PluginOptions`](./packages/plugin/src/types.ts):
   - `meta: Record<string, unknown>`: an optional field that is added to the `TestExecutionResult` as `pluginMeta`
   - `callback: (path: string, data: TestExecutionResult`: a callback function that will be called after each test
-  - `dumpDir: string`: the path to the reports directory. Default is `dump`
+  - `targetDirectory: string`: the path to the reports directory. Default is `dump`
 
 Example:
 
@@ -123,7 +123,7 @@ module.exports = defineConfig({
         callback: (path, data) => {
           console.log({ path, data });
         },
-        dumpDir: 'cypress/e2e/reports',
+        targetDirectory: 'cypress/e2e/reports',
       });
       return config;
     },

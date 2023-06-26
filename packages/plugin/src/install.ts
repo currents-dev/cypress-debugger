@@ -60,10 +60,11 @@ function install(on: Cypress.PluginEvents, options?: PluginOptions) {
       };
 
       const dumpDir =
-        options?.dumpDir &&
-        path.resolve(options.dumpDir) !== path.resolve(harDir)
-          ? options?.dumpDir
+        options?.targetDirectory &&
+        path.resolve(options.targetDirectory) !== path.resolve(harDir)
+          ? options.targetDirectory
           : 'dump';
+
       const resultsFilePath = createDumpFile(dumpData, dumpDir);
 
       if (options && options.callback) {
