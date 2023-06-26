@@ -11,13 +11,15 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --check .",
-    "format-fix": "prettier --write ."
+    "format-fix": "prettier --write .",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.1",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.38.0",
     "eslint-config-custom": "*",
+    "husky": "^8.0.0",
     "postcss": "^8.4.22",
     "prettier": "latest",
     "prettier-plugin-organize-imports": "^3.2.2",
