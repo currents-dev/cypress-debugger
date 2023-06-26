@@ -39,6 +39,7 @@ module.exports = {
     'eslintrc.js',
   ],
   rules: {
+    '@typescript-eslint/ban-ts-comment': 0,
     'import/prefer-default-export': 'off',
     'prettier/prettier': 1,
   },

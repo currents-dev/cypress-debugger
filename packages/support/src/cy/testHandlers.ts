@@ -23,6 +23,7 @@ export function handleAfterEach() {
   const eventsBatch = eventsContainer.getEvents();
   const harFilename = `${eventsBatch.testId}.raw.json`;
 
+  // @ts-ignore
   const { state } = this.currentTest;
   const reportFailedTestsOnly = !!Cypress.env(
     '__cypress_debugger_failedTestsOnly'
