@@ -1,5 +1,13 @@
 # @currents/cypress-debugger-plugin
 
+## 1.0.5
+
+### Patch Changes
+
+- Allow inclusion of traces for failing tests only
+- Updated dependencies
+  - @currents/cypress-debugger-support@1.0.5
+
 ## 1.0.4
 
 ### Patch Changes
