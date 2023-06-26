@@ -23,6 +23,15 @@ export function handleAfterEach() {
   const eventsBatch = eventsContainer.getEvents();
   const harFilename = `${eventsBatch.testId}.raw.json`;
 
+  const { state } = this.currentTest;
+  const reportFailedTestsOnly = Cypress.env('reportFailedTestsOnly');
+  if (state === 'passed' && reportFailedTestsOnly) {
+    // do not save the recorded network logs
+    cy.disposeOfHar();
+    // do not save reports
+    return;
+  }
+
   // create dump file for network data
   cy.saveHar({
     outDir: 'dump_har',

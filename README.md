@@ -131,6 +131,23 @@ module.exports = defineConfig({
 });
 ```
 
+In order to get reports for failing tests only, set the `reportFailedTestsOnly` Cypress env variable to `true`:
+
+Example:
+
+```js
+module.exports = defineConfig({
+  e2e: {
+    setupNodeEvents(on, config) {
+      config.env.reportFailedTestsOnly = true;
+
+      debuggerPlugin(on);
+      return config;
+    },
+  },
+});
+```
+
 ### Support File: `debuggerSupport`
 
 Attaches required handlers to [Cypress events](https://docs.cypress.io/api/cypress-api/catalog-of-events)
