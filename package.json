@@ -21,6 +21,7 @@
     "postcss": "^8.4.22",
     "prettier": "latest",
     "prettier-plugin-organize-imports": "^3.2.2",
+    "pretty-quick": "^3.1.3",
     "turbo": "latest"
   },
   "engines": {
