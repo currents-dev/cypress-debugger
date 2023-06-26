@@ -36,7 +36,16 @@ const getHar = (filename: string): HttpArchiveLog | null => {
   }
 };
 
-function install(on: Cypress.PluginEvents, options?: PluginOptions) {
+function install(
+  on: Cypress.PluginEvents,
+  config: Cypress.PluginConfigOptions,
+  options?: PluginOptions
+) {
+  if (options?.failedTestsOnly) {
+    // eslint-disable-next-line no-underscore-dangle, no-param-reassign
+    config.env.__cypress_debugger_failedTestsOnly = true;
+  }
+
   on('task', {
     // called in "afterEach" hook
     dumpEvents(
@@ -97,6 +106,8 @@ function install(on: Cypress.PluginEvents, options?: PluginOptions) {
   on('before:spec', async () => {
     await recordLogs();
   });
+
+  return config;
 }
 
 export default install;

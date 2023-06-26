@@ -40,7 +40,7 @@ const { debuggerPlugin } = require('cypress-debugger');
 module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
-      debuggerPlugin(on, {
+      debuggerPlugin(on, config, {
         meta: {
           key: 'value',
         },
@@ -98,14 +98,16 @@ See an example in [apps/web](https://github.com/currents-dev/cypress-debugger//b
 Installs cypress-debugger.
 
 ```ts
-debuggerPlugin(on: Cypress.PluginEvents, options?: PluginOptions): void
+debuggerPlugin(on: Cypress.PluginEvents, config: Cypress.PluginConfig, options?: PluginOptions): void
 ```
 
-- `on` - [`Cypress.PluginEvents`](https://docs.cypress.io/guides/tooling/plugins-guide) `setupNodeEvents` method first argument
+- `on` - [`Cypress.PluginEvents`](https://docs.cypress.io/guides/references/configuration#setupNodeEvents) `setupNodeEvents` method first argument
+- `on` - [`Cypress.PluginConfig`](https://docs.cypress.io/guides/references/configuration#setupNodeEvents) `setupNodeEvents` method second argument
 - `options` - [`PluginOptions`](./packages/plugin/src/types.ts):
   - `meta: Record<string, unknown>`: an optional field that is added to the `TestExecutionResult` as `pluginMeta`
   - `callback: (path: string, data: TestExecutionResult`: a callback function that will be called after each test
   - `targetDirectory: string`: the path to the reports directory. Default is `dump`
+  - `failedTestsOnly: boolean`: whether to generate debug traces for failed tests only, default is `false`
 
 Example:
 
@@ -116,7 +118,7 @@ const { debuggerPlugin } = require('cypress-debugger');
 module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
-      debuggerPlugin(on, {
+      return debuggerPlugin(on, config, {
         meta: {
           key: 'value',
         },
@@ -125,7 +127,22 @@ module.exports = defineConfig({
         },
         targetDirectory: 'cypress/e2e/reports',
       });
-      return config;
+    },
+  },
+});
+```
+
+In order to generate traces for failing tests only, set the `failedTestsOnly` configuration to `true`
+
+Example:
+
+```js
+module.exports = defineConfig({
+  e2e: {
+    setupNodeEvents(on, config) {
+      return debuggerPlugin(on, config, {
+        failedTestsOnly: true,
+      });
     },
   },
 });
@@ -135,7 +152,7 @@ module.exports = defineConfig({
 
 Attaches required handlers to [Cypress events](https://docs.cypress.io/api/cypress-api/catalog-of-events)
 
-```ts
+```typescript
 debuggerSupport(): void
 ```
 

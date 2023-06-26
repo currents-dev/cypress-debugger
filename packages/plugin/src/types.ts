@@ -133,5 +133,6 @@ export type TestExecutionResult = {
 export type PluginOptions = {
   meta?: Record<string, unknown>;
   targetDirectory?: string;
+  failedTestsOnly?: boolean;
   callback?: (path: string, result: TestExecutionResult) => void;
 };
