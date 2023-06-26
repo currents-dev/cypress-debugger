@@ -131,6 +131,7 @@ git add .
 git commit -m "chore: Release vX.X.X"
 npx changeset publish
 git push --follow-tags
+# create a new release on github
 ```
 
 ### Localhost
