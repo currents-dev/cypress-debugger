@@ -7,7 +7,7 @@ module.exports = defineConfig({
     specPattern: 'cypress/e2e/*.spec.js',
     supportFile: 'cypress/support/e2e.ts',
     setupNodeEvents(on, config) {
-      debuggerPlugin(on, {
+      debuggerPlugin(on, config, {
         meta: {
           key: 'value',
         },
