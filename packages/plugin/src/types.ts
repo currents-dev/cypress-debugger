@@ -135,4 +135,5 @@ export type PluginOptions = {
   targetDirectory?: string;
   failedTestsOnly?: boolean;
   callback?: (path: string, result: TestExecutionResult) => void;
+  filenameFn?: (ctx: RunContextData) => string;
 };

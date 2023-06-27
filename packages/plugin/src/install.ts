@@ -13,11 +13,19 @@ import {
 import { createDir, readFile, removeDir, removeFile, writeFile } from './fs';
 import { PluginOptions, TestExecutionResult } from './types';
 
+type CreateDumpFileOptions = {
+  dumpDir: string;
+  filename: string;
+};
+
 const harDir = 'dump_har';
 
-const createDumpFile = (data: TestExecutionResult, dumpDir: string): string => {
+const createDumpFile = (
+  data: TestExecutionResult,
+  { dumpDir, filename }: CreateDumpFileOptions
+): string => {
   createDir(dumpDir);
-  const resultsPath = path.join(dumpDir, `${data.id}.raw.json`);
+  const resultsPath = path.join(dumpDir, `${filename}.json`);
   writeFile(resultsPath, JSON.stringify(data, null, 2));
   return resultsPath;
 };
@@ -74,7 +82,20 @@ function install(
           ? options.targetDirectory
           : 'dump';
 
-      const resultsFilePath = createDumpFile(dumpData, dumpDir);
+      let filename = `${dumpData.meta.spec}_${dumpData.meta.test.join(' > ')}_${
+        dumpData.meta.retryAttempt + 1
+      }`;
+      if (typeof options?.filenameFn === 'function') {
+        const result = options.filenameFn(dumpData.meta);
+        if (typeof result === 'string') {
+          filename = result;
+        }
+      }
+
+      const resultsFilePath = createDumpFile(dumpData, {
+        dumpDir,
+        filename,
+      });
 
       if (options && options.callback) {
         options.callback(resultsFilePath, dumpData);

@@ -102,12 +102,21 @@ debuggerPlugin(on: Cypress.PluginEvents, config: Cypress.PluginConfig, options?:
 ```
 
 - `on` - [`Cypress.PluginEvents`](https://docs.cypress.io/guides/references/configuration#setupNodeEvents) `setupNodeEvents` method first argument
-- `on` - [`Cypress.PluginConfig`](https://docs.cypress.io/guides/references/configuration#setupNodeEvents) `setupNodeEvents` method second argument
+- `config` - [`Cypress.PluginConfig`](https://docs.cypress.io/guides/references/configuration#setupNodeEvents) `setupNodeEvents` method second argument
 - `options` - [`PluginOptions`](./packages/plugin/src/types.ts):
   - `meta: Record<string, unknown>`: an optional field that is added to the `TestExecutionResult` as `pluginMeta`
   - `callback: (path: string, data: TestExecutionResult`: a callback function that will be called after each test
   - `targetDirectory: string`: the path to the reports directory. Default is `dump`
   - `failedTestsOnly: boolean`: whether to generate debug traces for failed tests only, default is `false`
+  - `filenameFn: (ctx: RunContextData) => string`: a function used to generate the filename of each test. By default, the filename is created using `spec_test_attempt` template.
+
+```typescript
+interface RunContextData {
+  spec: string;
+  test: string[];
+  retryAttempt: number;
+}
+```
 
 Example:
 
@@ -126,6 +135,7 @@ module.exports = defineConfig({
           console.log({ path, data });
         },
         targetDirectory: 'cypress/e2e/reports',
+        filenameFn: ({ spec }) => `${spec}_${Date.now()}`,
       });
     },
   },
