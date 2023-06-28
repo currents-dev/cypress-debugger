@@ -17,7 +17,15 @@ const harDir = 'dump_har';
 
 const createDumpFile = (data: TestExecutionResult, dumpDir: string): string => {
   createDir(dumpDir);
-  const resultsPath = path.join(dumpDir, `${data.id}.raw.json`);
+
+  const specDirPath = path.join(dumpDir, data.meta.spec);
+  createDir(specDirPath);
+
+  const filename = `${data.meta.test.join(' -- ')} (${data.meta.state})${
+    data.meta.retryAttempt > 0 ? ` (attempt ${data.meta.retryAttempt + 1})` : ''
+  }`;
+
+  const resultsPath = path.join(specDirPath, `${filename}.json`);
   writeFile(resultsPath, JSON.stringify(data, null, 2));
   return resultsPath;
 };
