@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/Button';
 import { useCypressEventsContext } from '@/context/cypressEvents';
+import { testStateVariants } from '@/lib/testState';
 import { cn } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
 import clsx from 'clsx';
@@ -53,15 +54,10 @@ function CyEventItem({
       role="presentation"
     >
       <span
-        className={clsx('pr-2', [
-          payload.state === 'pending'
-            ? 'text-amber-500 dark:text-yellow-300'
-            : '',
-          payload.state === 'passed'
-            ? 'text-emerald-700 dark:text-emerald-500'
-            : '',
-          payload.state === 'failed' ? 'text-red-600 dark:text-red-400' : '',
-        ])}
+        className={clsx(
+          'pr-2',
+          cn(testStateVariants({ state: payload.state }))
+        )}
       >
         [{payload.state}]
       </span>

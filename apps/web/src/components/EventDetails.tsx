@@ -1,3 +1,5 @@
+import { testStateVariants } from '@/lib/testState';
+import { cn } from '@/lib/utils';
 import formatMillis from '@/utils/formatMillis';
 import clsx from 'clsx';
 import { CypressEvent } from 'cypress-debugger';
@@ -52,17 +54,10 @@ export function EventDetails({ event }: { event: CypressEvent | null }) {
     <div className="max-h-[calc(100vh-8rem)] overflow-auto ">
       <div className="pl-4 pr-2 py-3 border-b">
         <span
-          className={clsx('pr-2', [
-            event.payload.state === 'pending'
-              ? 'text-amber-500 dark:text-yellow-300'
-              : '',
-            event.payload.state === 'passed'
-              ? 'text-emerald-700 dark:text-emerald-500'
-              : '',
-            event.payload.state === 'failed'
-              ? 'text-red-600 dark:text-red-400'
-              : '',
-          ])}
+          className={clsx(
+            'pr-2',
+            cn(testStateVariants({ state: event.payload.state }))
+          )}
         >
           [{event.payload.state}]
         </span>

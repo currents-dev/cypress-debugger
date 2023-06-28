@@ -1,6 +1,13 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { eventWithTime } from '@rrweb/types';
 
+export enum TestState {
+  Failed = 'failed',
+  Passed = 'passed',
+  Pending = 'pending',
+  Skipped = 'skipped',
+}
+
 export type RRWebRawEvent = eventWithTime;
 export type CypressRawEvent = {
   chainerId?: string;
@@ -11,7 +18,7 @@ export type CypressRawEvent = {
   instrument: string;
   message: string;
   name: string;
-  state: string;
+  state: TestState;
   testCurrentRetry: number;
   testId: string;
   type?: string;

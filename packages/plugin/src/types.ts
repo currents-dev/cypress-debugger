@@ -3,6 +3,7 @@ import {
   HttpArchiveLog,
   RRWebEvent,
   RunContextData,
+  TestState,
 } from '@currents/cypress-debugger-support';
 
 export type LogEntryLevel = 'verbose' | 'info' | 'warning' | 'error';
@@ -122,7 +123,7 @@ export type BrowserLog = {
 
 export type TestExecutionResult = {
   id: string;
-  meta: RunContextData;
+  meta: RunContextData & { state: TestState };
   cy: CypressEvent[];
   rr: RRWebEvent[];
   har: HttpArchiveLog | null;
