@@ -29,6 +29,7 @@ export type {
   RRWebEvent,
   RawEvent,
   RunContextData,
+  TestState,
 } from '@currents/cypress-debugger-support';
 
 export const debuggerSupport = attachHandlers;

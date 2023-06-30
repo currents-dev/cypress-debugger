@@ -3,6 +3,8 @@ import { useCypressEventsContext } from '@/context/cypressEvents';
 import { useHttpArchiveContext } from '@/context/httpArchiveEntries';
 import { useReplayerContext } from '@/context/replayer';
 import { usePayloadQueryParam } from '@/hooks/useQuery';
+import { testStateVariants } from '@/lib/testState';
+import { cn } from '@/lib/utils';
 import Console from './Console';
 import CyEvents from './CyEvents';
 import DarkModeToggle from './DarkModeToggle';
@@ -97,7 +99,24 @@ function GridLayout() {
                       {meta?.spec}
                     </div>
                     <div className="font-base">{meta?.test.join(' > ')}</div>
-                    <div className="font-thin">retry: {meta.retryAttempt}</div>
+                    <div className="font-base">
+                      <strong>state</strong>:{' '}
+                      <span
+                        className={cn(
+                          testStateVariants({
+                            state: meta.state,
+                          })
+                        )}
+                      >
+                        {' '}
+                        {meta.state}
+                      </span>
+                    </div>
+                    {meta.retryAttempt > 0 && (
+                      <div className="font-thin">
+                        attempt: {meta.retryAttempt + 1}
+                      </div>
+                    )}
                   </div>
                 )}
                 <Tabs defaultValue="steps" className="w-[400px]">

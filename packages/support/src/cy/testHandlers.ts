@@ -46,7 +46,7 @@ export function handleAfterEach() {
   // get cy and rr events + test meta
   cy.task('dumpEvents', {
     id: eventsBatch.testId,
-    meta: getRunContext(),
+    meta: { ...getRunContext(), state },
     cy: eventsBatch.events.cy,
     rr: eventsBatch.events.rr,
     harFilename,
