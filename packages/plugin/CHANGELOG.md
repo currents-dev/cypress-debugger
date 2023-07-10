@@ -1,5 +1,13 @@
 # @currents/cypress-debugger-plugin
 
+## 1.0.6
+
+### Patch Changes
+
+- Custom filenames #49, export TS, refine license
+- Updated dependencies
+  - @currents/cypress-debugger-support@1.0.6
+
 ## 1.0.5
 
 ### Patch Changes
