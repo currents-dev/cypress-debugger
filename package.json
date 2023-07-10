@@ -12,7 +12,8 @@
     "lint": "turbo run lint",
     "format": "prettier --check .",
     "format-fix": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "publish": "turbo run publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.1",

@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsup-node",
     "dev": "tsup --watch",
-    "lint": "eslint src --fix"
+    "lint": "eslint src --fix",
+    "publish": "node ./publish.js"
   },
   "files": [
     "dist",
@@ -26,5 +27,12 @@
     "@neuralegion/cypress-har-generator": "^5.16.4",
     "chrome-remote-interface": "^0.32.1",
     "debug": "^4.3.4"
+  },
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
   }
 }
