@@ -3,7 +3,6 @@
   "include": ["src/**/*"],
   "exclude": ["dist", "node_modules"],
   "compilerOptions": {
-    "types": ["node", "@neuralegion/cypress-har-generator"],
     "typeRoots": ["./node_modules/@types", "./src/@types"],
     "lib": ["ES2018", "DOM"],
     "target": "ES2018"
