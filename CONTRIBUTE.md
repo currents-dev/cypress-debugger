@@ -99,9 +99,11 @@ Enter prerelease mode and made the first prerelease
 npx changeset pre enter beta
 npx changeset version
 git add .
-git commit -m "Enter prerelease mode and version packages"
+git commit -m "chore: release vX.X.X-beta.X"
 
 npm run publish -- -- beta
+
+git tag "vX.X.X-beta.X"
 git push --follow-tags
 ```
 
@@ -112,6 +114,8 @@ npx changeset version
 git add .
 git commit -m "Version packages"
 npm run publish -- -- beta
+
+git tag "x.x.x-beta.x"
 git push --follow-tags
 ```
 
@@ -129,9 +133,11 @@ npx changeset
 npx changeset version
 # review the updated files
 git add .
-git commit -m "chore: Release vX.X.X"
+git commit -m "chore: release vX.X.X"
 
 npm run publish -- -- latest
+
+git tag "vX.X.X"
 git push --follow-tags
 # create a new release on github
 ```

@@ -2,6 +2,7 @@
   "name": "cypress-debugger",
   "version": "1.0.7",
   "main": "./dist/index.js",
+  "types": "./src/index.ts",
   "author": "Currents Software Inc",
   "homepage": "https://github.com/currents-dev/cypress-debugger",
   "bugs": {
