@@ -1,18 +1,5 @@
 # @currents/cypress-debugger-support
 
-## 1.0.7
-
-### Patch Changes
-
-- 77f2a48: test release
-- test release
-
-## 1.0.6
-
-### Patch Changes
-
-- Test release
-
 ## 1.0.5
 
 ### Patch Changes
