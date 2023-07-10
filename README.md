@@ -89,7 +89,8 @@ ELECTRON_EXTRA_LAUNCH_ARGS=--remote-debugging-port=9222 npx cypress run --browse
 
 ## Example
 
-See an example in [apps/web](https://github.com/currents-dev/cypress-debugger//blob/main/apps/web) directory.
+- See an example in [apps/web](https://github.com/currents-dev/cypress-debugger//blob/main/apps/web) directory
+- Example of integrating with Currents: https://github.com/currents-dev/gh-actions-example/tree/debugger-example
 
 ## API
 
