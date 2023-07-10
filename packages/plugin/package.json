@@ -10,6 +10,17 @@
     "lint": "eslint src --fix",
     "publish": "node ./publish.js"
   },
+  "keywords": [
+    "cypress",
+    "e2e",
+    "cypress-debugger",
+    "currents",
+    "cypress-replay",
+    "cypress-traces",
+    "replay",
+    "sorry-cypress",
+    "time-travel"
+  ],
   "files": [
     "dist",
     "LICENSE.md"
@@ -27,12 +38,5 @@
     "@neuralegion/cypress-har-generator": "^5.16.4",
     "chrome-remote-interface": "^0.32.1",
     "debug": "^4.3.4"
-  },
-  "exports": {
-    ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
-    }
   }
 }

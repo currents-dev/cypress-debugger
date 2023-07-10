@@ -65,12 +65,5 @@
     "sourcemap": "inline",
     "platform": "node",
     "target": "es2018"
-  },
-  "exports": {
-    ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
-    }
   }
 }
