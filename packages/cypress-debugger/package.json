@@ -2,7 +2,7 @@
   "name": "cypress-debugger",
   "version": "1.0.5",
   "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "types": "./src/index.ts",
   "author": "Currents Software Inc",
   "homepage": "https://github.com/currents-dev/cypress-debugger",
   "bugs": {
@@ -20,7 +20,8 @@
   "scripts": {
     "build": "tsup-node --dts",
     "dev": "tsup --watch",
-    "lint": "eslint --fix"
+    "lint": "eslint --fix",
+    "publish": "node ./publish.js"
   },
   "keywords": [
     "cypress",
