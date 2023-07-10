@@ -25,6 +25,10 @@
     "cypress",
     "e2e",
     "cypress-debugger",
+    "currents",
+    "cypress-replay",
+    "cypress-traces",
+    "replay",
     "sorry-cypress",
     "time-travel"
   ],
