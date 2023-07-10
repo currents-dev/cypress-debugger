@@ -142,7 +142,7 @@ git push --follow-tags
 docker run -it --rm --name verdaccio -p 4873:4873 verdaccio/verdaccio
 npm adduser --registry http://localhost:4873
 npm login --registry http://localhost:4873
-npm_config_registry=http://localhost:4873 npm run publish -- -- beta
+npm_config_registry=http://localhost:4873 npm run publish -- -- latest
 
 # use the new package
 npm_config_registry=http://localhost:4873 npm i cypress-debugger  --@currents:registry=http://localhost:4873
