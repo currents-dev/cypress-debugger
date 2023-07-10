@@ -3,14 +3,15 @@
   "version": "1.0.5",
   "main": "./dist/index.js",
   "types": "./src/index.ts",
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "scripts": {
     "build": "tsup-node",
     "dev": "tsup --watch",
     "lint": "eslint src --fix"
   },
   "files": [
-    "dist"
+    "dist",
+    "LICENSE.md"
   ],
   "devDependencies": {
     "@types/chrome-remote-interface": "^0.31.9",

@@ -9,12 +9,13 @@
     "url": "https://github.com/currents-dev/cypress-debugger/issues",
     "email": "support@currents.dev"
   },
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "engines": {
     "node": ">=14.7.0"
   },
   "files": [
-    "dist"
+    "dist",
+    "LICENSE.md"
   ],
   "scripts": {
     "build": "tsup-node --dts",
