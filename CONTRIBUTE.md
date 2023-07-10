@@ -100,7 +100,7 @@ npx changeset pre enter beta
 npx changeset version
 git add .
 git commit -m "Enter prerelease mode and version packages"
-npm run build
+
 npm run publish -- -- beta
 git push --follow-tags
 ```
@@ -130,7 +130,7 @@ npx changeset version
 # review the updated files
 git add .
 git commit -m "chore: Release vX.X.X"
-npm run build
+
 npm run publish -- -- latest
 git push --follow-tags
 # create a new release on github
