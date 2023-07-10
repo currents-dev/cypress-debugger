@@ -1,5 +1,13 @@
 # @currents/cypress-debugger-plugin
 
+## 1.0.6
+
+### Patch Changes
+
+- Test release
+- Updated dependencies
+  - @currents/cypress-debugger-support@1.0.6
+
 ## 1.0.5
 
 ### Patch Changes
