@@ -11,6 +11,7 @@ import {
   recordLogs,
 } from './browserLogs';
 import { createDir, readFile, removeDir, removeFile, writeFile } from './fs';
+import { sanitizeFilename } from './lib';
 import { PluginOptions, TestExecutionResult } from './types';
 
 const harDir = 'dump_har';
@@ -18,14 +19,17 @@ const harDir = 'dump_har';
 const createDumpFile = (data: TestExecutionResult, dumpDir: string): string => {
   createDir(dumpDir);
 
-  const specDirPath = path.join(dumpDir, data.meta.spec);
+  const specDirPath = path.join(dumpDir, sanitizeFilename(data.meta.spec));
   createDir(specDirPath);
 
   const filename = `${data.meta.test.join(' -- ')} (${data.meta.state})${
     data.meta.retryAttempt > 0 ? ` (attempt ${data.meta.retryAttempt + 1})` : ''
   }`;
 
-  const resultsPath = path.join(specDirPath, `${filename}.json`);
+  const resultsPath = path.join(
+    specDirPath,
+    `${sanitizeFilename(filename)}.json`
+  );
   writeFile(resultsPath, JSON.stringify(data, null, 2));
   return resultsPath;
 };
