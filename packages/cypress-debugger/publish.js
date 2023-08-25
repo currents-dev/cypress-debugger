@@ -16,6 +16,11 @@ const newPkg = {
   ...pkg,
   types: undefined,
   files: ['*'],
+  dependencies: {
+    ...pkg.dependencies,
+    '@currents/cypress-debugger-plugin': pkg.version,
+    '@currents/cypress-debugger-support': pkg.version,
+  },
   exports: {
     '.': {
       import: './index.mjs',
