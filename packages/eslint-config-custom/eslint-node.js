@@ -2,6 +2,8 @@ module.exports = {
   env: {
     node: true,
   },
+  ignorePatterns: ['**/__tests__/*.ts'],
+
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -11,10 +13,12 @@ module.exports = {
     'plugin:import/typescript',
     'turbo',
     'plugin:prettier/recommended',
+    'plugin:jest/recommended',
   ],
-  plugins: ['prettier'],
+  plugins: ['prettier', 'jest'],
   parserOptions: {
-    project: ['./tsconfig.json'],
+    parser: '@typescript/eslint-parser',
+    project: ['./tsconfig.json', 'packages/*/tsconfig.json'],
   },
   settings: {
     'import/parsers': {
@@ -36,7 +40,7 @@ module.exports = {
     'node_modules',
     '.turbo',
     'dist',
-    'eslintrc.js',
+    '.eslintrc.js',
   ],
   rules: {
     '@typescript-eslint/ban-ts-comment': 0,
