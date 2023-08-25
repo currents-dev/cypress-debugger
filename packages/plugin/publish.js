@@ -33,7 +33,7 @@ fs.writeFileSync(
 );
 fs.copyFileSync('./README.md', './dist/README.md');
 fs.copyFileSync('../../LICENSE.md', './dist/LICENSE.md');
-execSync(`npm pack --dry-run && npm publish --tag ${tag}`, {
+execSync(`npm pack --dry-run && npm publish --tag ${tag} ${argv[3]}`, {
   cwd: './dist',
   stdio: 'inherit',
 });

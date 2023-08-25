@@ -135,7 +135,7 @@ npx changeset version
 git add .
 git commit -m "chore: release vX.X.X"
 
-npm run publish -- -- latest
+npm run publish -- -- latest --otp=XXXXX
 
 git tag "vX.X.X"
 git push --follow-tags

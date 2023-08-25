@@ -8,7 +8,7 @@
     "build": "tsup-node",
     "dev": "tsup --watch",
     "lint": "eslint src --fix",
-    "publish": "node ./publish.js"
+    "publish-npm": "node ./publish.js"
   },
   "keywords": [
     "cypress",

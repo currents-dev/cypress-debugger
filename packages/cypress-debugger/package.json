@@ -21,7 +21,7 @@
     "build": "tsup-node --dts",
     "dev": "tsup --watch",
     "lint": "eslint --fix",
-    "publish": "node ./publish.js"
+    "publish-npm": "node ./publish.js"
   },
   "keywords": [
     "cypress",

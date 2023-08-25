@@ -2,7 +2,7 @@
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
-    "publish": {
+    "publish-npm": {
       "dependsOn": ["^build"],
       "cache": false
     },
