@@ -2,6 +2,8 @@ module.exports = {
   env: {
     node: true,
   },
+  ignorePatterns: ['**/__tests__/*.ts'],
+
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -16,6 +18,7 @@ module.exports = {
   plugins: ['prettier', 'jest'],
   parserOptions: {
     parser: '@typescript/eslint-parser',
+    project: ['./tsconfig.json', 'packages/*/tsconfig.json'],
   },
   settings: {
     'import/parsers': {
