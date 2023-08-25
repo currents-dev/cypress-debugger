@@ -1,5 +1,13 @@
 # @currents/cypress-debugger-plugin
 
+## 1.0.7
+
+### Patch Changes
+
+- CSR-780 - fix test saving path
+- Updated dependencies
+  - @currents/cypress-debugger-support@1.0.7
+
 ## 1.0.6
 
 ### Patch Changes
