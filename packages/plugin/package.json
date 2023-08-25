@@ -8,7 +8,8 @@
     "build": "tsup-node",
     "dev": "tsup --watch",
     "lint": "eslint src --fix",
-    "publish": "node ./publish.js"
+    "publish": "node ./publish.js",
+    "test": "jest"
   },
   "keywords": [
     "cypress",
@@ -28,7 +29,6 @@
   "devDependencies": {
     "@types/chrome-remote-interface": "^0.31.9",
     "@types/debug": "^4.1.7",
-    "cypress": "^12.7.0",
     "tsconfig": "*",
     "tsup": "^6.6.3",
     "typescript": "^5.1.6"
