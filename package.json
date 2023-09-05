@@ -13,7 +13,7 @@
     "format": "prettier --check .",
     "format-fix": "prettier --write .",
     "prepare": "husky install",
-    "publish": "turbo run publish-npm",
+    "publish-npm": "turbo run publish-npm",
     "test": "turbo run test"
   },
   "devDependencies": {

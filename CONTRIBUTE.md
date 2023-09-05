@@ -113,7 +113,7 @@ To add another prerelease, run:
 npx changeset version
 git add .
 git commit -m "Version packages"
-npm run publish -- -- beta
+npm run publish-npm -- -- beta --otp=XXXXXX
 
 git tag "x.x.x-beta.x"
 git push --follow-tags
@@ -135,7 +135,7 @@ npx changeset version
 git add .
 git commit -m "chore: release vX.X.X"
 
-npm run publish -- -- latest --otp=XXXXX
+npm run publish-npm -- -- latest --otp=XXXXX
 
 git tag "vX.X.X"
 git push --follow-tags
@@ -148,7 +148,7 @@ git push --follow-tags
 docker run -it --rm --name verdaccio -p 4873:4873 verdaccio/verdaccio
 npm adduser --registry http://localhost:4873
 npm login --registry http://localhost:4873
-npm_config_registry=http://localhost:4873 npm run publish -- -- latest
+npm_config_registry=http://localhost:4873 npm run publish-npm -- -- latest
 
 # use the new package
 npm_config_registry=http://localhost:4873 npm i cypress-debugger  --@currents:registry=http://localhost:4873
