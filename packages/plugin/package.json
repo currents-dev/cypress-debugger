@@ -1,6 +1,6 @@
 {
   "name": "@currents/cypress-debugger-plugin",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "main": "./dist/index.js",
   "types": "./src/index.ts",
   "license": "GPL-3.0-or-later",

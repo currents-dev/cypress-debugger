@@ -3,12 +3,13 @@
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
     "publish-npm": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["build"],
       "cache": false
     },
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**"],
+      "cache": false,
       "env": ["ELECTRON_EXTRA_LAUNCH_ARGS"]
     },
     "lint": {

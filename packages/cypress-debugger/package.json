@@ -1,6 +1,6 @@
 {
   "name": "cypress-debugger",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "main": "./dist/index.js",
   "types": "./src/index.ts",
   "author": "Currents Software Inc",

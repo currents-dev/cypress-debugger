@@ -1,5 +1,9 @@
 # cypress-debugger
 
+## 1.0.9
+
+- Fix types for published packages
+
 ## 1.0.8
 
 - Fix types for published packages
