@@ -44,7 +44,7 @@ module.exports = defineConfig({
         meta: {
           key: 'value',
         },
-        // path: abosulte path to the dump file
+        // path: absolute path to the dump file
         // data: captured data
         callback: (path, data) => {
           console.log({
