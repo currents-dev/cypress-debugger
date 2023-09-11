@@ -103,7 +103,7 @@ debuggerPlugin(on: Cypress.PluginEvents, config: Cypress.PluginConfig, options?:
 ```
 
 - `on` - [`Cypress.PluginEvents`](https://docs.cypress.io/guides/references/configuration#setupNodeEvents) `setupNodeEvents` method first argument
-- `on` - [`Cypress.PluginConfig`](https://docs.cypress.io/guides/references/configuration#setupNodeEvents) `setupNodeEvents` method second argument
+- `config` - [`Cypress.PluginConfig`](https://docs.cypress.io/guides/references/configuration#setupNodeEvents) `setupNodeEvents` method second argument
 - `options` - [`PluginOptions`](./packages/plugin/src/types.ts):
   - `meta: Record<string, unknown>`: an optional field that is added to the `TestExecutionResult` as `pluginMeta`
   - `callback: (path: string, data: TestExecutionResult`: a callback function that will be called after each test
