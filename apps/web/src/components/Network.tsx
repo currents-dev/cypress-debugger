@@ -57,7 +57,7 @@ function ResponseBody({
 }: {
   content: HttpArchiveEntryResponse['content'];
 }) {
-  const [show, setShow] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   return (
     <ul className="flex-col">
@@ -71,11 +71,11 @@ function ResponseBody({
         Compression: <HighlightedValue value={content.compression ?? '-'} />
       </li>
       <li>
-        <Collapsible>
-          <CollapsibleTrigger onClick={() => setShow((v) => !v)}>
+        <Collapsible open={open} onOpenChange={setOpen}>
+          <CollapsibleTrigger>
             <div className="flex items-center">
               <span className="pr-1">Content</span>
-              {show ? (
+              {open ? (
                 <ChevronDown className="h-4 w-4 bg-accent" />
               ) : (
                 <ChevronRight className="h-4 w-4 bg-accent" />
