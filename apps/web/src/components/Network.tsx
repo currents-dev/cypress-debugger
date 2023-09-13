@@ -5,6 +5,11 @@ import {
   AccordionTrigger,
 } from '@/components/ui/Accordion';
 import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@/components/ui/Collapsible';
+import {
   HeadersEntity,
   HttpArchiveEntry,
   HttpArchiveEntryResponse,
@@ -12,6 +17,8 @@ import {
 import { last } from 'lodash';
 
 import getUrlProperties from '@/utils/getUrProperties';
+import { ChevronDown, ChevronRight } from 'lucide-react';
+import { useState } from 'react';
 
 function NetworkPreview({ entry }: { entry: HttpArchiveEntry }) {
   const resource =
@@ -33,23 +40,57 @@ function NetworkPreview({ entry }: { entry: HttpArchiveEntry }) {
   );
 }
 
+function HighlightedValue({ value }: { value: string | number | boolean }) {
+  return <span className="text-amber-700 dark:text-amber-500">{value}</span>;
+}
+
 function HeadersEntry({ header }: { header: HeadersEntity }) {
   return (
     <li className="text-sm">
-      :<span>{header.name}</span>:{' '}
-      <span className="text-amber-700 dark:text-amber-500">{header.value}</span>
+      :<span>{header.name}</span>: <HighlightedValue value={header.value} />
     </li>
   );
 }
 
 function ResponseBody({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   content,
 }: {
   content: HttpArchiveEntryResponse['content'];
 }) {
-  // TODO: display the content
-  return <div>Content</div>;
+  const [open, setOpen] = useState<boolean>(false);
+
+  return (
+    <ul className="flex-col">
+      <li>
+        MIME Type: <HighlightedValue value={content.mimeType} />
+      </li>
+      <li>
+        Size: <HighlightedValue value={`${content.size} Bytes`} />
+      </li>
+      <li>
+        Compression: <HighlightedValue value={content.compression ?? '-'} />
+      </li>
+      <li>
+        <Collapsible open={open} onOpenChange={setOpen}>
+          <CollapsibleTrigger>
+            <div className="flex items-center">
+              <span className="pr-1">Content</span>
+              {open ? (
+                <ChevronDown className="h-4 w-4 bg-accent" />
+              ) : (
+                <ChevronRight className="h-4 w-4 bg-accent" />
+              )}
+            </div>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <div className="p-2 w-full overflow-auto bg-accent">
+              <pre>{content.text}</pre>
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
+      </li>
+    </ul>
+  );
 }
 
 function NetworkDetails({ entry }: { entry: HttpArchiveEntry }) {
