@@ -11,7 +11,7 @@ import {
   recordLogs,
 } from './browserLogs';
 import { createDir, readFile, removeDir, removeFile, writeFile } from './fs';
-import { sanitizeFilename } from './lib';
+import { sanitizeFilename, truncatePathParts } from './lib';
 import { PluginOptions, TestExecutionResult } from './types';
 
 const harDir = 'dump_har';
@@ -30,7 +30,7 @@ const createDumpFile = (data: TestExecutionResult, dumpDir: string): string => {
     specDirPath,
     `${sanitizeFilename(filename)}.json`
   );
-  writeFile(resultsPath, JSON.stringify(data, null, 2));
+  writeFile(truncatePathParts(resultsPath), JSON.stringify(data, null, 2));
   return resultsPath;
 };
 
@@ -83,7 +83,7 @@ function install(
       const dumpDir =
         options?.targetDirectory &&
         path.resolve(options.targetDirectory) !== path.resolve(harDir)
-          ? options.targetDirectory
+          ? truncatePathParts(options.targetDirectory)
           : 'dump';
 
       const resultsFilePath = createDumpFile(dumpData, dumpDir);
