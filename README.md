@@ -22,6 +22,7 @@ The plugin captures and replays everything that's happening in Cypress tests, th
 - Cypress version 10+
 - NodeJS [^14.17.0](https://docs.cypress.io/guides/getting-started/installing-cypress#:~:text=If%20you're%20using%20npm,Node.js%2014.x)
 - Chromium family browsers only
+- Requires [alternative cypress binaries](https://docs.currents.dev/getting-started/cypress/integrating-with-cypress/alternative-cypress-binaries) due to [Cypress.io blocking](https://currents.dev/posts/v13-blocking)
 
 ## Setup
 
