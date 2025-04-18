@@ -1,6 +1,6 @@
 import { TestExecutionResult } from 'cypress-debugger';
 import { Loader2 } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useCypressEventsContext } from '../context/cypressEvents';
 import { useHttpArchiveContext } from '../context/httpArchiveEntries';
 import { useReplayerContext } from '../context/replayer';
@@ -26,13 +26,16 @@ function PayloadHandler() {
       )
     );
 
-  const handleDataChange = (payload: TestExecutionResult | null) => {
-    setEvents(payload?.cy || []);
-    setReplayerData(payload?.rr || []);
-    setHttpArchiveLog(payload?.har || null);
-    setMeta(payload?.meta ?? null);
-    setBrowserLogs(payload?.browserLogs || null);
-  };
+  const handleDataChange = useCallback(
+    (payload: TestExecutionResult | null) => {
+      setEvents(payload?.cy || []);
+      setReplayerData(payload?.rr || []);
+      setHttpArchiveLog(payload?.har || null);
+      setMeta(payload?.meta ?? null);
+      setBrowserLogs(payload?.browserLogs || null);
+    },
+    [setEvents, setReplayerData, setHttpArchiveLog, setMeta, setBrowserLogs]
+  );
 
   const handleFileChange = ({
     filename,
@@ -70,6 +73,20 @@ function PayloadHandler() {
       handleDataChange(null);
     }
   }, [queryParam]); // eslint-disable-line
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if ((window as any).trace) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // handleDataChange((window as any).trace);
+      // parse base64
+      const str = (window as any).trace;
+      const payload = JSON.parse(str);
+      handleDataChange(payload);
+      setOrigin('trace');
+    }
+  }, []);
 
   if (loading) {
     return (
