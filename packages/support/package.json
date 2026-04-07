@@ -39,7 +39,7 @@
     "@lukeed/uuid": "^2.0.0",
     "@neuralegion/cypress-har-generator": "^5.16.4",
     "json-stringify-safe": "^5.0.1",
-    "lodash": "^4.17.21",
+    "lodash": "^4.18.1",
     "rrweb": "^2.0.0-alpha.4"
   }
 }
